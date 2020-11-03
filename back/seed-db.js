@@ -7,7 +7,7 @@ const instrumento1 = Product.create({
   name: "Guitarra",
   stock: 2000,
   price: 5500,
-  imgUrl: "https://m.media-amazon.com/images/I/81itdej9OJL._AC_UL320_.jpg",
+  imgUrl: 'https://bairesrocks.vteximg.com.br/arquivos/ids/221130-1500-1500/D_NQ_NP_2X_975172-MLA43908744581_102020-F.jpg?v=637396862058470000',
   description: "*****GUITARRA ROMULO GARCIA ESTUDIO SUPERIOR********",
 });
 

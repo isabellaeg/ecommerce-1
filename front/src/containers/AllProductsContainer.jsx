@@ -1,51 +1,49 @@
-import React, { Component, useEffect } from 'react'
-import AllProducts from '../components/AllProducts'
-import { connect } from 'react-redux'
-import {fetchAllProducts} from '../actions/products'
+import React, { Component, useEffect } from "react";
+import AllProducts from "../components/AllProducts";
+import { connect } from "react-redux";
+import { fetchAllProducts } from "../actions/products";
 
-/* export class AllProductsContainer extends Component {
-    componentDidMount() {
-        this.props.fetchAllProducts()
-    }
+class AllProductsContainer extends Component {
+  componentDidMount() {
+    this.props.fetchAllProducts();
+  }
 
-
-    render() {
-        console.log('props', this.props)
-        return (
-            <div>
-                <AllProducts allProducts={this.props.allProducts}/>
-            </div>
-        )
-    }
+  render() {
+    return (
+      <div>
+        <AllProducts allProducts={this.props.allProducts} />
+      </div>
+    );
+  }
 }
 
 const mapStateToProps = (state) => {
-    console.log('state', state)
-    return {
-        allProducts: state.allProducts.allProducts
-    }
-} */
+  console.log("state", state);
+  return {
+    allProducts: state.allProducts.allProducts,
+  };
+};
 
+export default connect(mapStateToProps, { fetchAllProducts })(
+  AllProductsContainer
+);
 
-function AllProductsContainer({allProducts}) {
+/* function AllProductsContainer({allProducts, fetchAllProducts}) {
     useEffect(() => {
         fetchAllProducts();
-      }, []);
+    }, []);
+    
     return (
         <div>
-        <h1>Users:</h1>
         <ul>
-          {allProducts.map((p) => (
+          {allProducts && allProducts.map((p) => (
             <li key={p.id}>{p.name}</li>
           ))}
         </ul>
-  
       </div>
     )
 }
 
 const mapStateToProps = (state) => ({
     allProducts: state.allProducts.allProducts
-  });
-
-export default connect(mapStateToProps, {fetchAllProducts})(AllProductsContainer)
+  }); */
