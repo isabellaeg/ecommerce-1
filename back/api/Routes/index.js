@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { User } = require('../Models/index')
+const { User, Product } = require('../Models/index')
 
 router.post('/users', (req, res) => {
     User.create(req.body)
@@ -14,5 +14,13 @@ router.get('/users', (req, res) => {
         res.send(users)
     })
 })
+
+router.get('/products', (req, res) => {
+    Product.findAll()
+        .then((product) => {
+        res.send(product)
+    })
+})
+
 
 module.exports = router
