@@ -1,0 +1,390 @@
+//CREAR PRODUCTOS
+const instrumentoCuerdas = [{
+    name: 'Guitarra',
+    stock: 2000,
+    price: 5500,
+    imgUrl: 'https://m.media-amazon.com/images/I/81itdej9OJL._AC_UL320_.jpg',
+    description: '*****GUITARRA ROMULO GARCIA ESTUDIO SUPERIOR********',
+},
+{   name: 'Bajo Electrico Ibanez 4 Cuerdas Gsr180bem Blue Metallic',
+    stock: 2000,
+    price: 15860,
+    imgUrl: 'https://bairesrocks.vteximg.com.br/arquivos/ids/221003-900-900/D_NQ_NP_860642-MLA43674208747_102020-O.jpg?v=637395919638170000', 
+    description: 'Con el Ibanez Gio GSR180-BEM Baltic Blue Metallic la compañía tradicional japonesa demuestra una vez más que incluso en la gama de principiantes se puede avanzar en el juego con bajos eléctricos procesados de alta calidad y de excelente sonido' 
+},
+{   name: 'Bajo Leonard Precision Lb255mrd Rojo Metalizado Para Zurdo',
+    stock: 2000,
+    price: 23500,
+    imgUrl: 'https://bairesrocks.vteximg.com.br/arquivos/ids/220709-900-900/D_NQ_NP_2X_670489-MLA43299930804_082020-F.jpg?v=637369182094770000', 
+    description: 'Bajo Leonard LB255MRD - Precision - 4 Cuerdas - Para Zurdo - Metalizado'
+},
+{   name: 'Bajo Electroacústico Taylor Gs Mini E De Viaje + Funda',
+    stock: 2000,
+    price: 27200,
+    imgUrl: 'https://bairesrocks.vteximg.com.br/arquivos/ids/208960-900-900/857626-MLA40811773178_022020-F.jpg?v=637313082279670000',
+    description: 'El GS Mini Bass ofrece a los jugadores un bajo acústico de pequeña escala notablemente atractivo que es compacto, liviano y ultra cómodo en las manos. Este año traemos un nuevo modelo a la mezcla, con aros y aros en capas ricamente decorados. Agregando a la herencia popular de nuestra familia GS Mini, este hermano de bajo de cuatro cuerdas es aún más impresionante por su capacidad de crear notas de bajo de sonido natural a pesar de una longitud de escala condensada de 23-1 / 2 pulgadas, aproximadamente 10 pulgadas más corta que el longitud de escala de un bajo estándar. Parte de la magia son las cuerdas personalizadas con núcleo de nylon (con alambre de bronce fosforado) desarrolladas con nuestros amigos en D Addario exclusivamente para el bajo (de hecho, ninguna otra cuerda funcionará en él). Junto con nuestro diseño patentado de clavija de puente de doble punta, el bajo no solo suena muy bien, sino que también produce una sensación resbaladiza. Y con el espacio del traste condensado, tocar el bajo ahora es físicamente más fácil en manos de cualquiera, desde niños hasta novatos del bajo y bajistas experimentados que anhelan una opción amigable para el sofá. Es una herramienta inspiradora para tener a mano para escribir, grabar demos y tocar con amigos. El bajo viene equipado con nuestra electrónica integrada ES-B, junto con una bolsa rígida con correas de mochila ajustables para facilitar su transporte.' 
+},
+{   name: 'Bajo Eléctrico D angelico Ex-bass Semihueco + Estuche Rígido',
+    stock: 2000,
+    price: 125000,
+    imgUrl: 'https://bairesrocks.vteximg.com.br/arquivos/ids/208958-900-900/708207-MLA40811745163_022020-F.jpg?v=637313082272570000', 
+    description: 'Bajo Eléctrico D Angelico EX-BASS con Estuche Rígido D Angelico  introduce la EX-Bass , semi-hueco cuerpo y 81.9cm escala que lleva el ambiente clásico y de época se siente que ha llegado a esperar de este artesano de clásico de los instrumentos de calidad. La EX-Bass presenta un cuerpo de arce flameado laminado con encuadernación de 5 capas, un mástil de arce duro de dos piezas con un centro de nogal y un diapasón de palisandro indio con incrustaciones de madreperla. El hardware en el EX-Bass incluye un Gold Tune-O -Matic bass bridge, un cordal de barra de parada y afinadores sellados de lujo. Las pastillas son un par de bobinas dobles especialmente diseñadas controladas por perillas de volumen y tono con un interruptor de palanca de tres vías. Cuerpo: semi -hueco Material del cuerpo: Arce flameado laminado Mástil: Arce duro de dos piezas con centro de nogal. Escala: Número de Trastes: 23 Diapasón de  81,9cm  Palisandro indio Incrustación: Madreperla. Tamaño: 38.1cm. Pastillas: Bobina doble de diseño especial. Encuadernación: 5 capas. Puente: Oro Tune-O -Matic bass bridge control Controles: Volumen / Tono / Tres vías. Hardware de palanca : Afinadoras chapadas en oro. Ancho de tuerca sellada de lujo : 1 de 1,27cm. Jack de entrada: Switch Craft USA'
+},
+{   name: 'Bajo Fender Jazz Bass 60s Classic Mexico Rwn Con Funda', 
+    stock: 2000,
+    price: 163940,
+    imgUrl: 'https://bairesrocks.vteximg.com.br/arquivos/ids/208868-900-900/674814-MLA32895692952_112019-F.jpg?v=637313081998630000', 
+    description: 'Bajo Fender Jazz Bass 60s Classic Mexico Rwn Con Funda Con el estilo de la Serie Clásica, el Jazz Bass de los años 60 captura la esencia de la década en un instrumento de gran sonido e innovador como la era en la que debutó. Desde Motown hasta la invasión británica y desde el rock de garage estadounidense hasta el rock pesado y el soul de finales de los 60 , esta belleza de ambiente vintage encarna esa era fantástica en la música, con un aspecto clásico de Jazz Bass, sensación rápida y versátil tono de doble pastilla. -Mástil de arce con perfil "C" -Diapasón de palisandro de 7.25 "de radio con 20 trastes de estilo vintage -Pastillas duales Jazz Bass de bobina simple de estilo vintage -Puente de cuatro sillas de estilo vintage -Golpeador de Carey'
+},
+{   name: 'Bajo Eléctrico Schecter Omen Extreme 4 De 4 Cuerdas', 
+    stock: 2000,
+    price: 77680,
+    imgUrl: 'https://bairesrocks.vteximg.com.br/arquivos/ids/205062-1500-1500/843815-MLA41092913997_032020-F.jpg?v=637313070364700000', 
+    description: 'Bajo Eléctrico Schecter OMEN EXTREME-4 de 4 cuerdas. El bajo Schecter Omen Extreme-4 tiene un cuerpo de cahoba con una Flamed Maple tapa, que ofrece tonos cálidos y poderosamente ricos, con la tapa arqueada añadiendo mucha resonancia que realza el tono del cuerpo. El mástil de arce del bajo está acoplado a un diapasón de palosanto para producir características brillantes, con tonos cálidos y suaves. La combinación de arce y madera de rosa crea agudos brillantes, graves gruesos y abre los medios para una increíble cantidad de profundidad. El presagio presenta un conjunto de pastillas de bajo Schecter Diamond que ofrecen una gama de posibilidades tonales, perfectas para tocar diferentes tipos de música, desde jazz y blues, hasta rock duro y metal. El Schecter Omen Extreme también cuenta con un puente de bajo Schecter Diamond, afinadores Schecter, una tuerca Graph Tech, encuadernación en crema, negro chromeHerraje, y un acabado black cherry  y Vintage Sunburst que muestra el arce en llamas.'
+},
+{   name: 'Bajo Electrico Kramer By Gibson Acc Negros Kdb1brbh1',
+    stock: 2000,
+    price: 55700,
+    imgUrl: 'https://bairesrocks.vteximg.com.br/arquivos/ids/204962-1500-1500/618797-MLA31970807463_082019-F.jpg?v=637313070072600000', 
+    description: 'Kramer, uno de los fabricantes de armas de rock de alto rendimiento más respetados del mundo, ha puesto las guitarras en manos de las mejores trituradoras durante tres décadas. Kramer comenzó con bajos de vanguardia en los años 70 con cuellos de aluminio y paquetes electrónicos únicos. Para recuperar su historia de bajos increíbles diseñados para los jugadores de hoy, no busque más que el D-1 Bass. Es un abrasador cuatro cuerdas a gran escala con un aspecto mortal, una jugabilidad suave y un tono sólido más que suficiente para retumbar las bases de cualquier lugar. Fabricado con maderas de tonos premium, con un estilo Kramer intransigente y cargado con una pastilla humbucker activa EMG ™ que hace temblar la tierra, el D-1 Bass es más que suficiente para lograr el máximo asalto de gama baja en cualquier escenario o concierto de estudio. Disponible en su elección de blanco perla o negro con división roja, Pruebe bajo las líneas extremas del elegante diseño D-1 Bass y encontrará maderas de tonos superiores para respaldarlo todo. El cuerpo está hecho de caoba sólida, una madera con una larga historia en la fabricación de instrumentos, conocida por su respuesta de frecuencia media baja y baja sólida y resonancia superior. El mástil de tres piezas y cinco tornillos está tallado en arce duro y rematado con un diapasón de ébano negro liso con 24 trastes, un radio de 12 "y un ancho de 1.68" en la tuerca. La escala de graves de 34 ”de longitud completa produce una potencia de fuego óptima de la E baja, pero se logra en un diseño que es compacto, liviano y bien equilibrado. Características: Puente de montaje empotrado, totalmente ajustable. EMG MMCS Humbucker. Preamplificador BTS EMG Batería de 9v 1 vol., 1 control de graves y 1 control de agudos. Cuerpo de caoba Mástil de arce de 3 piezas. Diapasón de ébano Radio de 12 " Escala de 34 "con 24 trastes'
+},
+{   name: 'Bajo Eléctrico Schecter Stiletto Extreme-5 De 5 Cuerdas', 
+    stock: 2000,
+    price: 82870,
+    imgUrl: 'https://bairesrocks.vteximg.com.br/arquivos/ids/204256-1500-1500/710300-MLA41084345828_032020-F.jpg?v=637313067805770000', 
+    description: 'Bajo Eléctrico Schecter  STILETTO EXTREME-5 de 5 Cuerdas. El bajo Schecter Stiletto Extreme-5 tiene un cuerpo hecho de cahoba para ofrecer tonos cálidos y ricos, mientras que su tapa de arce acolchado proporciona un aspecto visualmente impresionante y único. El mástil de arce y el diapasón de palisandro producen características brillantes, dando el calor del tono general para crear agudos brillantes y graves firmes. Un juego de pastillas de bajo Diamond de Schecter se utilizan para hacer el Stiletto y el bajo increíblemente versátil, mientras que el ecualizador activo de 2 bandas permite más ajustes sin la necesidad de ir a tu amplificador. Acabado con incrustaciones vectoriales negras chrome Herraje de perloide/abalón, y un acabado black cherry  y See Through Black. El Schecter Stiletto Extreme es un instrumento visualmente hermoso que puede producir tonos increíbles. Descripción completa. Cuerpo de caoba con tapa de arce acolchada. El Stiletto Extreme tiene un cuerpo construido de caoba de alta calidad, con una tapa de arce acolchada, produciendo tonos poderosos que pueden seguir el ritmo de cualquier cosa. El cuerpo de caoba ofrece tonos naturalmente ricos y cálidos, con un equilibrio de molido y mordida para crear calzoncillos bajos y agudos atractivos. La madera ofrece al bajo una excelente profundidad y ayuda a proporcionar un sustain increíble. El bajo también incluye el puente de bajos Diamond de Schecter, la encuadernación en crema chromeHerraje negra y un black cherry finish que muestra la figura natural del arce. Mástil de arce, diapasón de palosanto. El mástil de arce atornillado proporciona cierta tensión y un corte al tono del bajo, proporcionando un borde de chisporroteo en los agudos y firmeza en los graves. La madera de arce proporciona características brillantes al tono general, mientras que ofrece un ataque rápido en el rango medio. La adición de un diapasón de palosanto ayuda a enriquecer el sonido del arce, a la vez que contribuye a su suavidad. La combinación Palisandro/Maple aporta calidez al timbre de la guitarra, añadiendo chispa a los agudos, grosor a los graves, y abre los medios. El bajo también viene con muchas otras características, incluyendo los afinadores de Schecter, una tuerca tecnológica Graph, e incrustaciones vectoriales de perloide/abalón en el diapasón. Pastillas de Bajo Schecter Diamond. Con un juego de pastillas de bajo Schecters Diamond, el Stiletto se convierte en un instrumento increíblemente versátil, con una amplia gama tonal que puede tocar cualquier cosa, desde jazz y blues, hasta rock duro y metal. Diseñadas con imanes de cerámica, las pastillas de bajo Diamond producen un tono grueso y contundente que empuja hacia afuera los tonos bajos más gruesos de la madera. Con su diseño de doble bobina, las pastillas ofrecen bajo ruido, alta salida y un potente low end. El Schecter también cuenta con un ecualizador de 2 bandas con controles sobre los graves y los agudos, lo que permite moldear los graves para que se adapten mejor a su estilo de ejecución.'
+},
+{   name: 'Bajo Squier By Fender Jazz Bass Deluxe Activo Negro', 
+    stock: 2000,
+    price: 92502,
+    imgUrl: 'https://bairesrocks.vteximg.com.br/arquivos/ids/203471-1500-1500/631302-MLA40969867521_032020-F.jpg?v=637313065137130000',
+    description: 'Bajo eléctrico. Cuerpo de tilo. Mástil de arce. C Shape. Diapasón de ebonol 20 trastes. Long Scale. Ancho de cejuela 38 mm. Pastillas: 2 x Single mann Jazz Bass. Electrónica activa. Standard Bridge. Hardware cromado. Matching Headstock Color: Negro'
+},
+{   name: 'Bajo Squier Jazz Bass Classic Vibe 60 Color Silver By Fender', 
+    stock: 2000,
+    price: 105887,
+    imgUrl: 'https://bairesrocks.vteximg.com.br/arquivos/ids/203468-1500-1500/919380-MLA27134769763_042018-F.jpg?v=637313065132300000', 
+    description: 'El Squier Classic Vibe Jazz Bass® 60s cuenta con todos los elementos Deluxe de su hermano mayor de Fender® cuando se presentó en los años 60. Una estética festiva, rapidez de uso, y dos pastillas custom con total flexibilidad de controles. Un puente HiMass™ con selletas de latón le aportan a este bajo un enorme sustain y un sonido de estilo vintage con un sonido de respuesta rápida e impacto frontal. CARACTERÍSTICAS: Mástil de arce con tintado vintage, perfil posterior en C y diapasón de palosanto de 20 trastes. Dos pastillas custom Jazz Bass de bobinado simple. Puente HiMass™ con selletas de latón. Golpeador de concha de tortuga apoyadedos'
+},
+{   name: 'Bajo Fender American Performer Precision Bass Rw Sunburst',
+    stock: 2000,
+    price: 318088,
+    imgUrl: 'https://bairesrocks.vteximg.com.br/arquivos/ids/202996-1500-1500/618173-MLA32944519258_112019-F.jpg?v=637313063982700000', 
+    description: 'Bajo Eléctrico Fender American Performer Precision Bass - Rosewood. Nacido en Corona, California, el American Performer Precision Bass ofrece el tono y la sensación excepcionales que espera de un Fender auténtico, junto con nuevas características orientadas al jugador que lo hacen aún más inspirador para jugar. -Cuerpo de aliso -Pastilla intermedia Yosemite de bobina dividida P Bass; Pastilla del puente Jazz Bass de bobina simple Yosemite -Sistema de tono de grasa -Mástil en forma de "C moderna" con diapasón de radio de 9.5 "; 20 trastes medio jumbo -Afinadoras de eje cónico; logo plateado de los 70'
+},
+{   name: 'Bajo Fender Coronado Bass 1/2 Caja 2 X Humbucker Rojo', 
+    stock: 2000,
+    price: 127536,
+    imgUrl: 'https://bairesrocks.vteximg.com.br/arquivos/ids/206246-1500-1500/672020-MLA32376353382_092019-F.jpg?v=637313074013900000',  
+    description: 'Características clave. Regreso del primer Fender Hollow-Body Electric Golpeador Candy Apple Red, 3 capas. Mástil de arce en forma de C, diapasón de palisandro. Puente Adjusto-Matic. Flotador de trapecio flotante F. Descripción completa. El Coronado tiene una historia especial como el primer eléctrico de cuerpo hueco de Fender. Ahora reintroducido en la serie Modern Player, el estilo Coronado regresa con un aspecto, tono y características impresionantes en el Conorado Bass. El cuerpo de arce delgado y semi-hueco tiene un bloque central de aliso y está encuadernado en la parte superior y posterior, acabado en rojo Candy Apple con golpeador negro de tres capas. Un mástil de arce en forma de C tiene un diapasón de palisandro encuadernado en blanco con 21 trastes jumbo medianos y elegantes incrustaciones de bloques de perlas blancas. Dos pastillas humbucking FideliTron con un interruptor de palanca de tres vías, cuatro controles estilo amp con faldón y un puente Adjusto-Matic con una pieza flotante de trapecio F flotante.'
+    
+},
+{
+    name: 'Guitarra Acustica Cort Ad810 OP Sunburst',
+    stock: 2000,
+    price: 25400,
+    imgUrl: 'https://bairesrocks.vteximg.com.br/arquivos/ids/221153-900-900/D_NQ_NP_606738-MLA43940934074_102020-O.jpg?v=637396862118230000',
+    description: 'La serie acústica más antigua de Cort, la Serie Estándar, define un excelente rendimiento y una buena relación calidad-precio. Las guitarras de la serie estándar son asequibles, pero ofrecen un buen rendimiento sólido para principiantes y aficionados por igual. La AD810 es una guitarra económica pero que conserva características capaces de enamorarte.La tapa sólida de Spruce en la AD810 otorga un tono superior que mejora a medida que pasa el tiempo y se asientan las maderas. Caracteristicas: - Estilo: Acústica Dreadnought (Western tradicional), - Construcción: Dovetail Neck Joint, Anchura de la cejilla: 43 mm, Tapa: Spruce (Picea), - Aros y fondo: Caoba, - Mástil: Caoba, - Diapasón: Palisandro, - Trastes: 20, - Escala: 643 mm (25 5/16"), - Marcas: Incrustación de Puntos, - Clavijero: Die-casting - Fundición a Presión, - Puente: Rosewood (Palisandro), - Cuerdas: Metal - Coated Strings, - Bracing: Advanced X-Bracing, - Color: Natural Open Pure (poros abiertos).'
+},
+{
+    name: 'Guitarra Acústica Cort AD Mini OP + Funda',
+    stock: 2000,
+    price: 24636,
+    imgUrl: 'https://bairesrocks.vteximg.com.br/arquivos/ids/221152-1500-1500/D_NQ_NP_866301-MLA43940662181_102020-O.jpg?v=637396862114900000',
+    description: 'La serie acústica más antigua de Cort, la Serie Estándar, define un excelente rendimiento y una buena relación calidad-precio. Las guitarras de la serie estándar son asequibles, pero ofrecen un buen rendimiento sólido para principiantes y aficionados por igual. La AD MINI es una guitarra acústica tipo Dreadnought mini, tamaño 3/4 siendo muy portátil, ideal para viajar. Características: - Estilo: Acústica Mini 3/4 - Construcción: Dovetail Neck Joint. - Anchura de la cejilla: 43 mm. - Tapa: Spruce (Picea). - Aros y fondo: Caoba. - Mástil: Caoba. - Diapasón: Palisandro. - Trastes: 19. - Escala: 578 mm (22,8"). - Marcas: Incrustación de Puntos. - Rosetón: Rosetón de acrílico de tigre - Clavijero: Die-casting - Fundición a Presión. - Puente: Rosewood (Palisandro). - Cuerdas: Metal - Coated Strings. - Bracing: Advanced X-Bracing. - Color: Mahogany Open Pure (poros abiertos).'
+},
+{
+    name: 'Guitarra Acustica Cort Luce Bvl Op Open Pore Tipo Folk',
+    stock: 2000,
+    price: 39878,
+    imgUrl:'https://bairesrocks.vteximg.com.br/arquivos/ids/221130-1500-1500/D_NQ_NP_2X_975172-MLA43908744581_102020-F.jpg?v=637396862058470000',
+    description: 'Guitarra Acústica Cort Luce Bvl Op Open Pore Tipo Folk Características: Serie Bevel Cut Formato OM Orchestra Bevel cut o comfort cut para mayor comodidad al apoyar el brazo Tapa sólida de abeto Aros y fondo de caoba Mástil de caoba Diapasón de Ovangkol 20 Trastes Escala 25,3 ( 643 mm ) Puente de Ovangkol Clavijero Die-Cast Roseta de Herringbone Cuerdas D Addario® EXP16 Acabado Open Pore Natural'
+},
+{
+name: 'Guitarra Electroacústica Cort MR500EOP Natural con Funda',
+stock: 2000,
+price: 42477,
+imgUrl: 'https://bairesrocks.vteximg.com.br/arquivos/ids/221129-1500-1500/D_NQ_NP_2X_733243-MLA43907813455_102020-F.jpg?v=637396862055870000',
+description: 'La serie MR representa la misión de Cort de proporcionar instrumentos tradicionales de la más alta calidad con excelente mano de obra y características modernas a un precio inmejorable. MR500E es una tapa de abeto macizo, aros y fondo de caoba, diapasón de Ovangkol. El cuerpo acorazado clásico tiene un corte veneciano para un fácil acceso a los trastes altos y está equipado con electrónica Cort CE304T para entregar el sonido acústico natural del MR a un sistema de amplificación para aplicaciones en vivo y de grabación.'
+},
+{
+name: 'Guitarra Electroacústica Cort Earth Mini F Adirondack Viaje',
+stock: 2000,
+price: 49273,
+imgUrl: 'https://bairesrocks.vteximg.com.br/arquivos/ids/220969-1500-1500/D_NQ_NP_2X_621057-MLA43613341400_092020-F.jpg?v=637395919489300000',
+description: '¡Gran guitarra de viaje que puedes llevar a cualquier parte! Este presenta una pastilla / preamplificador Fishman classic 4, tapa de abeto macizo y aros y fondo de caoba. Incluye una funda Cort.'
+},
+{
+    name: 'Guitarra Acústica Cort Serie Earth 100 Dreadnought Sunburst Con funda',
+    stock: 2000,
+    price: 47574,
+    imgUrl:'https://bairesrocks.vteximg.com.br/arquivos/ids/220967-1500-1500/D_NQ_NP_2X_939037-MLA43612881974_092020-F.jpg?v=637395919482570000',
+    description: 'Como homenaje de Cort a las grandes guitarras acústicas vintage, la serie Earth representa el aspecto, el sonido, la sensación y la facilidad de ejecución de esos instrumentos finos con una calidad sin concesiones y un valor excelente. Ideal para tocadores de flatpicking y de dedos, Earth100 presenta materiales clásicos probados en el tiempo como tapa de abeto macizo, fondo y lados de caoba.'
+},       
+{
+    name: 'Guitarra Acústica Cort Serie Earth 100 Dreadnought Negra Con funda',
+    stock: 2000,
+    price: 47574,
+    imgUrl: 'https://bairesrocks.vteximg.com.br/arquivos/ids/220966-1500-1500/D_NQ_NP_2X_708865-MLA43612882329_092020-F.jpg?v=637395919479430000',
+    description: 'Como homenaje de Cort a las grandes guitarras acústicas vintage, la serie Earth representa el aspecto, el sonido, la sensación y la facilidad de ejecución de esos instrumentos finos con una calidad sin concesiones y un valor excelente. Ideal para tocadores de flatpicking y de dedos, Earth100 presenta materiales clásicos probados en el tiempo como tapa de abeto macizo, fondo y lados de caoba.'
+},
+{
+    name: 'Guitarra Electroacustica Guild Jumbo Junior MP con Funda',
+    stock: 2000,
+    price: 87365,
+    imgUrl: 'https://bairesrocks.vteximg.com.br/arquivos/ids/220739-1500-1500/D_NQ_NP_2X_708450-MLA43400346495_092020-F.jpg?v=637369182205400000',
+    description: 'Guild ahora ofrece su forma jumbo clásica en un tamaño más pequeño y asequible. Ya sea en el sofá, en el estudio o mientras viaja, el diseño compacto del Jumbo Junior le permite tener un Gremio a su lado en todo momento. Divertido y cómodo de tocar, el tono cálido y el volumen sorprendente del Jumbo Junior inspirarán muchos recuerdos, cantos grupales y sesiones improvisadas de fin de semana. Con una tapa sólida de abeto Sitka y un respaldo de caoba arqueado, el Jumbo Junior ofrece la estética clásica de Guild para aquellos que aman el aspecto de un jumbo, pero que no adoran el tamaño. Cúbrelo con la camioneta AP-1 diseñada por Fishman por Guild, y la Jumbo Junior está lista para usar cuando necesites encender tu Guild. También disponible con tapa de abeto macizo y aros y fondo de arce. Características: Forma del cuerpo: Mini Jumbo Construcción: Semisólido (tapa) Cutaway: No Tapa armónica: Pícea Sitka Fondo/Aros: Caoba Mástil: Caoba Diapasón: Palisandro Inlays en el diapasón: Dots Herrajes: Guild Vintage-Style Open-Gear Roseta: Mother-Of-Pearl/ABS Ribete: White ABS Binding with Black/White ABS purfling Puente: Palisandro Color: Natural Acabado: Mate Longitud escala: 23,75" (603 mm) Anchura de la cejilla: 43,0 mm Número de cuerdas: 6 cuerdas Grosor de cuerda de fábrica: .013 - .056 Sistema pastillas: Guild AP-1 Active Acoustic Piezo Sistema de electrificación: Guild AP-1 Reguladores: Volumen'
+},
+{
+    name: 'Guitarra Electro Criolla Ibanez GA5TCE Clásica Natural',
+    stock: 2000,
+    price: 42671,
+    imgUrl: 'https://bairesrocks.vteximg.com.br/arquivos/ids/220534-1500-1500/D_NQ_NP_824960-MLA43169883018_082020-O.jpg?v=637335313379130000',
+    description:     'Las guitarras clásicas Ibanez eliminan las conjeturas para encontrar una guitarra clásica asequible y de gran sonido que sea fácil de tocar y tocar. Ya sea que esté buscando un instrumento tradicional de tamaño clásico o una cómoda guitarra para principiantes de cuerdas de nailon, están muy bien construidas, son asequibles y tienen la tonalidad y la capacidad de ejecución impecables de instrumentos mucho más caros. Caracteristicas: - Orientación: Diestra - Tipo de Cuerda: Nylon - Cuerpo: Cutaway de Cuerpo Delgado - Tapa: Abeto - Fondo y Aros: Maple Acolchado - Mástil: Caoba - Diapasón: Palo de Rosa - Trastes: 21 - Escala: 25.5" (648mm) - Ancho en Cejilla(Nut) 44mm (1 11/16") - Unión de Mastil Dovetail - Roseta: Diseño de Mosaico Clásico - Cuerdas de Nylon recubiertas - Batería de 9V - Preamplificador Ibanez AEQ-2T con afinador incorporado - Pastilla Ibanez Under Saddle'
+},
+{
+        name: 'Guitarra Electroacústica Ibanez AW70ECE Natural Maciza',
+        stock: 2000,
+        price: 78057,
+        imgUrl: 'https://bairesrocks.vteximg.com.br/arquivos/ids/220526-1500-1500/D_NQ_NP_991884-MLA43165933799_082020-O.jpg?v=637335313337930000',
+        description: 'Guitarra Electroacústica con tapa solida de Cedro. Microfóno FISHMAN Sonicore y Preamplificador IBANEZ Ibanez AEQ-SP2 con potenciometros de volumen,graves, medios, agudos y afinador electrónico incorporado. Caracteristicas: - Tipo de cuerpo: Dreadnought con cutaway - Sistema de varillas: X - Tapa: Cedro macizo - Aros y fondo: Caoba - Mástil: Caoba - Diapasón: Palosanto - Número de trastes: 20 - Escala: 651 mm - Radio: 400 mm - Puente: Palosanto - Binding: Negro - Roseta: Madera - Clavijero: Cromado tipo die-cast - Cuerdas: D Addario EXP11 Coated 80/20 Bronze, Light. Calibre: .012 - .053 - Pastilla: Fishman Sonicore - Previo: Ibanez AEQ210TF con afinador integrado'
+    },
+{
+    name: 'Guitarra Electrica Schecter C-6 Plus Lh Pickup:hh Zurdo',
+    stock: 2000,
+    price: 50000,
+    imgUrl: 'https://bairesrocks.vteximg.com.br/arquivos/ids/208932-1500-1500/712586-MLA41242691866_032020-F.jpg?v=637313082194570000',
+    description: 'La guitarra eléctrica Schecter C-6 Plus es una guitarra asequible e imponente que presenta un cuerpo ligero de tilo con una tapa finish acolchada estilo arce para combinar el tono resonante con el estilo feroz. También incorpora un diapasón de palosanto de 24 trastes, mástil de arce, humbuckers Schecter Diamond Plus, puente tune-o-matic (cuerda a través) y chromeHerraje el Schecter C-6 Deluxe Plus es perfecto para los músicos aspirantes como una introducción al tono icónico de Schecter y a la facilidad de ejecución. '
+},
+{
+    name: 'Ukelele Soprano Kala',
+    stock: 2000,
+    price: 9239,
+    imgUrl: 'https://bairesrocks.vteximg.com.br/arquivos/ids/220464-1500-1500/681586-MLA27134859059_042018-F.jpg?v=637320876291170000',
+    description:'Ukelele soprano. Tapa de agathis. Cuerpo de agathis. Mástil de caoba. Escala: 347mm. 12 trastes de latón. Diapasón de palisandro.Puente de palisandro. Clavijas de afinación con engranajes. Acabado: Satinado.'
+    },
+    {
+        name: 'Ukelele Tamaño Concierto Fender',
+        stock: 2000,
+        price: 30862,
+        imgUrl: 'https://bairesrocks.vteximg.com.br/arquivos/ids/208858-1500-1500/847860-MLA29995993984_042019-F.jpg?v=637313081965530000',
+        description:' Bautizado con la palabra hawaiana "sonrisa", el Mino Aka es un ukelele de tamaño concierto que seguro te hará sonreír. Se trata de un "uke" realizado en caoba, con una acertada estética y gran calidez de sonido, que resulta ideal para distintos estilos musicales, desde los sonidos tradicionales de las islas hasta el pop actual. Incluso con su precio asequible, este alegre ukelele presenta diapasón y puente de palosanto, cejilla y selleta de hueso para un mayor equilibrio de sonido y sustain, y un bonito diseño con detalles como la pala de silueta Telecaster®, el acabado envejecido de la caja, el mástil ribeteado, o la roseta en abulón acrílico.'
+        },
+        {
+            name: 'Ukelele Soprano Ukadelic',
+            stock: 2000,
+            price: 6774,
+            imgUrl: 'https://bairesrocks.vteximg.com.br/arquivos/ids/207172-1500-1500/658736-MLA42480394785_072020-F.jpg?v=637313077180970000',
+            description:'UKADELIC by Kala ABS Resistente al Agua Ideal para la Escuela. Estos modelos cuentan con ilustraciones personalizadas. Durable y Resistente al agua, Fácil de limpiar. Excelente para programas escolares, construido compuesto de plástico. Con sintonizadores de engranajes abiertos niquelados. Características: - Tamaño: Soprano. - Tapa Superior: ABS compuesto. - Aros y Fondo: ABS compuesto. - Unión: N / A. - Cuello: ABS compuesto.- Terminación: Mate. - Diapasón: ABS compuesto. - Cabezal: Estándar.- Cuerdas: Aquila Super Nylgut®.'
+            },
+            {
+                name: 'Ukelele Kala Ka-ce',
+                stock: 2000,
+                price: 27251,
+                imgUrl: 'https://bairesrocks.vteximg.com.br/arquivos/ids/206283-900-900/921273-MLA41106962273_032020-F.jpg?v=637313074153030000',
+                description:'Ukulele Kala KA-CE CONCIERTO DE CAOBA SATINADA CON ECUALIZADOR. La línea Satin Mahogany es la colección insignia de Kala y se ha convertido en un estándar de la industria. El diseño tradicional se destaca con un acabado satinado y encuadernación en crema. Construido y diseñado para resistir la prueba del tiempo. MEDICIONES. Longitud de escala: 37.5cm, Longitud total del instrumento: 75.9cm, Longitud del cuerpo: 28cm, Número de trastes: 18, Ancho en la parte superior: 15.2cm, Ancho en la parte inferior: 20.8cm, Ancho en la cintura: 12.4cm, Profundidad del cuerpo : 6.8cm, ancho del diapasón en la tuerca: 3.5cm, ancho del diapasón en la articulación del cuello / cuerpo: 4.3cm'
+                }, 
+                {
+                    name: 'Ukelele Tamaño Concierto Mahalo',
+                    stock: 2000,
+                    price: 8154,
+                    imgUrl: 'https://bairesrocks.vteximg.com.br/arquivos/ids/205559-1500-1500/713423-MLA27134839965_042018-F.jpg?v=637313071806630000',
+                    description:'Ukelele Tamaño Concierto Mahalo Modelo MH2 Natural. El Ukulele de Concierto Maholo Hano Series MH2 vienen en una serie de colores diferentes con un acabado brillante.Incluye funda de transporte Mahalo, los Ukuleles de la serie Hano de Mahalo estan diseñados para aumentar la proyección y la respuesta de bajos. Las cuerdas de Aquila también se ajustan a los ukeleles para producir un sonido más completo, más fuerte y más equilibrado, rico en armónicos tonales. Características: -Tipo: Concierto. -Cuerpo: Nato con dorso arqueado. -Mango: Caoba. -Puente: Palo rosa.-Cant. Trastes: 16. -Clavijas: Dolphin Doradas. -Color: Transparent Blue. -Incluye Funda Original.'
+                    },
+                    {
+                        name: 'Ukelele Bajo Kala',
+                        stock: 2000,
+                        price: 83718,
+                        imgUrl: 'https://bairesrocks.vteximg.com.br/arquivos/ids/203879-1500-1500/717667-MLA27134871568_042018-F.jpg?v=637313066461730000',
+                        description: 'Fabricante: Kala. Instrumento: Bajo ukulele. Sistema de pastilla: Ja. Número de cuerdas: 4. Denominación de color: Natural. Acabado: Mate'
+                        }
+]
+
+const teclados = [
+    {
+        name: 'Arranger Profesional Teclado Arreglista 76 Teclas Korg Pa4x',
+        stock: '100',
+        price: '553220',
+        imgUrl: 'https://bairesrocks.vteximg.com.br/arquivos/ids/208606-1500-1500/715624-MLA27872000587_072018-F.jpg?v=637313081133500000',
+        description: '76 teclas semi pesadas con dinámica sensible y Aftertouch, Polifonía de 128 notas, 1500 sonidos, más de 500 Styles, Disco duro interno de 500 GB, Nuevo motor de sonido EDS-X con tecnología Streaming, Nuevos Multisamples y Drum-Sounds, Efectos para Mastering - Waves Audio Ltd. MAXX Suite (MaxxEQ, MaxxBass, MaxxVolume, MaxxTreble, MaxxStereo) TC Helicon Vocal Processing, Órgano digital de tiradores con 9 zonas de pie, Sampling: Wave, AIFF y formato SoundFront Format (almacenamiento: Formatos Wave, AIFF), PCM Ram Memory 400 MB de usuario, Secuenciador de acorde 512 sonidos de usuario y 128 espacios de almacenamiento para kits de batería de usuarios, Doble secuenciador XDS con Crossfader, Reproduce formatos MP3,MP3+G, KAR y Midi, Secuenciador de 16 pistas, Grabador de Audio, Banco de datos Songbook Music, Completamente compatible con dos los modelos ""i"" y ""Pa"", Ribbon Controller, 8 Faders definibles, Pantalla táctil de 7"" Colour Touch View TFT Conexiones: Micro SD card, USB to Host, USB to Device, Audio out L/R y salida individual 1 y 2, Video Out, RCA, Entrada de micrófono XLR/Jack con alimentación Phantom, Toma de auriculares, Medidas,(An x Pr x Al): 1192 x 364 x 126 mm,  Peso: 16,3 kg',
+
+    },
+    {
+        name: 'Combo Piano Medeli Sp4000 Stage Fuente Pedal Soporte Funda - Combo Piano Medeli Sp4000 88 T Stage Fuente Pedal Soporte',
+        stock: 500, 
+        price: 80002,
+        imgUrl: 'https://bairesrocks.vteximg.com.br/arquivos/ids/220998-900-900/D_NQ_NP_2X_632822-MLA43774697930_102020-F.jpg?v=637395919617830000',
+        description: 'El piano Medeli SP4000 se trata de una solución de ahorro para estudio, casa, o incluso para concierto, ya que sus apenas 12 kilos de peso y su calidad de sonido hacen de este piano electrónico el aliado perfecto para afrontar cualquier directo. Este piano viene equipado con 88 teclas contrapesadas, 20 voces diferentes, 50 estilos de acompañamiento de piano diferentes que permiten navegar por diferentes estilos que van desde el Pop, la Bossa, el Jazz o hasta el Rock, haciendo las delicias de cualquier músico profesional o aficionado. También existe la posibilidad de conectarle un pedal de expresión mediante a su entrada tipo jack. Algo muy de agradecer, y que no todos los pianos digitales de este rango de precios incorporan, es el conector USB MIDI que le dota de conectividad con cualquier ordenador y que facilita la trasmisión de datos MIDI entre el piano y el PC. Además cuenta con la novedosa función DUET, muy útil para los que se inician en el mundo del piano, ya que pulsando únicamente una nota es capaz de realizar acordes con diferentes patrones rítmicos para que puedas olvidarte de la mano izquierda y solo te centres en disfrutar tocando el piano. También incluye 3 controles MIDI totalmente asignables y es compatible con cualquier secuenciador de sonido utilizado para la producción musical. Y en cuanto a su sonido, no podemos dejar de asombrarnos de la calidad de los sonidos que ofrece y de la cantidad de efectos que incorpora, como Reverb, Chorus y diferentes parámetros de ecualización, lo que le hace una buena opción para todos aquellos que busquen un piano digital para casa o para directo con la mejor calidad precio.'
+    },
+    {
+        name: 'Kawai Piano Digital Electrico Kdp110 R Con Mueble Pedales', 
+        stock: 500, 
+        price: 217942,
+        imgUrl: 'https://bairesrocks.vteximg.com.br/arquivos/ids/208190-1500-1500/701237-MLA31589728472_072019-F.jpg?v=637313080038370000',
+        description: 'El nuevo mecanismo de teclado del KDP110, Responsive Hammer Compact (RHCII), ha sido desarrollado para representar la pulsación característica de un piano de cola acústico. Su alta tecnología y robusta construcción con además un novedoso sistema con triple sensor, permiten un suave y natural movimiento de balanceo, y una experiencia interpretativa totalmente auténtica, Además, al igual que los pianos acústicos que utilizan macillos bajos más pesados y macillos agudos más ligeros, el mecanismo de teclado RHCII emplea diferentes pesos en los macillos, debidamente graduados para cada tipo de interpretación. Estos detalles tan realistas permiten mayor estabilidad en los fortísimos mientras que preservan la delicadeza de los pianísimos, para satisfacer los pianistas más exigentes.'
+    }, 
+    {
+        name: 'Piano Electrico Artesia Performer 88 Teclas Sensitivas Con Efectos Reverb / Chorus / Eq Pedal Sustain Incluido',
+        stock: 400,
+        price: 45782,
+        imgUrl: 'https://bairesrocks.vteximg.com.br/arquivos/ids/205965-1500-1500/807065-MLA31754230770_082019-F.jpg?v=637313072995370000',
+        description: 'El nuevo Performer Piano es un elegante y elegante piano móvil de 88 teclas que ofrece un sonido robusto y muy expresivo con su sistema de entrega de sonido de 4 bocinas integrado y también pesa solo 8.61 Kgs para un fácil transporte. Funciona con pilas o su fuente de alimentación incluida.'
+    },
+    {
+        name: 'Piano Digital Casio Cdp-s350bk 88 Teclas Sensitivo + Fuente',
+        stock: 400 ,
+        price: 112478,
+        imgUrl: 'https://bairesrocks.vteximg.com.br/arquivos/ids/206156-1500-1500/793619-MLA32805440360_112019-F.jpg?v=637313073649330000',
+        description: 'Piano Electrico Digital Casio CDP-S350 88 Teclas Sensitivo + Fuente, Un piano digital con una vida entera de exploración musical y una gran variedad de tonos y ritmos. Cuerpo delgado de apenas 232 mm de profundidad, Casio ha aplicado sus tecnologías de construcción altamente compactas para lograr un tamaño que es incluso menor que la anterior serie CDP. Este compacto piano puede tocarse en cualquier parte, en su propio estilo. No solo incluye un sonido de piano auténtico, sino una variedad de otros expresivos tonos, 700 sonidos diferentes están integrados, desde instrumentos de teclado como el piano de cola, órgano y clavecín hasta instrumentos de cuerda, viento y percusión. Teclado con acción de martillo a escala II, Para la nueva serie CDP-S, Casio ha reducido considerablemente el tamaño del mecanismo de acción que simula el peso de los martillos de un piano de cola. Esto permite un teclado con un toque sensible en un cuerpo increíblemente delgado.'
+    },
+    {
+        name: 'Piano Digital Casio Ap270bk Celviano Mueble/3 Pedales/negro',
+        stock: 1000,
+        price: 165879,
+        imgUrl: 'https://bairesrocks.vteximg.com.br/arquivos/ids/206153-900-900/648101-MLA41265399842_032020-F.jpg?v=637313073639030000',
+        description: 'La excelencia acústica del Piano digital Celviano, da la sensación de estar tocando un piano de verdad similar a tocar un piano de cola, toque firme que convierte los pensamientos del intérprete en sonido. Ha sido fabricado por Casio a un precio muy barato. Un excelente instrumento para realizar potentes interpretaciones con una espléndida reverberancia. Reproduce sonidos clásicos de un piano de cola, desde tonos suaves y delicados hasta tonos fuertes y potentes, según el peso de las pulsaciones. Incluye una banqueta de buena calidad. Una revolución sin precedentes del piano digital hace de el un simulador de resonancia estéreo instalado en las 88 teclas también reproduce de forma natural la hermosa y profunda resonancia que resulta del uso de un pedal con sordina, un enfoque que se distingue de la reproducción simulada convencional que emplea el procesamiento de efectos.'
+    },
+    {
+        name: 'Piano Digital Kurzweil Ka90 88 Teclas Pesadas + Accesorio',
+        stock: 3000,
+        price: 87617,
+        imgUrl: 'https://bairesrocks.vteximg.com.br/arquivos/ids/205924-1500-1500/772996-MLA31036159662_062019-F.jpg?v=637313072846070000',
+        description: 'El Piano KA90 ofrece una excelente e inmejorable relacion Calidad/Precio, siendo la mejor introducción a los pianos digitales con teclas pesadas a un precio razonable. Trae un mecanismo de teclado pesado con sistema martillo para emular la sensacion de estar tocando un piano acustico, Sonido de piano real y la posibilidad de transportarlo comodamente gracias a su ligero peso (solo 12 kg) 50 estilos de acompañamiento: Ritmos de acompañamiento con la mano izquierda para crear arreglos en tiempo real, acompañamiento interactivo integrado en una gran variedad de géneros musicales. Cuenta con 20 sonidos de alta calidad incorporados ademas de efectos como REVERB y CHORUS y la posibilidad de usarlo como controlador con conexion MIDI USB. Este piano es la eleccion ideal para estudiantes, o para pianistas profesionales que necesitan un instrumentos multiuso sin renunciar al tacto y calidad de sonido de un piano de calidad. Tambien es muy utilizado por profesores para dictar sus clases y en Conservatorios de Musica.'
+    },
+    {
+        name:'Piano Casio Privia Px-s1000 88 Teclas Accion Martillo' ,
+        stock: 200,
+        price: 109738,
+        imgUrl: 'https://bairesrocks.vteximg.com.br/arquivos/ids/205180-1500-1500/902313-MLA40104959755_122019-F.jpg?v=637313070701470000',
+        description: 'El piano digital con acción de martillo más delgado del mundo, Dado que aprovecha al máximo las tecnologías de construcción compacta de Casio, el nuevo Privia es significativamente más delgado (profundidad un 20 % más delgada que el modelo anterior). El lado de la carcasa en forma de cuña resalta el diseño compacto. Diseño sencillo y elegante para una reproducción superior, Con un diseño claro, plano y un acabado brillante sin botones sobresalientes, el panel con funcionamiento LED utiliza sensores gráficos táctilces. El diseño sencillo se centra en las funciones avanzadas, pone énfasis en el teclado y facilita que pueda concentrarse en su desempeños. Sonido de piano rico y expresivo para un rendimiento natural, Además de los cambios en el volumen y el tono que dependen de la fuerza utilizada para tocar las teclas, el tono que se escucha a través de las notas sostenidas ha mejorado de forma drástica para ofrecer sonidos más expresivos y auténticos. El simulador acústico expresa el verdadero sonido de un piano de cola, La resonancia simpática de las cuerdas expone las relaciones armónicas entre las cuerdas que vibran, mientras que la resonancia de sordina simula la liberación de las cuerdas cuando se presiona el pedal de sordina. Podrá incluso escuchar los sonidos mecánicos de una tecla cuando ejerce una presión excepcionalmente ligera o si saca el dedo de una tecla, como si estuviera tocando en un piano de cola real.'
+    },
+    {
+        name: 'Piano Casio Privia Px-s3000 88 Teclas Accion Martillo',
+        stock: 400,
+        price: 112478,
+        imgUrl: 'https://bairesrocks.vteximg.com.br/arquivos/ids/205174-1500-1500/651709-MLA40104928916_122019-F.jpg?v=637313070684900000',
+        description: 'Piano Digital Casio Privia PX-S3000 88 Teclas Acción de Martillo + Pedal Sustain + Fuente, El piano digital con acción de martillo más delgado del mundo, Dado que aprovecha al máximo las tecnologías de construcción compacta de Casio, el nuevo Privia es significativamente más delgado (profundidad un 20 % más delgada que el modelo anterior). El lado de la carcasa en forma de cuña resalta el diseño compacto. Diseño sencillo y elegante para una reproducción superior. Con un diseño claro, plano y un acabado brillante sin botones sobresalientes, el panel con funcionamiento LED utiliza sensores gráficos táctilces. El diseño sencillo se centra en las funciones avanzadas, pone énfasis en el teclado y facilita que pueda concentrarse en su desempeño. Sonido de piano rico y expresivo para un rendimiento natural, Además de los cambios en el volumen y el tono que dependen de la fuerza utilizada para tocar las teclas, el tono que se escucha a través de las notas sostenidas ha mejorado de forma drástica para ofrecer sonidos más expresivos y auténticos. El simulador acústico expresa el verdadero sonido de un piano de cola, La resonancia simpática de las cuerdas expone las relaciones armónicas entre las cuerdas que vibran, mientras que la resonancia de sordina simula la liberación de las cuerdas cuando se presiona el pedal de sordina. Podrá incluso escuchar los sonidos mecánicos de una tecla cuando ejerce una presión excepcionalmente ligera o si saca el dedo de una tecla, como si estuviera tocando en un piano de cola real.' 
+    },
+    {
+        name: 'Piano Digital Casio Privia Px560mbe 88 Teclas Acc Martillo',
+        stock: 1000,
+        price: 257123,
+        imgUrl: 'https://bairesrocks.vteximg.com.br/arquivos/ids/203040-1500-1500/702247-MLA31489461181_072019-F.jpg?v=637313064098200000',
+        description: '88 notas con tonalidades texturizadas de ébano y marfil, Pianos de concierto Powered Concert, Resonancia del amortiguador, resonancia de secuencia, respuesta de martillo y simulación de apagado, Polifonía de 256 notas, 600 Preset / 400 tonos de usuario, Capacidades de síntesis de capa hexadecimal, 220 Preset / 30 ritmos de usuario, Pantalla de 5.3 "Interfaz de color táctil, Fragmentos y capas fáciles, 96 Registros de rendimiento, Pitch-bend y ruedas de modulación, 2 salidas para auriculares, USB y E / S MIDI estándar, Acceso Directo Transpose, Entrada de audio estéreo de 1/8, Entradas 1/4 "L / R, Salidas 1/4 "L / R, Entrada del pedal de expresión, Sistema de altavoces 8W + 8W, Increíblemente ligero - solo 11Kg'
+    },
+    {
+        name:'Piano Electrico Casio Privia Px780m Negro 88 Teclas Mueble' ,
+        stock: 500,
+        price: 134187,
+        imgUrl: 'https://bairesrocks.vteximg.com.br/arquivos/ids/203038-1500-1500/978150-MLA32287083038_092019-F.jpg?v=637313064091770000',
+        description: '88 teclas, Teclado con acción de martillo en escala Tri-sensor II, teclas en imitación de marfil y caoba, Respuesta al Tacto, 3 niveles de sensibilidad, desactivados, Fuente de Sonidos, Morphing AiR multidimensional, Polifonía (Máximo) 128, Tonos, 250 tonos incorporados: 14 tonos Grand Piano, 17 tonos de piano eléctrico, 14 tonos de órgano, 16 tonos de cuerdas 47 tonos variados, 128 tonos GM, 14 conjuntos de batería, Estratificador/División, Estratificador, división, Efectos Digitales, Reverberación (4 tipos), coro (4 tipos), brillo (–3 a 0 a 3), Acompañamiento Automático, Modos: acorde de CASIO, nota simple 1, nota simple 2 (6ta. desact.), nota simple 3 (en bajo), acorde completo. Controles: inicio/detención, introducción, normal/relleno, variación/relleno, sincronización/final, Canciones Incorporadas, 60 canciones (biblioteca musical), 6 canciones(canciones en tono de demostración, Expansión de Canciones, 10 canciones (máx.). Hasta aproximadamente 320 KB/canción, Función de Lecciones, Parte activada/desactivada (parte de la lección: mano derecha/mano izquierda)'
+    }
+]
+
+const saxos = [
+    {
+        name: 'Saxo Tenor Knight Ts-10 -con Estuche Rigido', 
+        stock: 30, 
+        price: 76260, 
+        imgUrl: 'https://bairesrocks.vteximg.com.br/arquivos/ids/204377-700-700/763441-MLA31007847170_062019-F.jpg?v=637313068213900000', 
+        description: 'Saxo Tenor Laqueado Dorado Custom. Llave de Fa # agudo. Zapatillas de cuero con resonador plástico. Apoyapulgar metálico ergonométrico. Llaves de notas graves con balancín. Incluye estuche. Terminación: Laqueado dorado.',
+    },
+
+    {
+        name: 'Saxo Soprano Ocean De Estudio Oss390', 
+        stock: 50, 
+        price: 49752, 
+        imgUrl: 'https://bairesrocks.vteximg.com.br/arquivos/ids/207725-700-700/923206-MLA27134596979_042018-F.jpg?v=637313078810830000', 
+        description: 'Boquilla genérica de buena calidad. Apropiada para el primer tiempo de estudio. Afinada. Sonido centrado y con facilidad de emisión. Incluye estuche semi rígido.',
+    },
+
+    {
+        name: 'Saxo Tenor Yamaha Modelo Yts480 Incluye Estuche', 
+        stock: 5, 
+        price: 186499, 
+        imgUrl: 'https://bairesrocks.vteximg.com.br/arquivos/ids/220445-700-700/939624-MLA27134654575_042018-F.jpg?v=637320259246670000', 
+        description: 'Laca de saxofón tenor YTS-480 intermedia Bb. Con un diseño influenciado por los saxofones Yamaha de gama alta, el YTS-480 cuenta con entonación muy precisa, un tono cálido y una respuesta rápida. Es ligero pero duradero, y viene con un cuello de calidad profesional estilo 62 para una calidad de sonido más madura. Un mecanismo mejorado de B-C# bajo asegura el cierre constante de la tecla C # baja y promueve una respuesta clara de las notas en el rango bajo del instrumento. Está diseñado desde arriba hacia abajo en lugar de abajo hacia arriba, y la calidad del sonido y la jugabilidad se refleja en esa cultura. ',
+    },
+
+    {
+        name: 'Saxo Alto Yamaha Modelo Yas480 Incluye Mochila', 
+        stock: 5, 
+        price: 196760, 
+        imgUrl: 'https://bairesrocks.vteximg.com.br/arquivos/ids/220435-700-700/882237-MLA27134636892_042018-F.jpg?v=637320259211200000', 
+        description: 'Laca de saxofón alto YAS-480 Eb intermedia. Con un diseño influenciado por saxofones Yamaha de alta gama, el saxofón alto Yamaha YAS-480 cuenta con entonación muy precisa, un tono cálido y una respuesta rápida. Cuenta con un mecanismo mejorado de B-C# bajo asegura el cierre consistente de la tecla C # baja y promueve una respuesta clara de las notas en el rango bajo del instrumento. ',
+    },
+
+    {
+        name: 'Saxo Tenor Yamaha Modelo Yts280 Incluye Estuche', 
+        stock: 3, 
+        price: 236033, 
+        imgUrl: 'https://bairesrocks.vteximg.com.br/arquivos/ids/220444-700-700/933799-MLA27134634851_042018-F.jpg?v=637320259244030000', 
+        description: 'Boquilla ts4 C. Funda tsc-600e. Bell Decoración grabada a mano. Pulgar gancho ajustable. Auxiliar llaves High F #, Front F. Clave botones Material Poliéster.',
+    },
+    
+    {
+        name: 'Saxo Alto Yamaha Modelo Yas280 Incluye Mochila', 
+        stock: 5, 
+        price: 114121, 
+        imgUrl: 'https://bairesrocks.vteximg.com.br/arquivos/ids/220434-700-700/892119-MLA27134605949_042018-F.jpg?v=637320259209000000', 
+        description: 'Los saxofones YAS-280 ofrecen un comienzo perfecto porque están diseñados pensando en los jóvenes principiantes. Relativamente ligero y con forma ergonómica, son fáciles de sostener y jugar. La entonación es perfecta, como se esperaría de Yamaha, y es fácil obtener un gran sonido. Ajuste del pulgar Todos los saxofones Yamaha cuentan con una t ajustable ',
+    },
+
+    {
+        name: 'Saxo Tenor De Estudio Ocean Ots190', 
+        stock: 20, 
+        price: 68003, 
+        imgUrl: 'https://bairesrocks.vteximg.com.br/arquivos/ids/207726-700-700/995026-MLA27134624874_042018-F.jpg?v=637313078815500000', 
+        description: 'Saxo tenor. Boquilla genérica de buena calidad. Apropiada para el primer tiempo de estudio. Afinada. Sonido centrado y con facilidad de emisión.',
+    },
+    
+    {
+        name: 'Saxo Alto De Estudio Ocean Oas190 + Boquilla Estuche Correa', 
+        stock: 18, 
+        price: 51.416, 
+        imgUrl: 'https://bairesrocks.vteximg.com.br/arquivos/ids/206664-700-700/654378-MLA41014166846_032020-F.jpg?v=637313075639730000', 
+        description: 'Saxo alto. Boquilla genérica de buena calidad. Apropiada para el primer tiempo de estudio. Afinada. Sonido centrado y con facilidad de emisión.',
+    },
+
+    {
+        name: 'Saxo Alto Selmer Prelude As710-dir Estuche Accesorios', 
+        stock: 12, 
+        price: 68472, 
+        imgUrl: 'https://bairesrocks.vteximg.com.br/arquivos/ids/205269-700-700/823894-MLA27134588973_042018-F.jpg?v=637313070977500000', 
+        description: ' El cuerpo de latón amarillo incluye una construcción acanalada y una conexión de cuerpo a arco desmontable y reforzada para mayor resistencia y durabilidad. El diseño de la llave permite una posición correcta y cómoda de la mano. Llave F # alta ',
+    },
+
+    {
+        name: 'Saxo Alto Eb (Mi B) Knight JBAS200GL Dorado con Estuche', 
+        stock: 14, 
+        price: 75.237, 
+        imgUrl: 'https://bairesrocks.vteximg.com.br/arquivos/ids/220753-700-700/D_NQ_NP_2X_717850-MLA43417458399_092020-F.jpg?v=637369182250470000', 
+        description: 'Saxo Alto Knight JBAS 200 GL Eb y Llave de F# Yellow Brass. Laqueado con estuche semirígido',
+    }    
+
+]
+
+
+//SETEO DE CATEGORIAS EL NUMERO EN ADD CATEGORY VA A MANO VERLO 
+//EL NUMERO DEL CONDICIONAL VA A MANO 
+// Product.findAll({where: {id: {[S.Op.lt]: 3}}, })
+// .then((array)=>{
+//     array.map((elemento)=>{
+//         elemento.addCategory("1")
+//     })
+// })
+
+
+//RELACION CATEGORIA PRODUCTOS
+
+// Promise.all([promesaInstrumentos[0], categ[0], categ[1]])
+// .then(([instrumentoCuerdas[0], categ[0], categ[1]])=>{
+
+// })
+
+
+//METODO PARA AGREGAR CATEGORIA
+// Promise.all([prod1, categ1, categ2]).then(([prod1, categ1, categ2])=>{
+//     prod1.addCategory([categ1, categ2])
+
+// })
