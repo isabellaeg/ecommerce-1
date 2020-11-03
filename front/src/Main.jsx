@@ -1,6 +1,7 @@
 import React from 'react';
 import NavbarContainer from './containers/NavbarContainer'
-
+import {Route, Switch} from 'react-router-dom'
+import AllProductsContainer from './containers/AllProductsContainer'
 
 
 class Main extends React.Component {
@@ -12,7 +13,10 @@ class Main extends React.Component {
         return (
             <div id="Main" >
                 <h1>MENSAJE DE BIENVENIDA</h1>               
-                <NavbarContainer/>
+                <NavbarContainer />
+                <Switch>
+                    <Route path='/' component={AllProductsContainer}/>
+                </Switch>
             </div>
         );
     }
