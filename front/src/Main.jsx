@@ -1,4 +1,5 @@
 import React from 'react';
+import NavbarContainer from './containers/NavbarContainer'
 
 
 
@@ -11,7 +12,7 @@ class Main extends React.Component {
         return (
             <div id="Main" >
                 <h1>MENSAJE DE BIENVENIDA</h1>               
-          
+                <NavbarContainer/>
             </div>
         );
     }

@@ -23,13 +23,7 @@ Product.init(
     },
     description: {
       type: Sequelize.TEXT,
-    },
-    avgRating: {
-      type: Sequelize.DOUBLE,
-    },
-    group: {
-      type: Sequelize.STRING,
-    },
+    }
   },
   { sequelize: db, modelName: "Product" }
 );
