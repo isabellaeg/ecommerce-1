@@ -15,7 +15,7 @@ class Main extends React.Component {
                 <h1>MENSAJE DE BIENVENIDA</h1>               
                 <NavbarContainer />
                 <Switch>
-                    <Route path='/' component={AllProductsContainer}/>
+                    <Route exact path='/products' component={AllProductsContainer}/>
                 </Switch>
             </div>
         );

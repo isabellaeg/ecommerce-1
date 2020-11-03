@@ -17,6 +17,9 @@ export default (props) => (
         <Nav style={estilo}>
           <Link to="/">Home</Link>
         </Nav>
+        <Nav style={estilo}>
+          <Link to="/products">Productos</Link>
+        </Nav>
       </Nav>
       <Form inline onSubmit = {props.handleSubmit}>
         <FormControl
