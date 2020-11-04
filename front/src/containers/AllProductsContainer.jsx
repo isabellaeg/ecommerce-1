@@ -27,23 +27,3 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps, { fetchAllProducts })(
   AllProductsContainer
 );
-
-/* function AllProductsContainer({allProducts, fetchAllProducts}) {
-    useEffect(() => {
-        fetchAllProducts();
-    }, []);
-    
-    return (
-        <div>
-        <ul>
-          {allProducts && allProducts.map((p) => (
-            <li key={p.id}>{p.name}</li>
-          ))}
-        </ul>
-      </div>
-    )
-}
-
-const mapStateToProps = (state) => ({
-    allProducts: state.allProducts.allProducts
-  }); */

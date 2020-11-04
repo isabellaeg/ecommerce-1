@@ -1,5 +1,4 @@
 const RECEIVE_ALLPRODUCTS = require("../constant");
-const RECEIVE_PRODUCTS = require("../constant")
 
 const initialState = {
   allProducts: [],
@@ -8,7 +7,7 @@ const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     case RECEIVE_ALLPRODUCTS:
-      return Object.assign({}, state, { allProducts: action.allProducts });   
+      return Object.assign({}, state, { allProducts: action.allProducts });
     default:
       return state;
   }
