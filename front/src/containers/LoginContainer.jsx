@@ -28,6 +28,7 @@ class LoginContainer extends React.Component {
     e.preventDefault();
 
     this.props.userLogin(this.state.email, this.state.password);
+    this.props.history.push('/')
   }
 
   render() {
