@@ -1,76 +1,68 @@
-import React from 'react';
-import {connect} from 'react-redux';
-import {userRegister} from '../actions/users';
-import Register from '../components/Register';
+import React from "react";
+import { connect } from "react-redux";
+import { userRegister } from "../actions/users";
+import Register from "../components/Register";
 
+class RegisterContainer extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      nickname: "",
+      email: "",
+      password: "",
+    };
 
-class RegisterContainer extends React.Component{
+    this.handleNickname = this.handleNickname.bind(this);
+    this.handleEmail = this.handleEmail.bind(this);
+    this.handlePassword = this.handlePassword.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
 
-    constructor(props){
-        super(props);
-        this.state={
-            nickname:"",
-            email:"",
-            password:"",
-        }
+  handleNickname(e) {
+    this.setState({ nickname: e.target.value });
+  }
 
-        this.handleNickname = this.handleNickname.bind(this);
-        this.handleEmail = this.handleEmail.bind(this);
-        this.handlePassword = this.handlePassword.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
-    }
+  handleEmail(e) {
+    this.setState({ email: e.target.value });
+  }
 
+  handlePassword(e) {
+    this.setState({ password: e.target.value });
+  }
 
-    handleNickname(e){
-        this.setState({nickname:e.target.value})
-    }
+  handleSubmit(e) {
+    e.preventDefault();
 
-    handleEmail(e){
-        this.setState({email:e.target.value})
-    }
+    this.props.userRegister(
+      this.state.nickname,
+      this.state.email,
+      this.state.password
+    );
 
-    handlePassword(e){
-        this.setState({password:e.target.value})
-    }
+    this.setState({
+      nickname: "",
+      email: "",
+      password: "",
+    });
+  }
 
-    handleSubmit(e){
-        e.preventDefault();
-
-        this.props.userRegister(
-            this.state.nickname,
-            this.state.email,
-            this.state.password
-        )
-
-        this.setState({
-            nickname:"",
-            email:"",
-            password:"",
-        })
-    }
-
-    render(){
-
-        return(
-
-            <Register
-            handleNickname = {this.handleNickname}
-            handleEmail = {this.handleEmail}
-            handlePassword = {this.handlePassword}
-            handleSubmit = {this.handleSubmit}
-            />
-
-        )
-
-    }
-
+  render() {
+    return (
+      <Register
+        handleNickname={this.handleNickname}
+        handleEmail={this.handleEmail}
+        handlePassword={this.handlePassword}
+        handleSubmit={this.handleSubmit}
+      />
+    );
+  }
 }
 
-
-const mapDispatchToProps = dispatch =>{
-    return {
-        userRegister:(nickname, email, password) => dispatch(userRegister(nickname, email, password))
-    }
-}
+const mapDispatchToProps = (dispatch) => {
+  return {
+    userRegister: (nickname, email, password) =>
+      dispatch(userRegister(nickname, email, password)),
+  };
+};
 
 export default connect(null, mapDispatchToProps)(RegisterContainer);
