@@ -1,7 +1,7 @@
 import React, { Component, useEffect } from "react";
 import AllProducts from "../components/AllProducts";
 import { connect } from "react-redux";
-import { fetchAllProducts } from "../actions/products";
+import { fetchAllProducts } from "../actions/allProducts";
 
 class AllProductsContainer extends Component {
   componentDidMount() {
