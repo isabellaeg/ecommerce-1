@@ -52737,16 +52737,49 @@ var Main = /*#__PURE__*/function (_React$Component) {
 
 /***/ }),
 
-/***/ "./src/actions/products.js":
-/*!*********************************!*\
-  !*** ./src/actions/products.js ***!
-  \*********************************/
+/***/ "./src/actions/allProducts.js":
+/*!************************************!*\
+  !*** ./src/actions/allProducts.js ***!
+  \************************************/
 /*! exports provided: fetchAllProducts */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchAllProducts", function() { return fetchAllProducts; });
+var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+
+var RECEIVE_ALLPRODUCTS = __webpack_require__(/*! ../constant */ "./src/constant.js");
+
+var receiveAllProducts = function receiveAllProducts(allProducts) {
+  return {
+    type: RECEIVE_ALLPRODUCTS,
+    allProducts: allProducts
+  };
+};
+
+var fetchAllProducts = function fetchAllProducts() {
+  return function (dispatch) {
+    return axios.get("/api/allproducts").then(function (res) {
+      return res.data;
+    }).then(function (products) {
+      return dispatch(receiveAllProducts(products));
+    });
+  };
+};
+
+/***/ }),
+
+/***/ "./src/actions/products.js":
+/*!*********************************!*\
+  !*** ./src/actions/products.js ***!
+  \*********************************/
+/*! exports provided: fetchProducts */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchProducts", function() { return fetchProducts; });
 var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
 var RECEIVE_PRODUCTS = __webpack_require__(/*! ../constant */ "./src/constant.js");
@@ -52758,7 +52791,7 @@ var receiveProducts = function receiveProducts(products) {
   };
 };
 
-var fetchAllProducts = function fetchAllProducts() {
+var fetchProducts = function fetchProducts() {
   return function (dispatch) {
     return axios.get("/api/products").then(function (res) {
       return res.data;
@@ -52812,6 +52845,8 @@ var style = {
       variant: "top",
       src: p.imgUrl
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Card"].Body, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Card"].Title, null, p.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Card"].Text, null, "Price: $ ", p.price), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Button"], {
+      style: style
+    }, " Ver Detalle"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Button"], {
       style: style
     }, " Comprar")));
   }) : null)));
@@ -52874,12 +52909,14 @@ var estilo = {
 /*!*************************!*\
   !*** ./src/constant.js ***!
   \*************************/
-/*! exports provided: RECEIVE_PRODUCTS */
+/*! exports provided: RECEIVE_ALLPRODUCTS, RECEIVE_PRODUCTS */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_ALLPRODUCTS", function() { return RECEIVE_ALLPRODUCTS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_PRODUCTS", function() { return RECEIVE_PRODUCTS; });
+var RECEIVE_ALLPRODUCTS = 'RECEIVE_ALLPRODUCTS';
 var RECEIVE_PRODUCTS = 'RECEIVE_PRODUCTS';
 
 /***/ }),
@@ -52897,7 +52934,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _components_AllProducts__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/AllProducts */ "./src/components/AllProducts.jsx");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _actions_products__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../actions/products */ "./src/actions/products.js");
+/* harmony import */ var _actions_allProducts__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../actions/allProducts */ "./src/actions/allProducts.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -52961,7 +52998,7 @@ var mapStateToProps = function mapStateToProps(state) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["connect"])(mapStateToProps, {
-  fetchAllProducts: _actions_products__WEBPACK_IMPORTED_MODULE_3__["fetchAllProducts"]
+  fetchAllProducts: _actions_allProducts__WEBPACK_IMPORTED_MODULE_3__["fetchAllProducts"]
 })(AllProductsContainer));
 /* function AllProductsContainer({allProducts, fetchAllProducts}) {
     useEffect(() => {
@@ -53049,6 +53086,7 @@ var NavbarContainer = /*#__PURE__*/function (_React$Component) {
     key: "handleChange",
     value: function handleChange(evt) {
       var evento = evt.target.value;
+      console.log(evento);
       this.setState({
         busqueda: evento
       });
@@ -53057,7 +53095,7 @@ var NavbarContainer = /*#__PURE__*/function (_React$Component) {
     key: "handleSubmit",
     value: function handleSubmit(evt) {
       evt.preventDefault();
-      this.props.fetchAllProducts(this.state.busqueda);
+      this.props.fetchProducts(this.state.busqueda);
       this.setState({
         error: "",
         busqueda: ""
@@ -53066,8 +53104,9 @@ var NavbarContainer = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Navbar__WEBPACK_IMPORTED_MODULE_1__["default"], {
-        allProducts: this.props.allProducts,
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Navbar__WEBPACK_IMPORTED_MODULE_1__["default"] // allProducts={this.props.allProducts}
+      , {
+        products: this.props.products,
         handleChange: this.handleChange,
         handleSubmit: this.handleSubmit
       });
@@ -53078,8 +53117,10 @@ var NavbarContainer = /*#__PURE__*/function (_React$Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
 var mapStateToProps = function mapStateToProps(state) {
+  console.log('STATE NAVBAR', state);
   return {
-    allProducts: state.allProducts
+    // allProducts: state.allProducts.allProducts,
+    products: state.products.products
   };
 };
 /*   const mapDispatchToProps = function(dispatch) {
@@ -53091,7 +53132,7 @@ var mapStateToProps = function mapStateToProps(state) {
 
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["connect"])(mapStateToProps, {
-  fetchAllProducts: _actions_products__WEBPACK_IMPORTED_MODULE_3__["fetchAllProducts"]
+  fetchProducts: _actions_products__WEBPACK_IMPORTED_MODULE_3__["fetchProducts"]
 })(NavbarContainer));
 
 /***/ }),
@@ -53137,6 +53178,8 @@ react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render( /*#__PURE__*/react__WEB
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+var RECEIVE_ALLPRODUCTS = __webpack_require__(/*! ../constant */ "./src/constant.js");
+
 var RECEIVE_PRODUCTS = __webpack_require__(/*! ../constant */ "./src/constant.js");
 
 var initialState = {
@@ -53147,9 +53190,9 @@ var initialState = {
   var action = arguments.length > 1 ? arguments[1] : undefined;
 
   switch (action.type) {
-    case RECEIVE_PRODUCTS:
+    case RECEIVE_ALLPRODUCTS:
       return Object.assign({}, state, {
-        allProducts: action.products
+        allProducts: action.allProducts
       });
 
     default:
@@ -53170,11 +53213,46 @@ var initialState = {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/index.js");
 /* harmony import */ var _allProducts__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./allProducts */ "./src/reducers/allProducts.js");
+/* harmony import */ var _products__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./products */ "./src/reducers/products.js");
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
-  allProducts: _allProducts__WEBPACK_IMPORTED_MODULE_1__["default"]
+  allProducts: _allProducts__WEBPACK_IMPORTED_MODULE_1__["default"],
+  products: _products__WEBPACK_IMPORTED_MODULE_2__["default"]
 }));
+
+/***/ }),
+
+/***/ "./src/reducers/products.js":
+/*!**********************************!*\
+  !*** ./src/reducers/products.js ***!
+  \**********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var RECEIVE_PRODUCTS = __webpack_require__(/*! ../constant */ "./src/constant.js");
+
+var initialState = {
+  products: []
+};
+/* harmony default export */ __webpack_exports__["default"] = (function () {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+
+  switch (action.type) {
+    case RECEIVE_PRODUCTS:
+      console.log('ACTION', action);
+      return Object.assign({}, state, {
+        products: action.products
+      });
+
+    default:
+      return state;
+  }
+});
 
 /***/ }),
 

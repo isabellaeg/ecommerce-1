@@ -1,7 +1,7 @@
 import React from "react";
 import Navbar from "../components/Navbar";
 import { connect } from "react-redux";
-import { fetchAllProducts } from "../actions/products";
+import { fetchProducts } from "../actions/products";
 
 class NavbarContainer extends React.Component {
   constructor(props) {
@@ -15,12 +15,13 @@ class NavbarContainer extends React.Component {
 
   handleChange(evt) {
     const evento = evt.target.value;
+    console.log(evento)
     this.setState({ busqueda: evento });
   }
 
   handleSubmit(evt) {
     evt.preventDefault();
-    this.props.fetchAllProducts(this.state.busqueda);
+    this.props.fetchProducts(this.state.busqueda);
     this.setState({ error: "", busqueda: "" });
   }
 
@@ -29,7 +30,8 @@ class NavbarContainer extends React.Component {
     return(
 
       <Navbar 
-        allProducts={this.props.allProducts} 
+        // allProducts={this.props.allProducts}
+        products={this.props.products}  
         handleChange={this.handleChange} 
         handleSubmit={this.handleSubmit}
       />
@@ -39,8 +41,11 @@ class NavbarContainer extends React.Component {
 }
 
 const mapStateToProps = function (state) {
+  console.log('STATE NAVBAR', state)
   return {
-    allProducts: state.allProducts,
+    
+    // allProducts: state.allProducts.allProducts,
+    products: state.products.products
   };
 };
 
@@ -51,4 +56,4 @@ const mapStateToProps = function (state) {
     };
  */
 
-export default connect(mapStateToProps, { fetchAllProducts })(NavbarContainer);
+export default connect(mapStateToProps, { fetchProducts })(NavbarContainer);

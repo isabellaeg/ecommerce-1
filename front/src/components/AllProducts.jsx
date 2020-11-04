@@ -26,10 +26,10 @@ export default ({ allProducts }) => (
                   <Card.Img variant="top" src={p.imgUrl} />
                   <Card.Body>
                     <Card.Title>{p.name}</Card.Title>
-                          <Card.Text>Price: $ {p.price}</Card.Text>
-                          <Button style={style} 
-                    
-                    > Comprar</Button>
+                      <Card.Text>Price: $ {p.price}</Card.Text>
+                      
+                      <Button style={style}> Ver Detalle</Button>
+                      <Button style={style}> Comprar</Button>
                   </Card.Body>
                 </Card>
               );

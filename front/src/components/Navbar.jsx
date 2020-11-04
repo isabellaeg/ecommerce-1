@@ -9,6 +9,7 @@ const estilo = {
   color: "white",
 };
 
+
 export default (props) => (
   <div>
     <Navbar bg="dark" variant="dark" fixed="top">

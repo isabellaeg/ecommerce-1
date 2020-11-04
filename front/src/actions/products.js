@@ -8,7 +8,7 @@ const receiveProducts = function (products) {
   };
 };
 
-export const fetchAllProducts = () => (dispatch) =>
+export const fetchProducts = () => (dispatch) =>
   axios
     .get("/api/products")
     .then((res) => res.data)
