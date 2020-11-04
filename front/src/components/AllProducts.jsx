@@ -1,5 +1,6 @@
 import React from "react";
 import { Card, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const estilo = {
   marginTop: "20px",
@@ -27,7 +28,9 @@ export default ({ allProducts }) => (
                   <Card.Body>
                     <Card.Title>{p.name}</Card.Title>
                     <Card.Text>Price: $ {p.price}</Card.Text>
-                    <Button style={style}> Ver Detalle</Button>
+                    <Link to={`/products/${p.id}`}>
+                      <Button style={style}> Ver Detalle</Button>
+                    </Link>
                     <Button style={style}> Comprar</Button>
                   </Card.Body>
                 </Card>
