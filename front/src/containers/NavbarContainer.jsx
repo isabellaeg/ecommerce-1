@@ -3,6 +3,7 @@ import Navbar from "../components/Navbar";
 import { connect } from "react-redux";
 import { fetchProducts } from "../actions/products";
 import { Redirect } from "react-router-dom";
+import { userLogout } from "../actions/users";
 
 class NavbarContainer extends React.Component {
   constructor(props) {
@@ -12,6 +13,7 @@ class NavbarContainer extends React.Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleLogout = this.handleLogout.bind(this);
   }
 
   handleChange(evt) {
@@ -26,6 +28,14 @@ class NavbarContainer extends React.Component {
     this.setState({ error: "", busqueda: "" });
   }
 
+  handleLogout(evt) {
+
+    this.props.userLogout();
+
+  }
+
+
+
   render() {
     return (
       <Navbar
@@ -33,6 +43,8 @@ class NavbarContainer extends React.Component {
         //products={this.props.products}
         handleChange={this.handleChange}
         handleSubmit={this.handleSubmit}
+        handleLogout={this.handleLogout}
+        user={this.props.user}
       />
     );
   }
@@ -43,6 +55,7 @@ const mapStateToProps = function (state) {
   return {
     // allProducts: state.allProducts.allProducts,
     products: state.products.products,
+    user: state.user.user
   };
 };
 
@@ -53,4 +66,4 @@ const mapStateToProps = function (state) {
     };
  */
 
-export default connect(mapStateToProps, { fetchProducts })(NavbarContainer);
+export default connect(mapStateToProps, { fetchProducts, userLogout })(NavbarContainer);

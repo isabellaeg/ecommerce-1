@@ -16,28 +16,43 @@ export default (props) => {
       <Navbar bg="dark" variant="dark" fixed="top">
         <Navbar.Brand>Ecommerce by TEAM</Navbar.Brand>
         <Nav className="mr-auto">
-          <Nav style={estilo}>
+          
+          <Nav >
             <Link to="/">Home</Link>
           </Nav>
-          <Nav style={estilo}>
+
+          </Nav>
+          <Nav className="mr-auto">
+          <Nav>
             <Link to="/allproducts">Productos</Link>
           </Nav>
+
         </Nav>
-        <Nav className="mr-auto">
-          <Nav>
-            <Link to="/register">Register</Link>
-          </Nav>
-        </Nav>
-        <Nav className="mr-auto">
-          <Nav>
-            <Link to="/login">Login</Link>
-          </Nav>
-        </Nav>
-        <Nav className="mr-auto">
-          <Button variant="outline-info">
-            <Link to="/logout">Logout</Link>
-          </Button>
-        </Nav>
+        {props.user.id ? (
+          <React.Fragment>
+            <Nav className="mr-auto">
+            <React.Fragment style={{estilo}}>Bienvenido: {props.user.nickname}</React.Fragment>
+            
+              <Button variant="outline-info" onClick={props.handleLogout}>
+                <Link to="/logout">Logout</Link>
+              </Button>
+            </Nav>
+          </React.Fragment>
+        ) : (
+          <React.Fragment>
+            <Nav className="mr-auto">
+              <Nav>
+                <Link to="/register">Register</Link>
+              </Nav>
+            </Nav>
+            <Nav className="mr-auto">
+              <Nav>
+                <Link to="/login">Login</Link>
+              </Nav>
+            </Nav>
+          </React.Fragment>
+        )}
+
         <Form inline>
           <FormControl
             type="text"

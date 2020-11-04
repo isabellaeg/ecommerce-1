@@ -32,8 +32,14 @@ const userLogin = (email, password) => dispatch =>{
 const userLogout = () => dispatch =>{
     return(
         axios.post("/api/logout") 
-    ).then(res =>dispatch(userLogger(res.data)))
+    ).then(() =>dispatch(userLogger({})))
 
 }    
 
-export {userRegister, userLogin, userLogout};
+const isLog = () => (dispatch) => {
+    return axios.get("/api/me")
+      .then((res) => {
+        dispatch(userLogger(res.data))});
+  }; 
+
+export {userRegister, userLogin, userLogout, isLog};
