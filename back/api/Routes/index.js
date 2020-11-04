@@ -23,7 +23,6 @@ router.get("/allproducts", (req, res) => {
 });
 
 router.get("/products/:stringBusqueda", (req, res) => {
-  console.log(req.params.stringBusqueda);
   Product.findAll({
     where: {
       name: {
@@ -33,6 +32,20 @@ router.get("/products/:stringBusqueda", (req, res) => {
   }).then((ArrayProduct) => {
     res.send(ArrayProduct);
   });
+});
+
+router.get("/singleproduct/:id", (req, res) => {
+  console.log("en el product/id");
+  Product.findByPk(req.params.id).then((singleProduct) => {
+    console.log(singleProduct);
+    res.send(singleProduct);
+  });
+
+  /* Product.findAll({
+    where: { id: req.params.id },
+  }).then((singleProduct) => {
+    res.send(singleProduct);
+  }); */
 });
 
 router.post("/register", (req, res) => {

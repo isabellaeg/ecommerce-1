@@ -8,12 +8,15 @@ const LocalStrategy = require("passport-local").Strategy;
 const helmet = require("helmet");
 const db = require("./api/db/db");
 
+const morgan = require("morgan");
+
 const routes = require("./api/Routes");
 const { User } = require("./api/Models/index");
 
 const app = express();
 app.use(helmet());
 
+app.use(morgan("tiny"));
 app.use(cookieParser());
 app.use(parser.json());
 app.use(parser.urlencoded({ extended: true }));
