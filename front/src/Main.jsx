@@ -3,6 +3,8 @@ import NavbarContainer from "./containers/NavbarContainer";
 import { Route, Switch } from "react-router-dom";
 import AllProductsContainer from "./containers/AllProductsContainer";
 import ProductsContainer from "./containers/ProductsContainer";
+import RegisterContainer from "./containers/RegisterContainer";
+import LoginContainer from "./containers/LoginContainer";
 
 class Main extends React.Component {
   //ACA RENDERIZAREMOS LAS RUTAS DE NUESTRA APP
@@ -14,6 +16,8 @@ class Main extends React.Component {
         <Switch>
           <Route exact path="/allproducts" component={AllProductsContainer} />
           <Route exact path="/products" component={ProductsContainer} />
+          <Route path="/register" component={RegisterContainer} />
+          <Route path="/login" component={LoginContainer} />
         </Switch>
       </div>
     );

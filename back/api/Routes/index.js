@@ -1,4 +1,6 @@
 const router = require("express").Router();
+const passport = require("passport");
+
 const { User, Product } = require("../Models/index");
 const S = require("sequelize");
 
@@ -33,31 +35,21 @@ router.get("/products/:stringBusqueda", (req, res) => {
   });
 });
 
-/* router.get("/products/:stringBusqueda", (req, res) => {
-  console.log(req.params.stringBusqueda);
-  Product.findAll({
-    where: {
-      id: 1,
-    },
-  }).then((ArrayProduct) => {
-    console.log(ArrayProduct);
-    res.send(ArrayProduct);
+router.post("/register", (req, res) => {
+  User.create(req.body).then((users) => {
+    res.send(users);
   });
-}); */
+});
+
+router.post("/login", passport.authenticate("local"), (req, res) => {
+  console.log("Estás logueado!");
+  res.send(req.user);
+});
+
+router.post("/logout", (req, res) => {
+  console.log("Te deslogueaste!");
+  req.logOut();
+  res.sendStatus(200);
+});
 
 module.exports = router;
-
-//{[S.Op.substring] :
-
-/* name:  [S.Op.or]: {
-    [S.Op.substring]: req.params.stringBusqueda.toLowerCase(),
-    [S.Op.iLike]: req.params.stringBusqueda.toLowerCase(),
-}
-
-[S.Op.or]: {
-          [S.Op.substring]: req.params.stringBusqueda,
-          [S.Op.iLike]: req.params.stringBusqueda,
-        },
-
-}
- */

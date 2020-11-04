@@ -23,6 +23,21 @@ export default (props) => {
             <Link to="/allproducts">Productos</Link>
           </Nav>
         </Nav>
+        <Nav className="mr-auto">
+          <Nav>
+            <Link to="/register">Register</Link>
+          </Nav>
+        </Nav>
+        <Nav className="mr-auto">
+          <Nav>
+            <Link to="/login">Login</Link>
+          </Nav>
+        </Nav>
+        <Nav className="mr-auto">
+          <Button variant="outline-info">
+            <Link to="/logout">Logout</Link>
+          </Button>
+        </Nav>
         <Form inline>
           <FormControl
             type="text"
