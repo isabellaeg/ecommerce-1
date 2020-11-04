@@ -11,12 +11,12 @@ const style = {
   color: "white",
 };
 
-export default ({ allProducts }) => (
+export default ({ products }) => (
   <div className="bg-dark" style={estilo}>
     <div className="container">
       <div className="row">
-        {allProducts && allProducts.length > 0
-          ? allProducts.map((p) => {
+        {products && products.length > 0
+          ? products.map((p) => {
               return (
                 <Card
                   className="col-md-3"
@@ -27,6 +27,7 @@ export default ({ allProducts }) => (
                   <Card.Body>
                     <Card.Title>{p.name}</Card.Title>
                     <Card.Text>Price: $ {p.price}</Card.Text>
+
                     <Button style={style}> Ver Detalle</Button>
                     <Button style={style}> Comprar</Button>
                   </Card.Body>

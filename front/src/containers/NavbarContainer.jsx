@@ -2,6 +2,7 @@ import React from "react";
 import Navbar from "../components/Navbar";
 import { connect } from "react-redux";
 import { fetchProducts } from "../actions/products";
+import { Redirect } from "react-router-dom";
 
 class NavbarContainer extends React.Component {
   constructor(props) {
@@ -15,7 +16,7 @@ class NavbarContainer extends React.Component {
 
   handleChange(evt) {
     const evento = evt.target.value;
-    console.log(evento)
+    console.log(evento);
     this.setState({ busqueda: evento });
   }
 
@@ -26,26 +27,22 @@ class NavbarContainer extends React.Component {
   }
 
   render() {
-    
-    return(
-
-      <Navbar 
+    return (
+      <Navbar
         // allProducts={this.props.allProducts}
-        products={this.props.products}  
-        handleChange={this.handleChange} 
+        //products={this.props.products}
+        handleChange={this.handleChange}
         handleSubmit={this.handleSubmit}
       />
-
-  )
+    );
   }
 }
 
 const mapStateToProps = function (state) {
-  console.log('STATE NAVBAR', state)
+  console.log("STATE NAVBAR", state);
   return {
-    
     // allProducts: state.allProducts.allProducts,
-    products: state.products.products
+    products: state.products.products,
   };
 };
 

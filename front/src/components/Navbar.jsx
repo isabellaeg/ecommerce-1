@@ -9,28 +9,35 @@ const estilo = {
   color: "white",
 };
 
-
-export default (props) => (
-  <div>
-    <Navbar bg="dark" variant="dark" fixed="top">
-      <Navbar.Brand>Ecommerce by TEAM</Navbar.Brand>
-      <Nav className="mr-auto">
-        <Nav style={estilo}>
-          <Link to="/">Home</Link>
+export default (props) => {
+  console.log("PROPS NAVBAR", props);
+  return (
+    <div>
+      <Navbar bg="dark" variant="dark" fixed="top">
+        <Navbar.Brand>Ecommerce by TEAM</Navbar.Brand>
+        <Nav className="mr-auto">
+          <Nav style={estilo}>
+            <Link to="/">Home</Link>
+          </Nav>
+          <Nav style={estilo}>
+            <Link to="/allproducts">Productos</Link>
+          </Nav>
         </Nav>
-        <Nav style={estilo}>
-          <Link to="/products">Productos</Link>
-        </Nav>
-      </Nav>
-      <Form inline onSubmit = {props.handleSubmit}>
-        <FormControl
-          type="text"
-          placeholder="Busca tu producto"
-          className="mr-sm-2"
-          onChange ={props.handleChange}
-        />
-        <Button variant="outline-info">Buscar</Button>
-      </Form>
-    </Navbar>
-  </div>
-);
+        <Form inline>
+          <FormControl
+            type="text"
+            placeholder="Busca tu producto"
+            className="mr-sm-2"
+            onChange={props.handleChange}
+          />
+          <button onClick={props.handleSubmit} type="submit">
+            <Link to="/products">Buscar</Link>
+          </button>
+          {/*  <Link to="/products">
+            <Button variant="outline-info">Buscar</Button>
+          </Link> */}
+        </Form>
+      </Navbar>
+    </div>
+  );
+};

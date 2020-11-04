@@ -1,5 +1,5 @@
 const axios = require("axios");
-const RECEIVE_PRODUCTS = require('../constant')
+const RECEIVE_PRODUCTS = require("../constant");
 
 const receiveProducts = function (products) {
   return {
@@ -8,8 +8,8 @@ const receiveProducts = function (products) {
   };
 };
 
-export const fetchProducts = () => (dispatch) =>
+export const fetchProducts = (stringBusqueda) => (dispatch) =>
   axios
-    .get("/api/products")
+    .get(`/api/products/${stringBusqueda}`)
     .then((res) => res.data)
     .then((products) => dispatch(receiveProducts(products)));
