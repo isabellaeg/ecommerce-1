@@ -12,7 +12,7 @@ const style = {
   color: "white",
 };
 
-export default ({ allProducts }) => (
+export default ({ allProducts, handleCart, handleAllCart}) => (
   <div className="bg-dark" style={estilo}>
     <div className="container">
       <div className="row">
@@ -31,7 +31,7 @@ export default ({ allProducts }) => (
                     <Link to={`/products/${p.id}`}>
                       <Button style={style}> Ver Detalle</Button>
                     </Link>
-                    <Button style={style}> Comprar</Button>
+                    <Button onClick={() => { handleCart(p), handleAllCart()}} style={style}> Agregar al carrito</Button>
                   </Card.Body>
                 </Card>
               );

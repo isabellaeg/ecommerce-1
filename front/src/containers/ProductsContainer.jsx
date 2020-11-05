@@ -1,15 +1,30 @@
 import React, { Component, useEffect } from "react";
 import Products from "../components/Products";
 import { connect } from "react-redux";
+import { userCart, allCart } from "../actions/cart";
 
 class ProductsContainer extends Component {
+  constructor(props) {
+    super(props)
+
+    this.handleCart = this.handleCart.bind(this)
+    this.handleAllCart = this.handleAllCart.bind(this)
+  }
+
+  handleCart(product) {
+    this.props.userCart(product, this.props.user);
+  }
+
+  handleAllCart(){
+     
+    this.props.allCart(this.props.user)
+
+  }
+
   render() {
-    /* if (this.props.products) {
-      this.props.history.push("/products");
-    } */
     return (
       <div>
-        <Products products={this.props.products} />
+        <Products handleAllCart = {this.handleAllCart} handleCart = {this.handleCart} products={this.props.products} />
       </div>
     );
   }
@@ -19,7 +34,8 @@ const mapStateToProps = (state) => {
   console.log("state", state);
   return {
     products: state.products.products,
+    user: state.user.user
   };
 };
 
-export default connect(mapStateToProps, null)(ProductsContainer);
+export default connect(mapStateToProps, {userCart, allCart})(ProductsContainer);

@@ -8,6 +8,7 @@ import RegisterContainer from "./containers/RegisterContainer";
 import LoginContainer from "./containers/LoginContainer";
 import SingleProductContainer from "./containers/SingleProductContainer";
 import { isLog } from "./actions/users";
+import CartContainer from './containers/CartContainer'
 
 
 class Main extends React.Component {
@@ -16,9 +17,6 @@ class Main extends React.Component {
   componentDidMount() {
     this.props.isLog();
   }
-
-
-
 
   render() {
     return (
@@ -35,6 +33,7 @@ class Main extends React.Component {
           <Route exact path="/products" component={ProductsContainer} />
           <Route path="/register" component={RegisterContainer} />
           <Route path="/login" component={LoginContainer} />
+          <Route path = '/cart' component = {CartContainer}/>
         </Switch>
       </div>
     );
