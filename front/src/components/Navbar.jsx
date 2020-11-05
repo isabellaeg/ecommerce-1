@@ -27,7 +27,9 @@ export default (props) => {
             <Link to="/allproducts">Productos</Link>
           </Nav>
 
+
         </Nav>
+
         {props.user.id ? (
           <React.Fragment>
             <Nav className="mr-auto">
@@ -63,10 +65,20 @@ export default (props) => {
           <button onClick={props.handleSubmit} type="submit">
             <Link to="/products">Buscar</Link>
           </button>
+
+          
           {/*  <Link to="/products">
             <Button variant="outline-info">Buscar</Button>
           </Link> */}
         </Form>
+
+        <Nav className="mr-auto">
+          <Nav>
+            <Link to="/cart">Carrito</Link>
+          </Nav>
+          
+
+        </Nav>
       </Navbar>
     </div>
   );
