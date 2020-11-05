@@ -76,6 +76,7 @@ router.post("/logout", (req, res) => {
 }); */
 
 router.post("/cart", (req, res) => {
+  console.log('REQ.BODY', req.body)
   Cart.findAll({
     where: {
       UserId: req.body.user.id,
