@@ -7,18 +7,33 @@ import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import { Link } from "react-router-dom";
 
-export default function ({ singleProduct, handleCart}) {
+const style = {
+  textDecoration: "none",
+  marginTop: "10px",
+  position: "relative",
+  color: "white",
+  marginRight: "10px",
+};
+
+export default function ({ singleProduct, handleCart }) {
   return (
     <Container>
       <br />
       <Row>
-        <Col xs={4}>
-          <Card style={{ width: "30rem" }}>
+        <Col>
+          <Card
+            style={{
+              display: "block",
+              marginLeft: "auto",
+              marginRight: "auto",
+              width: "50%",
+            }}
+          >
             <Row>
               <Col className="text-center">
                 <br />
                 <Card.Img
-                  style={{ width: "18rem" }}
+                  style={{ width: "50%" }}
                   variant="top"
                   src={singleProduct.imgUrl}
                 />
@@ -30,14 +45,17 @@ export default function ({ singleProduct, handleCart}) {
                 <p>{singleProduct.description}</p>
               </Card.Text>
               <Link to={`/allproducts`}>
-                <Button variant="primary">Volver</Button>
+                <Button variant="dark" style={style}>
+                <i className="fas fa-backward"></i>  Volver
+                </Button>
               </Link>
               <Button
                 onClick={() => {
-                  handleCart(singleProduct)}}
-                variant="primary"
-              >
-                Agregar al carrito
+                  handleCart(singleProduct);
+                }}
+                variant="dark"
+                style={style}
+              ><i className="fas fa-cart-plus"></i>  Agregar al carrito
               </Button>
             </Card.Body>
           </Card>

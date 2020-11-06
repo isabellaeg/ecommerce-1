@@ -9,6 +9,7 @@ import LoginContainer from "./containers/LoginContainer";
 import SingleProductContainer from "./containers/SingleProductContainer";
 import { isLog } from "./actions/users";
 import CartContainer from './containers/CartContainer'
+import Jumbotron from 'react-bootstrap/Jumbotron'
 
 
 class Main extends React.Component {
@@ -23,6 +24,10 @@ class Main extends React.Component {
       <div id="Main">
         <h1>MENSAJE DE BIENVENIDA</h1>
         <Route path = '/' component = {NavbarContainer}/>
+        <Jumbotron className="jumbo">
+          <h1>Canal Musical</h1>
+          <p>by Canal Cultural</p>
+        </Jumbotron>
         <Switch>
           <Route exact path="/allproducts" component={AllProductsContainer} />
           <Route

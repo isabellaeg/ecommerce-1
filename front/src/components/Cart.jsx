@@ -6,7 +6,7 @@ import { Table, Button } from "react-bootstrap";
 function Cart(props) {
   let total = 0
   return (
-    <div>
+    <div className="container" style={{marginTop: "50px", width: "60%"}}>
       <Table striped bordered hover>
         <thead>
           <tr>
@@ -29,13 +29,13 @@ function Cart(props) {
                     <td>$ {cart.price}</td>
                     <td>$ {cart.price * cart.CartProductQuant.quantity} </td>
                     <td>
-                      <Button onClick = {() => {props.handleQuantityProduct(cart, {cant: 1})}}>+</Button>
+                      <Button onClick = {() => {props.handleQuantityProduct(cart, {cant: 1})}}><i className="fas fa-plus"></i></Button>
                           </td>
                           <td>
-                      <Button onClick = {() => {props.handleQuantityProduct(cart, {cant: -1})}}>-</Button>
+                      <Button onClick = {() => {props.handleQuantityProduct(cart, {cant: -1})}}><i className="fas fa-minus"></i></Button>
                           </td>
                           <td>
-                      <Button onClick={() => { props.handleDelete(cart) }} variant = 'danger'>Eliminar</Button>
+                      <Button onClick={() => { props.handleDelete(cart) }} variant = 'danger'><i className="fas fa-trash"></i></Button>
                     </td>
                   </tr>
                 </tbody>
@@ -44,7 +44,7 @@ function Cart(props) {
           : null}
       </Table>
       <p>TOTAL: $ {total}</p>
-      <Button>Comprar</Button>
+      <Button className="btn btn-dark">Comprar</Button>
       
     </div>
   );
