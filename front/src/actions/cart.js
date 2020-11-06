@@ -8,6 +8,12 @@ const addCart = function (cart) {
   };
 };
 
+const allVirtualCart = function (virtualCart) {
+  return {
+    type: "ADD_VIRTUAL_CART",
+    virtualCart,
+  };
+};
 
 
 export const userCart = function (product, user) {
@@ -40,5 +46,9 @@ export const quantityProduct = function(product, user, cant) {
   }
 }
 
+export const addVirtualCart = (product) => {
+  return (dispatch) =>{
+      return dispatch(allVirtualCart(product))}
+}
 
 

@@ -52829,7 +52829,7 @@ var fetchAllProducts = function fetchAllProducts() {
 /*!*****************************!*\
   !*** ./src/actions/cart.js ***!
   \*****************************/
-/*! exports provided: userCart, allCart, deleteProduct, quantityProduct */
+/*! exports provided: userCart, allCart, deleteProduct, quantityProduct, addVirtualCart */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -52838,6 +52838,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "allCart", function() { return allCart; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteProduct", function() { return deleteProduct; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "quantityProduct", function() { return quantityProduct; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addVirtualCart", function() { return addVirtualCart; });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 
@@ -52846,6 +52847,13 @@ var addCart = function addCart(cart) {
   return {
     type: "ADD_CART",
     cart: cart
+  };
+};
+
+var allVirtualCart = function allVirtualCart(virtualCart) {
+  return {
+    type: "ADD_VIRTUAL_CART",
+    virtualCart: virtualCart
   };
 };
 
@@ -52883,6 +52891,11 @@ var quantityProduct = function quantityProduct(product, user, cant) {
       user: user,
       cant: cant
     });
+  };
+};
+var addVirtualCart = function addVirtualCart(product) {
+  return function (dispatch) {
+    return dispatch(allVirtualCart(product));
   };
 };
 
@@ -53087,6 +53100,16 @@ __webpack_require__.r(__webpack_exports__);
 
 function Cart(props) {
   var total = 0;
+  var cartRender = [];
+
+  if (props.cart.length > 0) {
+    cartRender = props.cart;
+  } else if (props.virtualCart.length > 0) {
+    cartRender = props.virtualCart;
+  } else {
+    null;
+  }
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "container",
     style: {
@@ -53097,11 +53120,13 @@ function Cart(props) {
     striped: true,
     bordered: true,
     hover: true
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("thead", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Nombre"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Cantidad"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Precio"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Total"))), props.cart && props.cart.length > 0 ? props.cart.map(function (cart) {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("thead", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Nombre"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Cantidad"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Precio"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Total"))), cartRender && cartRender.length > 0 ? cartRender.map(function (cart) {
     {
       total = total + cart.price * cart.CartProductQuant.quantity;
     }
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, cart.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, cart.CartProductQuant.quantity), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "$ ", cart.price), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "$ ", cart.price * cart.CartProductQuant.quantity, " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Button"], {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", {
+      key: cart.name
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, cart.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, cart.CartProductQuant.quantity), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "$ ", cart.price), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, "$ ", cart.price * cart.CartProductQuant.quantity, " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Button"], {
       onClick: function onClick() {
         props.handleQuantityProduct(cart, {
           cant: 1
@@ -53109,7 +53134,16 @@ function Cart(props) {
       }
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
       className: "fas fa-plus"
-    }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Button"], {
+    }))), cart.CartProductQuant.quantity < 2 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Button"], {
+      disabled: true,
+      onClick: function onClick() {
+        props.handleQuantityProduct(cart, {
+          cant: -1
+        });
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+      className: "fas fa-minus"
+    }))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Button"], {
       onClick: function onClick() {
         props.handleQuantityProduct(cart, {
           cant: -1
@@ -53600,6 +53634,9 @@ var AllProductsContainer = /*#__PURE__*/function (_Component) {
     _classCallCheck(this, AllProductsContainer);
 
     _this = _super.call(this, props);
+    _this.state = {
+      virtualCart: []
+    };
     _this.handleCart = _this.handleCart.bind(_assertThisInitialized(_this));
     return _this;
   }
@@ -53614,12 +53651,26 @@ var AllProductsContainer = /*#__PURE__*/function (_Component) {
     value: function handleCart(product) {
       var _this2 = this;
 
-      console.log('handlecart');
-      this.props.userCart(product, this.props.user).then(function () {
-        console.log('this props all cart');
+      if (!this.props.user.id) {
+        //LA LOGICA DEL IF NO ESTA FUNCIONANDO COMO QUEREMOS!!!! 
+        var recoveredData = localStorage.getItem('cart');
 
-        _this2.props.allCart(_this2.props.user.id);
-      });
+        if (recoveredData == null) {
+          localStorage.setItem('cart', JSON.stringify(product));
+        } else {
+          var data = JSON.parse(recoveredData);
+          var newProduct = product;
+          data.push(newProduct);
+          localStorage.setItem('cart', JSON.stringify(data));
+          this.props.addVirtualCart(JSON.parse(localStorage.getItem("cart")));
+        }
+      } else {
+        this.props.userCart(product, this.props.user).then(function () {
+          console.log('this props all cart');
+
+          _this2.props.allCart(_this2.props.user.id);
+        });
+      }
     }
   }, {
     key: "render",
@@ -53645,7 +53696,8 @@ var mapStateToProps = function mapStateToProps(state) {
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["connect"])(mapStateToProps, {
   fetchAllProducts: _actions_allProducts__WEBPACK_IMPORTED_MODULE_3__["fetchAllProducts"],
   userCart: _actions_cart__WEBPACK_IMPORTED_MODULE_4__["userCart"],
-  allCart: _actions_cart__WEBPACK_IMPORTED_MODULE_4__["allCart"]
+  allCart: _actions_cart__WEBPACK_IMPORTED_MODULE_4__["allCart"],
+  addVirtualCart: _actions_cart__WEBPACK_IMPORTED_MODULE_4__["addVirtualCart"]
 })(AllProductsContainer));
 
 /***/ }),
@@ -53708,6 +53760,18 @@ var CartContainer = /*#__PURE__*/function (_Component) {
   }
 
   _createClass(CartContainer, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.props.allCart(this.props.user.id); //LOCAL STORAGE OSCAR
+      //localStorage.setItem("watchlist", JSON.stringify(state.watchlist));
+      //watchlist: localStorage.getItem("watchlist") ? JSON.parse(localStorage.getItem("watchlist")) : []
+      //COMO FUNCIONARIA 
+      // localStorage.setItem('cart', JSON.stringify({cart: 1}))
+      // let consulta = JSON.parse(localStorage.getItem('cart'))
+      // console.log(localStorage)
+      // console.log('GEET', consulta)
+    }
+  }, {
     key: "handleDelete",
     value: function handleDelete(product) {
       var _this2 = this;
@@ -53729,6 +53793,7 @@ var CartContainer = /*#__PURE__*/function (_Component) {
     key: "render",
     value: function render() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Cart__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        virtualCart: this.props.virtualCart,
         handleQuantityProduct: this.handleQuantityProduct,
         handleDelete: this.handleDelete,
         user: this.props.user,
@@ -53742,8 +53807,11 @@ var CartContainer = /*#__PURE__*/function (_Component) {
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
-    cart: state.cart.cart,
-    user: state.user.user
+    cart: state.cart.cart.sort(function (a, b) {
+      return a.id > b.id ? 1 : -1;
+    }),
+    user: state.user.user,
+    virtualCart: state.cart.virtualCart
   };
 };
 
@@ -54388,7 +54456,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _constant__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../constant */ "./src/constant.js");
 
 var initialState = {
-  cart: []
+  cart: [],
+  virtualCart: []
 };
 /* harmony default export */ __webpack_exports__["default"] = (function () {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
@@ -54399,6 +54468,12 @@ var initialState = {
     case "ADD_CART":
       return Object.assign({}, state, {
         cart: action.cart
+      });
+
+    case "ADD_VIRTUAL_CART":
+      console.log('ACTION REDUCER', action);
+      return Object.assign({}, state, {
+        virtualCart: action.virtualCart
       });
 
     default:

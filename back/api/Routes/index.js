@@ -148,7 +148,10 @@ router.get("/cart/:userId", (req, res) => {
       UserId: req.params.userId,
     },
     include: [{ model: Product }],
+    //order: [Cart.ProductId, "id", "DESC"]
+      // ['id', 'DESC'],,
   }).then((cart) => {
+    console.log('CARRITO', cart)
     res.send(cart[0]);
   });
 });
@@ -183,7 +186,7 @@ router.put("/cart/cant", (req, res) => {
           ProductId: req.body.product.id,
         },
       }).then((cartQuant) => {
-        if (cartQuant[0].quantity + req.body.cant.cant < 0) {
+        if (cartQuant[0].quantity + req.body.cant.cant < 1) {
           (cartQuant[0].increment = 0), cartQuant[0].save;
         } else {
           cartQuant[0].increment("quantity", { by: req.body.cant.cant });
@@ -200,7 +203,7 @@ router.put("/cart/destroy", (req, res) => {
       UserId: req.body.user.id,
       isPaid: false,
     },
-    include: [{ model: Product }],
+    include: [{ model: Product }, ]
   })
     .then((cart) => {
       CartProductQuant.findAll({
