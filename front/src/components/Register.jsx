@@ -1,11 +1,27 @@
 import React from 'react';
 import {Form, Button, Container} from 'react-bootstrap';
 
+const formbox = {
+    width: "380px",
+    height: "480px",
+    position: "relative",
+    margin: "6% auto",
+    background: "white",
+    padding: "20px",
+    textAlign: "center",
+    borderRadius: "10px",
+}
+
 export default ({handleNickname,handleEmail,handlePassword,handleSubmit}) => {
 
     return(
 
-        <Container>
+        <Container style={formbox}> 
+                <Button variant="warning" type="submit" style={{marginBottom: "20px"}}><i className="fab fa-google"></i> Register with Google   
+                </Button>
+                <Button variant="primary" type="submit" style={{marginBottom: "20px"}}><i className="fab fa-facebook-f"></i> Register with Facebook
+                </Button>
+                <h3>Or create an account</h3>
             <Form  onSubmit={handleSubmit}>
                 <Form.Group>
                     <Form.Label >Nickname:</Form.Label>
@@ -42,7 +58,7 @@ export default ({handleNickname,handleEmail,handlePassword,handleSubmit}) => {
                 <Form.Group controlId="formBasicCheckbox">
                 </Form.Group>
 
-                <Button variant="primary" type="submit">
+                <Button variant="dark" type="submit">
                     Create User
                 </Button>
             </Form>
