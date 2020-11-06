@@ -10,7 +10,7 @@ class AllProductsContainer extends Component {
     super(props);
 
     this.handleCart = this.handleCart.bind(this);
-    this.handleAllCart = this.handleAllCart.bind(this)
+
   }
 
   componentDidMount() {
@@ -18,14 +18,15 @@ class AllProductsContainer extends Component {
   }
 
   handleCart(product) {
-    this.props.userCart(product, this.props.user);
+    console.log('handlecart')
+    this.props.userCart(product, this.props.user)
+      .then(() => {
+        console.log('this props all cart')
+        this.props.allCart(this.props.user.id)
+      }
+    )
   }
 
-  handleAllCart(){
-     
-    this.props.allCart(this.props.user)
-
-  }
 
   render() {
     return (
@@ -33,7 +34,6 @@ class AllProductsContainer extends Component {
         <AllProducts
           handleCart={this.handleCart}
           allProducts={this.props.allProducts}
-          handleAllCart={this.handleAllCart}
         />
       </div>
     );

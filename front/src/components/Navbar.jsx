@@ -55,17 +55,16 @@ export default (props) => {
           </React.Fragment>
         )}
 
-        <Form inline>
+        <Form inline onSubmit={props.handleSubmit}>
           <FormControl
             type="text"
             placeholder="Busca tu producto"
             className="mr-sm-2"
             onChange={props.handleChange}
           />
-          <button onClick={props.handleSubmit} type="submit">
-            <Link to="/products">Buscar</Link>
+          <button  type="submit">
+          Buscar
           </button>
-
           
           {/*  <Link to="/products">
             <Button variant="outline-info">Buscar</Button>

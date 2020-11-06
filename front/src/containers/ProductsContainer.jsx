@@ -8,23 +8,22 @@ class ProductsContainer extends Component {
     super(props)
 
     this.handleCart = this.handleCart.bind(this)
-    this.handleAllCart = this.handleAllCart.bind(this)
   }
 
   handleCart(product) {
-    this.props.userCart(product, this.props.user);
+    this.props.userCart(product, this.props.user)
+      .then(() => {
+        this.props.allCart(this.props.user.id)
+      }
+    )
   }
 
-  handleAllCart(){
-     
-    this.props.allCart(this.props.user)
 
-  }
 
   render() {
     return (
       <div>
-        <Products handleAllCart = {this.handleAllCart} handleCart = {this.handleCart} products={this.props.products} />
+        <Products handleCart = {this.handleCart} products={this.props.products} />
       </div>
     );
   }

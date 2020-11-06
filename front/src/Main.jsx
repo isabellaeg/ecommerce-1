@@ -22,7 +22,7 @@ class Main extends React.Component {
     return (
       <div id="Main">
         <h1>MENSAJE DE BIENVENIDA</h1>
-        <NavbarContainer />
+        <Route path = '/' component = {NavbarContainer}/>
         <Switch>
           <Route exact path="/allproducts" component={AllProductsContainer} />
           <Route
@@ -33,7 +33,8 @@ class Main extends React.Component {
           <Route exact path="/products" component={ProductsContainer} />
           <Route path="/register" component={RegisterContainer} />
           <Route path="/login" component={LoginContainer} />
-          <Route path = '/cart' component = {CartContainer}/>
+          <Route path='/cart' component={CartContainer} />
+          
         </Switch>
       </div>
     );
