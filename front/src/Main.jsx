@@ -8,9 +8,8 @@ import RegisterContainer from "./containers/RegisterContainer";
 import LoginContainer from "./containers/LoginContainer";
 import SingleProductContainer from "./containers/SingleProductContainer";
 import { isLog } from "./actions/users";
-import CartContainer from './containers/CartContainer'
-import Jumbotron from 'react-bootstrap/Jumbotron'
-
+import CartContainer from "./containers/CartContainer";
+import Jumbotron from "react-bootstrap/Jumbotron";
 
 class Main extends React.Component {
   //ACA RENDERIZAREMOS LAS RUTAS DE NUESTRA APP
@@ -23,10 +22,10 @@ class Main extends React.Component {
     return (
       <div id="Main">
         <h1>MENSAJE DE BIENVENIDA</h1>
-        <Route path = '/' component = {NavbarContainer}/>
+        <Route path="/" component={NavbarContainer} />
         <Jumbotron className="jumbo">
-          <h1>Canal Musical</h1>
-          <p>by Canal Cultural</p>
+          <h1 style={{ color: "grey" }}>Canal Musical</h1>
+          <p style={{ color: "grey" }}>by Canal Cultural</p>
         </Jumbotron>
         <Switch>
           <Route exact path="/allproducts" component={AllProductsContainer} />
@@ -38,14 +37,12 @@ class Main extends React.Component {
           <Route exact path="/products" component={ProductsContainer} />
           <Route path="/register" component={RegisterContainer} />
           <Route path="/login" component={LoginContainer} />
-          <Route path='/cart' component={CartContainer} />
-          
+          <Route path="/cart" component={CartContainer} />
         </Switch>
       </div>
     );
   }
 }
-
 
 const mapStateToProps = (state) => {
   return {};

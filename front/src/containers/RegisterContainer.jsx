@@ -45,7 +45,7 @@ class RegisterContainer extends React.Component {
       password: "",
     });
 
-    this.props.history.push("/")
+    this.props.history.push("/login");
   }
 
   render() {
