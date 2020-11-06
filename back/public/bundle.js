@@ -52748,7 +52748,15 @@ var Main = /*#__PURE__*/function (_React$Component) {
         component: _containers_NavbarContainer__WEBPACK_IMPORTED_MODULE_2__["default"]
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap_Jumbotron__WEBPACK_IMPORTED_MODULE_11__["default"], {
         className: "jumbo"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Canal Musical"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "by Canal Cultural")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Switch"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Route"], {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+        style: {
+          color: "grey"
+        }
+      }, "Canal Musical"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        style: {
+          color: "grey"
+        }
+      }, "by Canal Cultural")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Switch"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Route"], {
         exact: true,
         path: "/allproducts",
         component: _containers_AllProductsContainer__WEBPACK_IMPORTED_MODULE_4__["default"]
@@ -54250,7 +54258,7 @@ var RegisterContainer = /*#__PURE__*/function (_React$Component) {
         email: "",
         password: ""
       });
-      this.props.history.push("/");
+      this.props.history.push("/login");
     }
   }, {
     key: "render",

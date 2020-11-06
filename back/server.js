@@ -67,6 +67,9 @@ passport.deserializeUser(function (id, done) {
 });
 
 app.use("/api", routes);
+app.use("/*", function (req, res, next) {
+  res.sendFile(__dirname + "/public/index.html");
+});
 
 db.sync({ force: false }).then(() => {
   //app.listen(3000, () => console.log("listening on 3000..."));
