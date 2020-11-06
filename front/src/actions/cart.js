@@ -1,12 +1,14 @@
-const axios = require("axios");
-const ADD_CART = require('../constant')
+import axios from 'axios'
+
 
 const addCart = function (cart) {
   return {
-    type: ADD_CART,
+    type: "ADD_CART",
     cart,
   };
 };
+
+
 
 export const userCart = function (product, user) {
   return function () {
@@ -20,13 +22,23 @@ export const userCart = function (product, user) {
 export const allCart = (userId) => {
   return (dispatch) =>{
       return axios.get(`/api/cart/${userId}`)
-      .then((res) => {
-        dispatch(addCart(res.data))})
+        .then((res) => {
+        console.log('RES DATA', res.data.Products)
+        dispatch(addCart(res.data.Products))})
 }
 }
 
-/* export const deleteCart = (userId) => {
-  return () =>{
-      return axios.delete(`/api/delete/${userId}`) 
-      }
-}  */
+export const deleteProduct = function(product, user) {
+  return function() {
+    return axios.put("/api/cart/destroy", {product, user})
+  }
+}
+
+export const quantityProduct = function(product, user, cant) {
+  return function() {
+    return axios.put("/api/cart/cant", {product, user, cant})
+  }
+}
+
+
+

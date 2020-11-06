@@ -26,6 +26,8 @@ class NavbarContainer extends React.Component {
     evt.preventDefault();
     this.props.fetchProducts(this.state.busqueda);
     this.setState({ error: "", busqueda: "" });
+    this.props.history.push('/products')
+ 
   }
 
   handleLogout(evt) {

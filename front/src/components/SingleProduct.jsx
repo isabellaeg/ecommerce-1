@@ -7,7 +7,7 @@ import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import { Link } from "react-router-dom";
 
-export default function ({ singleProduct, handleCart, handleAllCart }) {
+export default function ({ singleProduct, handleCart}) {
   return (
     <Container>
       <br />
@@ -34,8 +34,7 @@ export default function ({ singleProduct, handleCart, handleAllCart }) {
               </Link>
               <Button
                 onClick={() => {
-                  handleCart(singleProduct), handleAllCart();
-                }}
+                  handleCart(singleProduct)}}
                 variant="primary"
               >
                 Agregar al carrito

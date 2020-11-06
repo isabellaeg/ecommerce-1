@@ -11,22 +11,25 @@ class SingleProductContainer extends Component {
     this.handleCart = this.handleCart.bind(this)
   }
 
-  handleCart(product) {
-    this.props.userCart(product, this.props.user);
-  }
-
-  handleAllCart() {
-    this.props.allCart(this.props.user)
-  }
-
   componentDidMount() {
     this.props.fetchSingleProduct(this.props.match.params.id);
   }
+
+  handleCart(product) {
+    this.props.userCart(product, this.props.user)
+      .then(() => {
+        this.props.allCart(this.props.user.id)
+      }
+    )
+  }
+
+
+
   render() {
     console.log("this.props.singleProduct", this.props.singleProduct);
     return (
       <div>
-        <SingleProduct handleAllCart = {this.handleAllCart} handleCart = {this.handleCart} singleProduct={this.props.singleProduct} />
+        <SingleProduct handleCart = {this.handleCart} singleProduct={this.props.singleProduct} />
       </div>
     );
   }
