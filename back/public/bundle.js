@@ -53157,6 +53157,7 @@ __webpack_require__.r(__webpack_exports__);
 
 function Cart(props) {
   var total = 0;
+  console.log("props.virtualCart", props.virtualCart);
   var cartRender = [];
 
   if (props.cart.length > 0) {
@@ -53758,7 +53759,6 @@ var AllProductsContainer = /*#__PURE__*/function (_Component) {
 
     _this = _super.call(this, props);
     _this.handleCart = _this.handleCart.bind(_assertThisInitialized(_this));
-    _this.sumarCantVirtualCart = _this.sumarCantVirtualCart.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -53768,52 +53768,14 @@ var AllProductsContainer = /*#__PURE__*/function (_Component) {
       this.props.fetchAllProducts();
     }
   }, {
-    key: "sumarCantVirtualCart",
-    value: function sumarCantVirtualCart(product) {
-      console.log("en la función sumarCantVirtualCart");
-      var arrayVirtualCart = localStorage.getItem("cart");
-      console.log("arrayVirtualCart", arrayVirtualCart);
-
-      if (localStorage.length === 0) {
-        console.log("en el if");
-        var newArrayVirtualCart = [];
-        var newProduct = product;
-        newProduct.CartProductQuant = {
-          quantity: 1
-        };
-        newArrayVirtualCart.push(newProduct);
-        console.log("newArrayVirtualCart", newArrayVirtualCart);
-        return newArrayVirtualCart;
-      } else {
-        //console.log("entre al else");
-        JSON.parse(arrayVirtualCart).map(function (elem) {
-          console.log("elem", elem.id);
-          console.log("product", product.id);
-
-          if (elem.id === product.id) {
-            console.log("elem", elem.id);
-            console.log("elem.CartProductQuant.quantity", elem.CartProductQuant.quantity);
-            elem.CartProductQuant.quantity = elem.CartProductQuant.quantity + 1;
-          }
-        });
-      }
-      /* arrayVirtualCart.map((elem) => {
-        if (elem.id === product.id) {
-          elem.CartProductQuant.quantity = elem.CartProductQuant.quantity + 1;
-        } else {
-          console.log("sumar el primer producto");
-          let newProduct = product;
-          newProduct.CartProductQuant = { quantity: 1 };
-          arrayVirtualCart.push(newProduct);
-        }
-        console.log("arrayVirtualCart", arrayVirtualCart);
-      }); */
-
-    }
-  }, {
     key: "handleCart",
     value: function handleCart(product) {
+      var _this2 = this;
+
+      console.log("en el handle");
+
       if (!this.props.user.id) {
+        console.log("entra al if");
         var virtualCartVariable = [];
 
         if (localStorage.length === 0) {
@@ -53826,7 +53788,7 @@ var AllProductsContainer = /*#__PURE__*/function (_Component) {
           newArrayVirtualCart.push(newProduct);
           localStorage.setItem("cart", JSON.stringify(newArrayVirtualCart));
         } else {
-          //Si hay productos crear uno nuevo, sino agregar
+          //Si hay productos buscar y sumar, sino agregar uno nuevo
           var arrayVirtualCart = JSON.parse(localStorage.getItem("cart"));
           var flag = false;
           var indice = "";
@@ -53852,43 +53814,15 @@ var AllProductsContainer = /*#__PURE__*/function (_Component) {
         }
 
         virtualCartVariable = JSON.parse(localStorage.getItem("cart"));
-        this.props.addVirtualCart(virtualCartVariable); //let recoveredData = localStorage.getItem("cart");
-        //let addProduct = this.sumarCantVirtualCart(product);
-        //localStorage.setItem("cart", JSON.stringify(addProduct));
-
-        /* if (recoveredData == null) {
-          let addProduct = this.sumarCantVirtualCart(product);
-          localStorage.setItem("cart", JSON.stringify(addProduct));
-          //console.log("if carroVacío");
-        } else {
-          let data = JSON.parse(recoveredData);
-          let newProduct = product;
-          data.push(newProduct);
-           localStorage.setItem("cart", JSON.stringify(data));
-          //console.log("if carroMasDeUno");
-        } */
-        //let virtualCartVariable = JSON.parse(localStorage.getItem("cart"));
-        //console.log("if carrito final", virtualCartVariable);
-      }
-      /* if (!this.props.user.id) {
-        //LA LOGICA DEL IF NO ESTA FUNCIONANDO COMO QUEREMOS!!!!
-        let recoveredData = localStorage.getItem("cart");
-         if (recoveredData == null) {
-          localStorage.setItem("cart", JSON.stringify(product));
-        } else {
-          let data = JSON.parse(recoveredData);
-           let newProduct = product;
-          data.push(newProduct);
-           localStorage.setItem("cart", JSON.stringify(data));
-          this.props.addVirtualCart(JSON.parse(localStorage.getItem("cart")));
-        }
+        this.props.addVirtualCart(virtualCartVariable);
       } else {
-        this.props.userCart(product, this.props.user).then(() => {
+        console.log("else", product);
+        this.props.userCart(product, this.props.user).then(function () {
           console.log("this props all cart");
-          this.props.allCart(this.props.user.id);
-        });
-      } */
 
+          _this2.props.allCart(_this2.props.user.id);
+        });
+      }
     }
   }, {
     key: "render",
@@ -53980,14 +53914,9 @@ var CartContainer = /*#__PURE__*/function (_Component) {
   _createClass(CartContainer, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.props.allCart(this.props.user.id); //LOCAL STORAGE OSCAR
-      //localStorage.setItem("watchlist", JSON.stringify(state.watchlist));
-      //watchlist: localStorage.getItem("watchlist") ? JSON.parse(localStorage.getItem("watchlist")) : []
-      //COMO FUNCIONARIA 
-      // localStorage.setItem('cart', JSON.stringify({cart: 1}))
-      // let consulta = JSON.parse(localStorage.getItem('cart'))
-      // console.log(localStorage)
-      // console.log('GEET', consulta)
+      this.props.allCart(this.props.user.id);
+      var virtualCartVariable = JSON.parse(localStorage.getItem("cart"));
+      this.props.addVirtualCart(virtualCartVariable);
     }
   }, {
     key: "handleDelete",
@@ -54036,7 +53965,8 @@ var mapStateToProps = function mapStateToProps(state) {
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["connect"])(mapStateToProps, {
   deleteProduct: _actions_cart__WEBPACK_IMPORTED_MODULE_3__["deleteProduct"],
   allCart: _actions_cart__WEBPACK_IMPORTED_MODULE_3__["allCart"],
-  quantityProduct: _actions_cart__WEBPACK_IMPORTED_MODULE_3__["quantityProduct"]
+  quantityProduct: _actions_cart__WEBPACK_IMPORTED_MODULE_3__["quantityProduct"],
+  addVirtualCart: _actions_cart__WEBPACK_IMPORTED_MODULE_3__["addVirtualCart"]
 })(CartContainer));
 
 /***/ }),
