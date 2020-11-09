@@ -39,6 +39,7 @@ export const deleteProduct = function (product, user) {
 };
 
 export const quantityProduct = function (product, user, cant) {
+  console.log("CARRITO", product, user, cant);
   return function () {
     return axios.put("/api/cart/cant", { product, user, cant });
   };
