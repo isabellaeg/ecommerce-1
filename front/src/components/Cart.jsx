@@ -5,14 +5,14 @@ import {Link} from 'react-router-dom'
 function Cart(props) {
   let total = 0;
 
-  let cartRender = []
+  let cartRender = [];
 
-  if(props.cart.length>0){
-    cartRender = props.cart
-  }else if(props.virtualCart.length>0){
-    cartRender = props.virtualCart
-  }else{
-    null
+  if (props.cart.length > 0) {
+    cartRender = props.cart;
+  } else if (props.virtualCart.length > 0) {
+    cartRender = props.virtualCart;
+  } else {
+    null;
   }
 
   return (

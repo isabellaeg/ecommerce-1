@@ -53757,10 +53757,8 @@ var AllProductsContainer = /*#__PURE__*/function (_Component) {
     _classCallCheck(this, AllProductsContainer);
 
     _this = _super.call(this, props);
-    _this.state = {
-      virtualCart: []
-    };
     _this.handleCart = _this.handleCart.bind(_assertThisInitialized(_this));
+    _this.sumarCantVirtualCart = _this.sumarCantVirtualCart.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -53770,30 +53768,127 @@ var AllProductsContainer = /*#__PURE__*/function (_Component) {
       this.props.fetchAllProducts();
     }
   }, {
+    key: "sumarCantVirtualCart",
+    value: function sumarCantVirtualCart(product) {
+      console.log("en la función sumarCantVirtualCart");
+      var arrayVirtualCart = localStorage.getItem("cart");
+      console.log("arrayVirtualCart", arrayVirtualCart);
+
+      if (localStorage.length === 0) {
+        console.log("en el if");
+        var newArrayVirtualCart = [];
+        var newProduct = product;
+        newProduct.CartProductQuant = {
+          quantity: 1
+        };
+        newArrayVirtualCart.push(newProduct);
+        console.log("newArrayVirtualCart", newArrayVirtualCart);
+        return newArrayVirtualCart;
+      } else {
+        //console.log("entre al else");
+        JSON.parse(arrayVirtualCart).map(function (elem) {
+          console.log("elem", elem.id);
+          console.log("product", product.id);
+
+          if (elem.id === product.id) {
+            console.log("elem", elem.id);
+            console.log("elem.CartProductQuant.quantity", elem.CartProductQuant.quantity);
+            elem.CartProductQuant.quantity = elem.CartProductQuant.quantity + 1;
+          }
+        });
+      }
+      /* arrayVirtualCart.map((elem) => {
+        if (elem.id === product.id) {
+          elem.CartProductQuant.quantity = elem.CartProductQuant.quantity + 1;
+        } else {
+          console.log("sumar el primer producto");
+          let newProduct = product;
+          newProduct.CartProductQuant = { quantity: 1 };
+          arrayVirtualCart.push(newProduct);
+        }
+        console.log("arrayVirtualCart", arrayVirtualCart);
+      }); */
+
+    }
+  }, {
     key: "handleCart",
     value: function handleCart(product) {
-      var _this2 = this;
-
       if (!this.props.user.id) {
-        //LA LOGICA DEL IF NO ESTA FUNCIONANDO COMO QUEREMOS!!!! 
-        var recoveredData = localStorage.getItem('cart');
+        var virtualCartVariable = [];
 
-        if (recoveredData == null) {
-          localStorage.setItem('cart', JSON.stringify(product));
-        } else {
-          var data = JSON.parse(recoveredData);
+        if (localStorage.length === 0) {
+          //crea un nuevo elemento en el localstorage
+          var newArrayVirtualCart = [];
           var newProduct = product;
+          newProduct.CartProductQuant = {
+            quantity: 1
+          };
+          newArrayVirtualCart.push(newProduct);
+          localStorage.setItem("cart", JSON.stringify(newArrayVirtualCart));
+        } else {
+          //Si hay productos crear uno nuevo, sino agregar
+          var arrayVirtualCart = JSON.parse(localStorage.getItem("cart"));
+          var flag = false;
+          var indice = "";
+          arrayVirtualCart.map(function (elem, index) {
+            if (elem.id === product.id) {
+              flag = true;
+              indice = index;
+            }
+          });
+
+          if (flag === true) {
+            arrayVirtualCart[indice].CartProductQuant.quantity = arrayVirtualCart[indice].CartProductQuant.quantity + 1;
+            localStorage.setItem("cart", JSON.stringify(arrayVirtualCart));
+          } else {
+            var _newProduct = product;
+            _newProduct.CartProductQuant = {
+              quantity: 1
+            };
+            var addArrayVirtualCart = JSON.parse(localStorage.getItem("cart"));
+            addArrayVirtualCart.push(_newProduct);
+            localStorage.setItem("cart", JSON.stringify(addArrayVirtualCart));
+          }
+        }
+
+        virtualCartVariable = JSON.parse(localStorage.getItem("cart"));
+        this.props.addVirtualCart(virtualCartVariable); //let recoveredData = localStorage.getItem("cart");
+        //let addProduct = this.sumarCantVirtualCart(product);
+        //localStorage.setItem("cart", JSON.stringify(addProduct));
+
+        /* if (recoveredData == null) {
+          let addProduct = this.sumarCantVirtualCart(product);
+          localStorage.setItem("cart", JSON.stringify(addProduct));
+          //console.log("if carroVacío");
+        } else {
+          let data = JSON.parse(recoveredData);
+          let newProduct = product;
           data.push(newProduct);
-          localStorage.setItem('cart', JSON.stringify(data));
+           localStorage.setItem("cart", JSON.stringify(data));
+          //console.log("if carroMasDeUno");
+        } */
+        //let virtualCartVariable = JSON.parse(localStorage.getItem("cart"));
+        //console.log("if carrito final", virtualCartVariable);
+      }
+      /* if (!this.props.user.id) {
+        //LA LOGICA DEL IF NO ESTA FUNCIONANDO COMO QUEREMOS!!!!
+        let recoveredData = localStorage.getItem("cart");
+         if (recoveredData == null) {
+          localStorage.setItem("cart", JSON.stringify(product));
+        } else {
+          let data = JSON.parse(recoveredData);
+           let newProduct = product;
+          data.push(newProduct);
+           localStorage.setItem("cart", JSON.stringify(data));
           this.props.addVirtualCart(JSON.parse(localStorage.getItem("cart")));
         }
       } else {
-        this.props.userCart(product, this.props.user).then(function () {
-          console.log('this props all cart');
-
-          _this2.props.allCart(_this2.props.user.id);
+        this.props.userCart(product, this.props.user).then(() => {
+          console.log("this props all cart");
+          this.props.allCart(this.props.user.id);
         });
-      }
+      } */
+
     }
   }, {
     key: "render",
@@ -54706,7 +54801,6 @@ var initialState = {
 /* harmony default export */ __webpack_exports__["default"] = (function () {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
   var action = arguments.length > 1 ? arguments[1] : undefined;
-  console.log('REDUCER ADD CART', action);
 
   switch (action.type) {
     case "ADD_CART":
@@ -54715,7 +54809,6 @@ var initialState = {
       });
 
     case "ADD_VIRTUAL_CART":
-      console.log('ACTION REDUCER', action);
       return Object.assign({}, state, {
         virtualCart: action.virtualCart
       });
