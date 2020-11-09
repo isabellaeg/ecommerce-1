@@ -1,17 +1,19 @@
 import React from "react";
 import { Table, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 function Cart(props) {
   let total = 0;
+  console.log("props.virtualCart", props.virtualCart);
 
-  let cartRender = []
+  let cartRender = [];
 
-  if(props.cart.length>0){
-    cartRender = props.cart
-  }else if(props.virtualCart.length>0){
-    cartRender = props.virtualCart
-  }else{
-    null
+  if (props.cart.length > 0) {
+    cartRender = props.cart;
+  } else if (props.virtualCart.length > 0) {
+    cartRender = props.virtualCart;
+  } else {
+    null;
   }
 
   return (
@@ -86,7 +88,9 @@ function Cart(props) {
           : null}
       </Table>
       <p>TOTAL: $ {total}</p>
-      <Button className="btn btn-dark">Comprar</Button>
+      <Button className="btn btn-dark">
+        <Link to="/checkout">Comprar</Link>
+      </Button>
     </div>
   );
 }

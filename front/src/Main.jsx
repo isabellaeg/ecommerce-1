@@ -9,6 +9,7 @@ import LoginContainer from "./containers/LoginContainer";
 import SingleProductContainer from "./containers/SingleProductContainer";
 import { isLog } from "./actions/users";
 import CartContainer from "./containers/CartContainer";
+import CheckoutContainer from "./containers/CheckoutContainer";
 import Jumbotron from "react-bootstrap/Jumbotron";
 
 class Main extends React.Component {
@@ -37,7 +38,8 @@ class Main extends React.Component {
           <Route exact path="/products" component={ProductsContainer} />
           <Route path="/register" component={RegisterContainer} />
           <Route path="/login" component={LoginContainer} />
-          <Route path="/cart" component={CartContainer} />
+          <Route path="/cart" component={CartContainer} /> 
+          <Route path="/checkout" component={CheckoutContainer} />
           <Redirect to="/allproducts"/>
         </Switch>
       </div>
