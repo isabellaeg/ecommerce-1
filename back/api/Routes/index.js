@@ -53,6 +53,18 @@ router.post("/logout", (req, res) => {
   res.sendStatus(200);
 });
 
+
+router.get('/auth/facebook',
+  passport.authenticate('facebook', { scope: ['email']}));
+
+router.get('/auth/facebook/callback',
+  passport.authenticate('facebook', { failureRedirect: '/login' }),
+  function(req, res) {
+    //console.log("Llegó a la linea 69, antes del redirect")
+    res.redirect('http://localhost:4000');
+  });
+
+
 router.put("/checkout", (req, res) => {
   console.log("CHECKOUT", req.body);
   Cart.update(

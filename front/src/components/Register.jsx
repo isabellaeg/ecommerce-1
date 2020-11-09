@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom'
 import {Form, Button, Container} from 'react-bootstrap';
 
 const formbox = {
@@ -12,15 +13,15 @@ const formbox = {
     borderRadius: "10px",
 }
 
-export default ({handleNickname,handleEmail,handlePassword,handleSubmit}) => {
+export default ({handleNickname,handleEmail,handlePassword,handleSubmit, handleFacebookRegister}) => {
 
     return(
 
         <Container style={formbox}> 
                 <Button variant="warning" type="submit" style={{marginBottom: "20px"}}><i className="fab fa-google"></i> Register with Google   
                 </Button>
-                <Button variant="primary" type="submit" style={{marginBottom: "20px"}}><i className="fab fa-facebook-f"></i> Register with Facebook
-                </Button>
+                 <a href="/api/auth/facebook"><Button variant="primary" type="submit" style={{marginBottom: "20px"}}><i className="fab fa-facebook-f"></i> Register with Facebook
+                </Button></a>
                 <h3>Or create an account</h3>
             <Form  onSubmit={handleSubmit}>
                 <Form.Group>
