@@ -1,5 +1,6 @@
 import React from "react";
 import { Table, Button } from "react-bootstrap";
+import {Link} from 'react-router-dom'
 
 function Cart(props) {
   let total = 0;
@@ -86,7 +87,7 @@ function Cart(props) {
           : null}
       </Table>
       <p>TOTAL: $ {total}</p>
-      <Button className="btn btn-dark">Comprar</Button>
+      <Button className="btn btn-dark"><Link to="/checkout">Comprar</Link></Button>
     </div>
   );
 }

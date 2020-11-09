@@ -149,9 +149,9 @@ router.get("/cart/:userId", (req, res) => {
     },
     include: [{ model: Product }],
     //order: [Cart.ProductId, "id", "DESC"]
-      // ['id', 'DESC'],,
+    // ['id', 'DESC'],,
   }).then((cart) => {
-    console.log('CARRITO', cart)
+    // console.log('CARRITO', cart)
     res.send(cart[0]);
   });
 });
@@ -168,10 +168,9 @@ router.get("/cart/:userId", (req, res) => {
   });
 }); */
 
-
 //Modificar cantidad (mandar user object, product object y {cant: 1} (ó -1 dependiendo el caso))
 router.put("/cart/cant", (req, res) => {
-  console.log('req body', req.body)
+  console.log("req body", req.body);
   Cart.findAll({
     where: {
       UserId: req.body.user.id,
@@ -203,7 +202,7 @@ router.put("/cart/destroy", (req, res) => {
       UserId: req.body.user.id,
       isPaid: false,
     },
-    include: [{ model: Product }, ]
+    include: [{ model: Product }],
   })
     .then((cart) => {
       CartProductQuant.findAll({
@@ -218,13 +217,27 @@ router.put("/cart/destroy", (req, res) => {
     .then(() => res.sendStatus(200));
 });
 
+router.put("/checkout", (req, res) => {
+  console.log("CHECKOUT", req.body);
+  Cart.update(
+    {
+      address: req.body.address,
+      cardNumber: req.body.card,
+      cardCvv: req.body.cvv,
+      date: Date.now(),
+      isPaid: true,
+    },
+    { where: { UserId: req.body.user.id, isPaid: false } }
+  ).then((cart) => {
+    res.sendStatus(201);
+  });
+});
+
 router.get("/me", (req, res) => {
   if (!req.user) {
     return res.sendStatus(401);
   }
   res.send(req.user);
 });
-
-
 
 module.exports = router;
