@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const passport = require("passport");
-
+const nodemailer = require("nodemailer")
 const { User, Product, Cart, CartProductQuant } = require("../Models/index");
 const S = require("sequelize");
 const cartRouter = require("./cartRoutes");
@@ -8,6 +8,7 @@ const userRouter = require("./userRoutes")
 
 router.use("/cart", cartRouter)
 router.use("/users", userRouter)
+
 
 
 router.get("/allproducts", (req, res) => {
@@ -65,7 +66,25 @@ router.get('/auth/facebook/callback',
   });
 
 
+// NODEMAILER:
+var transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'canalculturalp5@gmail.com',
+    password: 'canalmusical',
+    type: 'OAuth2',
+    clientId: '628004311754-fatbie2idm7f9ppjrrkg2lb00kp70guc.apps.googleusercontent.com',
+    clientSecret: '45b3mvplSwalOPIiauQxcEqb',
+  }
+});
+
 router.put("/checkout", (req, res) => {
+  var mailOptions = {
+    from: 'canalculturalp5@gmail.com',
+    to: req.body.user.email,
+    subject: 'Confirmacion de compra',
+    text: 'Felicidades, compraste algo'
+  };
   console.log("CHECKOUT", req.body);
   Cart.update(
     {
@@ -77,7 +96,14 @@ router.put("/checkout", (req, res) => {
     },
     { where: { UserId: req.body.user.id, isPaid: false } }
   ).then((cart) => {
-    res.sendStatus(201);
+    transporter.sendMail(mailOptions, function(error, info){
+      if (error) {
+        console.log(error);
+      } else {
+        console.log('Email sent: ' + info.response);
+      }
+      res.sendStatus(201);
+    })
   });
 });
 

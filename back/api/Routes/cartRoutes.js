@@ -41,7 +41,8 @@ cartRouter.post("/", (req, res) => {
               CartProductQuant.create({
                 quantity: 1,
                 ProductId: productId,
-                CartId: userId,
+                // CartId: userId,
+                CartId: cart[0].id
               }).then(() => res.sendStatus(200));
             } else {
               cartQuant[0].increment("quantity").then(() => res.sendStatus(200));
