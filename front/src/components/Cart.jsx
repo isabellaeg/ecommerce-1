@@ -4,14 +4,14 @@ import { Table, Button } from "react-bootstrap";
 function Cart(props) {
   let total = 0;
 
-  let cartRender = []
+  let cartRender = [];
 
-  if(props.cart.length>0){
-    cartRender = props.cart
-  }else if(props.virtualCart.length>0){
-    cartRender = props.virtualCart
-  }else{
-    null
+  if (props.cart.length > 0) {
+    cartRender = props.cart;
+  } else if (props.virtualCart.length > 0) {
+    cartRender = props.virtualCart;
+  } else {
+    null;
   }
 
   return (
