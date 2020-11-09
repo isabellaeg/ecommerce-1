@@ -124,6 +124,7 @@ router.post("/cart", (req, res) => {
 });
 
 router.put("/cart", (req, res) => {
+  console.log(req.body);
   Cart.findAll({
     where: {
       UserId: req.body.user.id,
