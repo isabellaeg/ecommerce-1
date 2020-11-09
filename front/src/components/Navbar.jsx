@@ -53,7 +53,7 @@ export default (props) => {
             <React.Fragment ><Nav>
             <Button className="btn btn-dark"  onClick={props.handleLogout}><Link to="/logout" style={navStyle}><i className="fas fa-sign-out-alt"></i>Logout</Link>
               </Button>
-           <h5 style={navHeader}>Welcome: {props.user.nickname}</h5></Nav></React.Fragment>
+           <h5 style={navHeader}>Welcome {props.user.nickname} ^_^</h5></Nav></React.Fragment>
             
               
             </Nav>
