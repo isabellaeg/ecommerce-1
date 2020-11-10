@@ -5,8 +5,10 @@ const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
+const FacebookStrategy = require("passport-facebook").Strategy;
 const helmet = require("helmet");
 const db = require("./api/db/db");
+const cors = require("cors");
 
 const morgan = require("morgan");
 
@@ -15,7 +17,7 @@ const { User } = require("./api/Models/index");
 
 const app = express();
 app.use(helmet());
-
+app.use(cors());
 app.use(morgan("tiny"));
 app.use(cookieParser());
 app.use(parser.json());
@@ -58,8 +60,46 @@ passport.use(
   )
 );
 
+//Facebook Auth
+
+passport.use(
+  new FacebookStrategy(
+    {
+      clientID: "1063540104067137",
+      clientSecret: "85ee31aaa7d5c2b2776bcb50599d7a10",
+      callbackURL: "http://localhost:4000/api/auth/facebook/callback",
+      profileFields: ["email", "name"],
+    },
+    function (accessToken, refreshToken, profile, cb) {
+      console.log("profile = ", profile);
+
+      User.findOrCreate({
+        where: {
+          //nickname: profile.name.givenName + " " +  profile.name.familyName,
+          email: profile.emails[0].value,
+          //password : profile.id,
+        },
+        default: {
+          nickname: profile.name.givenName + " " + profile.name.familyName,
+          password: profile.id,
+        },
+      })
+        .then((user) => {
+          console.log("User Callback = ", user);
+          cb(null, user);
+        })
+        .catch(cb);
+    }
+  )
+);
+
 passport.serializeUser(function (user, done) {
-  done(null, user.id);
+  console.log("User[0] del serialize = ", user[0]);
+  if (user.length > 0) {
+    done(null, user[0].id);
+  } else {
+    done(null, user.id);
+  }
 });
 
 passport.deserializeUser(function (id, done) {

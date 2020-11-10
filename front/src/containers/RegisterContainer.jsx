@@ -1,3 +1,4 @@
+import axios from "axios";
 import React from "react";
 import { connect } from "react-redux";
 import { userRegister } from "../actions/users";
@@ -16,6 +17,7 @@ class RegisterContainer extends React.Component {
     this.handleEmail = this.handleEmail.bind(this);
     this.handlePassword = this.handlePassword.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleFacebookRegister = this.handleFacebookRegister(this);
   }
 
   handleNickname(e) {
@@ -28,6 +30,10 @@ class RegisterContainer extends React.Component {
 
   handlePassword(e) {
     this.setState({ password: e.target.value });
+  }
+
+  handleFacebookRegister() {
+    axios.get("/api/auth/facebook");
   }
 
   handleSubmit(e) {
@@ -55,6 +61,7 @@ class RegisterContainer extends React.Component {
         handleEmail={this.handleEmail}
         handlePassword={this.handlePassword}
         handleSubmit={this.handleSubmit}
+        handleFacebookRegister={this.handleFacebookRegister}
       />
     );
   }

@@ -2,7 +2,11 @@ import React from "react";
 import { connect } from "react-redux";
 import { userLogin } from "../actions/users";
 import Login from "../components/Login";
-import { userCart, addVirtualCart } from "../actions/cart";
+import {
+  userCart,
+  addVirtualCart,
+  clearVirtualCartInStore,
+} from "../actions/cart";
 
 class LoginContainer extends React.Component {
   constructor(props) {
@@ -29,14 +33,11 @@ class LoginContainer extends React.Component {
     e.preventDefault();
 
     this.props.userLogin(this.state.email, this.state.password).then((user) => {
-      //console.log("user", user);
       if (this.props.virtualCart.length > 0) {
         this.props.virtualCart.map((elem) => {
-          //delete elem.CartProductQuant;
-          console.log("elem", elem);
-          console.log("this.props.user.id", user.id);
           this.props.userCart(elem, user.user);
         });
+        this.props.clearVirtualCartInStore();
         localStorage.removeItem("cart");
       }
     });
@@ -59,13 +60,6 @@ class LoginContainer extends React.Component {
   }
 }
 
-/* const mapDispatchToProps = (dispatch) => {
-  return {
-    userLogin: (email, password) => dispatch(userLogin(email, password)),
-    userCart: ()
-  };
-}; */
-
 const mapStateToProps = (state) => {
   return {
     virtualCart: state.cart.virtualCart,
@@ -77,4 +71,5 @@ export default connect(mapStateToProps, {
   userLogin,
   userCart,
   addVirtualCart,
+  clearVirtualCartInStore,
 })(LoginContainer);

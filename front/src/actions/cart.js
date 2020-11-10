@@ -55,3 +55,7 @@ export const addVirtualCart = (product) => {
 export const clearCartInStore = () => (dispatch) => {
   return dispatch(addCart([]));
 };
+
+export const clearVirtualCartInStore = () => (dispatch) => {
+  return dispatch(allVirtualCart([]));
+};
