@@ -21,8 +21,10 @@ const User = db.define('Users',
       type: Sequelize.STRING,
     },
     isAdmin: {
-      type: Sequelize.BOOLEAN,
-      defaultValue: false,
+      type: Sequelize.ENUM({
+        values: ["SuperAdmin", "Admin", "Customer"]
+      }),
+      defaultValue: "Customer",
     },
   }
 );

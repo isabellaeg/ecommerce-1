@@ -14,7 +14,7 @@ const grid = {
 }
 
 export default ({ productsArray, handleCart}) => (
-  <div className="bg-light">
+  <div className="bg-light" style={{marginLeft: '170px'}}>
     <div style={grid}className="container" >
       <div className="row">
         {productsArray && productsArray.length > 0
