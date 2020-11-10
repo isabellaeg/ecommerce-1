@@ -79,6 +79,13 @@ router.post("/cart", (req, res) => {
   const productId = req.body.product.id;
   const userId = req.body.user.id;
 
+  //####### AGREGAR AL NUEVO #######
+  let cant = 1;
+  if (req.body.product.CartProductQuant) {
+    cant = req.body.product.CartProductQuant.quantity;
+  }
+  //######### AGREGAR AL NUEVO ######
+
   Cart.findAll({
     where: {
       UserId: req.body.user.id,
@@ -101,7 +108,6 @@ router.post("/cart", (req, res) => {
         });
         //Si ya tiene carro agregá productos
       } else {
-        //console.log("buscar error");
         CartProductQuant.findAll({
           where: {
             CartId: cart[0].id,
@@ -110,12 +116,14 @@ router.post("/cart", (req, res) => {
         }).then((cartQuant) => {
           if (cartQuant.length === 0) {
             CartProductQuant.create({
-              quantity: 1,
+              quantity: cant, //#####   MODIFICAR AL NUEVO   #######
               ProductId: productId,
-              CartId: userId,
+              CartId: cart[0].id,
             }).then(() => res.sendStatus(200));
           } else {
-            cartQuant[0].increment("quantity").then(() => res.sendStatus(200));
+            cartQuant[0]
+              .increment("quantity", { by: cant }) //#####   MODIFICAR AL NUEVO   #######
+              .then(() => res.sendStatus(200));
           }
         });
       }
@@ -147,6 +155,7 @@ router.get("/cart/:userId", (req, res) => {
   Cart.findAll({
     where: {
       UserId: req.params.userId,
+      isPaid: false,
     },
     include: [{ model: Product }],
     //order: [Cart.ProductId, "id", "DESC"]
@@ -171,7 +180,6 @@ router.get("/cart/:userId", (req, res) => {
 
 //Modificar cantidad (mandar user object, product object y {cant: 1} (ó -1 dependiendo el caso))
 router.put("/cart/cant", (req, res) => {
-  console.log("req body", req.body);
   Cart.findAll({
     where: {
       UserId: req.body.user.id,

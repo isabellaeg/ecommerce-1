@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { fetchProducts } from "../actions/products";
 import { Redirect } from "react-router-dom";
 import { userLogout } from "../actions/users";
+import { clearCartInStore } from "../actions/cart";
 
 class NavbarContainer extends React.Component {
   constructor(props) {
@@ -26,23 +27,17 @@ class NavbarContainer extends React.Component {
     evt.preventDefault();
     this.props.fetchProducts(this.state.busqueda);
     this.setState({ error: "", busqueda: "" });
-    this.props.history.push('/products')
- 
+    this.props.history.push("/products");
   }
 
   handleLogout(evt) {
-
+    this.props.clearCartInStore();
     this.props.userLogout();
-
   }
-
-
 
   render() {
     return (
       <Navbar
-        // allProducts={this.props.allProducts}
-        //products={this.props.products}
         handleChange={this.handleChange}
         handleSubmit={this.handleSubmit}
         handleLogout={this.handleLogout}
@@ -55,17 +50,13 @@ class NavbarContainer extends React.Component {
 const mapStateToProps = function (state) {
   console.log("STATE NAVBAR", state);
   return {
-    // allProducts: state.allProducts.allProducts,
     products: state.products.products,
-    user: state.user.user
+    user: state.user.user,
   };
 };
 
-/*   const mapDispatchToProps = function(dispatch) {
-    return {
-        fetchMovies: (parametro) => dispatch(fetchMovies(parametro)),
-      }
-    };
- */
-
-export default connect(mapStateToProps, { fetchProducts, userLogout })(NavbarContainer);
+export default connect(mapStateToProps, {
+  fetchProducts,
+  userLogout,
+  clearCartInStore,
+})(NavbarContainer);
