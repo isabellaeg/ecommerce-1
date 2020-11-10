@@ -81,6 +81,7 @@ cartRouter.get("/:userId", (req, res) => {
   Cart.findAll({
     where: {
       UserId: req.params.userId,
+      isPaid: false
     },
     include: [{ model: Product }],
   }).then((cart) => {
