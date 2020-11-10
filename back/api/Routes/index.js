@@ -69,23 +69,20 @@ router.get('/auth/facebook/callback',
 // NODEMAILER:
 var transporter = nodemailer.createTransport({
   service: 'gmail',
+  secure: false,
   auth: {
     user: 'canalculturalp5@gmail.com',
-    password: 'canalmusical',
-    type: 'OAuth2',
-    clientId: '628004311754-fatbie2idm7f9ppjrrkg2lb00kp70guc.apps.googleusercontent.com',
-    clientSecret: '45b3mvplSwalOPIiauQxcEqb',
-  }
+    pass: 'canalmusical',
+    // type: 'OAuth2',
+    // clientId: '628004311754-fatbie2idm7f9ppjrrkg2lb00kp70guc.apps.googleusercontent.com',
+    // clientSecret: '45b3mvplSwalOPIiauQxcEqb',
+  },
+  tls: { rejectUnauthorized: false },
 });
 
 router.put("/checkout", (req, res) => {
-  var mailOptions = {
-    from: 'canalculturalp5@gmail.com',
-    to: req.body.user.email,
-    subject: 'Confirmacion de compra',
-    text: 'Felicidades, compraste algo'
-  };
-  console.log("CHECKOUT", req.body);
+
+  //console.log("CHECKOUT", req.body);
   Cart.update(
     {
       address: req.body.address,
@@ -93,10 +90,26 @@ router.put("/checkout", (req, res) => {
       cardCvv: req.body.cvv,
       date: Date.now(),
       isPaid: true,
-    },
-    { where: { UserId: req.body.user.id, isPaid: false } }
-  ).then((cart) => {
+    }
+    ,
+    { where: { UserId: req.body.user.id, isPaid: false },
+    returning: true,
+    plain: true})
+    .then((cart)=>{
+    return Cart.findByPk(cart[1].id, {include: [{ model: Product }]})
+  })
+  .then((cart) => {
+    console.log("cartProducts", cart.Products[0].name)
+    var mailOptions = {
+      from: 'canalculturalp5@gmail.com',
+      to: `${req.body.user.email}`,
+      subject: 'Confirmacion de compra',
+      text: `Felicidades, compraste algo tus productos son: ${}`
+    
+      
+    };
     transporter.sendMail(mailOptions, function(error, info){
+
       if (error) {
         console.log(error);
       } else {
