@@ -19,7 +19,15 @@ export const fetchProducts = (stringBusqueda) => (dispatch) =>
   axios
     .get(`/api/products/${stringBusqueda}`)
     .then((res) => res.data)
-    .then((products) => dispatch(receiveProducts(products)));
+    .then((products) => {
+      if (products.length == 0) {
+        dispatch(receiveProducts(['No hay resultados para la busqueda']))
+      } else {
+        dispatch(receiveProducts(products)) 
+      }
+    }
+      
+    );
 
 export const fetchSingleProduct = (id) => (dispatch) =>
   axios
@@ -30,3 +38,7 @@ export const fetchSingleProduct = (id) => (dispatch) =>
     .then((singleProduct) => {
       dispatch(receiveSingleProduct(singleProduct));
     });
+
+    export const clearProductInStore = () => (dispatch) => {
+      return dispatch(receiveProducts([]));
+    };

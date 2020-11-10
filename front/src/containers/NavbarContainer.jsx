@@ -1,10 +1,11 @@
 import React from "react";
 import Navbar from "../components/Navbar";
 import { connect } from "react-redux";
-import { fetchProducts } from "../actions/products";
+import { fetchProducts, clearProductInStore } from "../actions/products";
 import { Redirect } from "react-router-dom";
 import { userLogout } from "../actions/users";
 import { clearCartInStore } from "../actions/cart";
+
 
 class NavbarContainer extends React.Component {
   constructor(props) {
@@ -25,10 +26,14 @@ class NavbarContainer extends React.Component {
 
   handleSubmit(evt) {
     evt.preventDefault();
-    this.props.fetchProducts(this.state.busqueda);
-    this.setState({ error: "", busqueda: "" });
-    this.props.history.push("/products");
+    this.props.fetchProducts(this.state.busqueda)
+    
+/*      this.props.fetchProducts(this.state.busqueda);
+    this.setState({ error: "", busqueda: "" });  */
+    this.props.history.push(`/products?search=${this.state.busqueda}`);
+  
   }
+
 
   handleLogout(evt) {
     this.props.clearCartInStore();
@@ -42,6 +47,7 @@ class NavbarContainer extends React.Component {
         handleSubmit={this.handleSubmit}
         handleLogout={this.handleLogout}
         user={this.props.user}
+        clearProductInStore = {this.props.clearProductInStore}
       />
     );
   }
@@ -59,4 +65,5 @@ export default connect(mapStateToProps, {
   fetchProducts,
   userLogout,
   clearCartInStore,
+  clearProductInStore
 })(NavbarContainer);

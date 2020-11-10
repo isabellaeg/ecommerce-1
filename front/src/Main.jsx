@@ -2,7 +2,6 @@ import React from "react";
 import { connect } from "react-redux";
 import NavbarContainer from "./containers/NavbarContainer";
 import { Redirect, Route, Switch } from "react-router-dom";
-import AllProductsContainer from "./containers/AllProductsContainer";
 import ProductsContainer from "./containers/ProductsContainer";
 import RegisterContainer from "./containers/RegisterContainer";
 import LoginContainer from "./containers/LoginContainer";
@@ -30,19 +29,20 @@ class Main extends React.Component {
           <p style={{ color: "grey" }}>by Canal Cultural</p>
         </Jumbotron>
         <Switch>
-          <Route exact path="/allproducts" component={AllProductsContainer} />
+          <Route exact path="/products" component={ProductsContainer} />
+
           <Route
             exact
             path="/products/:id"
             component={SingleProductContainer}
           />
-          <Route exact path="/products" component={ProductsContainer} />
           <Route path="/register" component={RegisterContainer} />
           <Route path="/login" component={LoginContainer} />
-          <Route path="/cart" component={CartContainer} /> 
+          <Route path="/cart" component={CartContainer} />
           <Route path="/checkout" component={CheckoutContainer} />
-          <Route path="/orders" component={OrdersContainer}/>
-          <Redirect to="/allproducts"/>
+
+          <Route path="/orders" component={OrdersContainer} />
+          <Redirect to="/products" />
         </Switch>
       </div>
     );
