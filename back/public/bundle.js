@@ -54252,9 +54252,6 @@ var NavbarContainer = /*#__PURE__*/function (_React$Component) {
     value: function handleSubmit(evt) {
       evt.preventDefault();
       this.props.fetchProducts(this.state.busqueda);
-      /*      this.props.fetchProducts(this.state.busqueda);
-          this.setState({ error: "", busqueda: "" });  */
-
       this.props.history.push("/products?search=".concat(this.state.busqueda));
     }
   }, {
