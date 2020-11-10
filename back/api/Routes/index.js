@@ -121,6 +121,17 @@ router.put("/checkout", (req, res) => {
   });
 });
 
+router.get('/orders/:userid', (req,res)=>{
+  Cart.findAll({where: {
+    UserId: req.params.userid,
+    isPaid: true
+  }})
+  .then((r)=>{
+    //console.log(r)
+    res.send(r)
+  })
+})
+
 router.get("/me", (req, res) => {
   if (!req.user) {
     return res.sendStatus(401);

@@ -14,6 +14,13 @@ const allVirtualCart = function (virtualCart) {
   };
 };
 
+const addOrder = function (orders){
+  return {
+    type: "ADD_ORDERS",
+    orders
+  }
+}
+
 export const userCart = function (product, user) {
   console.log("en user cart");
   console.log("user", user);
@@ -58,4 +65,14 @@ export const clearCartInStore = () => (dispatch) => {
 
 export const clearVirtualCartInStore = () => (dispatch) => {
   return dispatch(allVirtualCart([]));
+};
+
+
+export const allOrders = (userId) => {
+  return (dispatch) => {
+    return axios.get(`/api/orders/${userId}`).then((res) => {
+      console.log('RES.DATA', res.data)
+      dispatch(addOrder(res.data));
+    });
+  };
 };
