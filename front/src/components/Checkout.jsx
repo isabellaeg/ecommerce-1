@@ -1,5 +1,6 @@
 import React from 'react';
 import {Form, Button, Container} from 'react-bootstrap';
+import {Link} from "react-router-dom"
 
 const formbox = {
     width: "380px",
@@ -12,11 +13,13 @@ const formbox = {
     borderRadius: "10px",
 }
 
-export default ({handleSubmit, handleAddress, handleCard, handleCvv}) => {
+export default ({handleSubmit, handleAddress, handleCard, handleCvv, user}) => {
 
     return(
-
-        <Container style={formbox}> 
+        <div>
+        { user.id ? 
+            (
+                <Container style={formbox}> 
                 <h3>Enter your payment information</h3>
             <Form  onSubmit={handleSubmit}>
                 <Form.Group>
@@ -30,7 +33,7 @@ export default ({handleSubmit, handleAddress, handleCard, handleCvv}) => {
                     <Form.Text className="text-muted">
                     </Form.Text>
                 </Form.Group>
-
+    
                 <Form.Group>
                     <Form.Label >Card Number:</Form.Label>
                     <Form.Control 
@@ -41,7 +44,7 @@ export default ({handleSubmit, handleAddress, handleCard, handleCvv}) => {
                     <Form.Text className="text-muted">
                     </Form.Text>
                 </Form.Group>
-
+    
                 <Form.Group controlId="formBasicPassword">
                     <Form.Label>Card cvv:</Form.Label>
                     <Form.Control 
@@ -50,15 +53,26 @@ export default ({handleSubmit, handleAddress, handleCard, handleCvv}) => {
                     onChange={handleCvv}
                     />
                 </Form.Group>
-
+    
                 <Form.Group controlId="formBasicCheckbox">
                 </Form.Group>
-
-                <button variant="dark" type="submit" >
+    
+                <button className="btn btn-dark" type="submit" >
                     Confirm
                 </button>
+                <Link to='/orders'>Ver mis compras</Link>
             </Form>
         </Container>
+        )
+
+    :
+    (<Container>
+        <h3>Debes estar logueado antes de comprar </h3>
+        <button className="btn btn-dark"><Link to='/login'>Ir al login</Link></button>
+    </Container>)
+    
+        }
+    </div>
 
     )
 }

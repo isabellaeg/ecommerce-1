@@ -24,7 +24,7 @@ class CheckoutContainer extends Component {
         console.log('HOLA', this.props)
         e.preventDefault();
         this.props.checkoutInfo(this.state.address, this.state.card, this.state.cvv, this.props.user)
-        // this.props.history.push('/') a vista orders
+        //this.props.history.push('/') EN LA SIDEBAR METER LINK A TODAS LAS ORDERS
       }
 
     handleAddress(e) {
@@ -43,7 +43,12 @@ class CheckoutContainer extends Component {
     render() {
         return (
             <div>
-                <Checkout handleSubmit = {this.handleSubmit} handleAddress = {this.handleAddress} handleCard = {this.handleCard} handleCvv = {this.handleCvv}
+                <Checkout 
+                handleSubmit = {this.handleSubmit} 
+                handleAddress = {this.handleAddress} 
+                handleCard = {this.handleCard} 
+                handleCvv = {this.handleCvv}
+                user={this.props.user}
                 />
             </div>
         )
