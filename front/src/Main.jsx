@@ -10,6 +10,7 @@ import { isLog } from "./actions/users";
 import CartContainer from "./containers/CartContainer";
 import CheckoutContainer from "./containers/CheckoutContainer";
 import Jumbotron from "react-bootstrap/Jumbotron";
+import OrdersContainer from "./containers/OrdersContainer";
 
 class Main extends React.Component {
   //ACA RENDERIZAREMOS LAS RUTAS DE NUESTRA APP
@@ -39,6 +40,8 @@ class Main extends React.Component {
           <Route path="/login" component={LoginContainer} />
           <Route path="/cart" component={CartContainer} />
           <Route path="/checkout" component={CheckoutContainer} />
+
+          <Route path="/orders" component={OrdersContainer} />
           <Redirect to="/products" />
         </Switch>
       </div>
