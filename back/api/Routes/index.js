@@ -5,9 +5,11 @@ const { User, Product, Cart, CartProductQuant } = require("../Models/index");
 const S = require("sequelize");
 const cartRouter = require("./cartRoutes");
 const userRouter = require("./userRoutes");
+const adminRouter = require("./adminRoutes");
 
 router.use("/cart", cartRouter);
 router.use("/users", userRouter);
+router.use("/admin", adminRouter);
 
 router.get("/allproducts", (req, res) => {
   Product.findAll().then((product) => {
