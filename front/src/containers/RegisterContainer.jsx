@@ -32,8 +32,8 @@ class RegisterContainer extends React.Component {
     this.setState({ password: e.target.value });
   }
 
-  handleFacebookRegister(){
-    axios.get("/api/auth/facebook")
+  handleFacebookRegister() {
+    axios.get("/api/auth/facebook");
   }
 
   handleSubmit(e) {

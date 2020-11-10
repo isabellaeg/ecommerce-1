@@ -10,8 +10,6 @@ const helmet = require("helmet");
 const db = require("./api/db/db");
 const cors = require("cors");
 
-
-
 const morgan = require("morgan");
 
 const routes = require("./api/Routes");
@@ -62,51 +60,51 @@ passport.use(
   )
 );
 
-
-
-
 //Facebook Auth
 
-  passport.use(new FacebookStrategy({
-    clientID: "1063540104067137",
-    clientSecret: "85ee31aaa7d5c2b2776bcb50599d7a10",
-    callbackURL: "http://localhost:4000/api/auth/facebook/callback",
-    profileFields: ["email", "name"]
-  },
-  function(accessToken, refreshToken, profile, cb) {
-    console.log("profile = ",profile);
-    
-    User.findOrCreate({where:{
-      //nickname: profile.name.givenName + " " +  profile.name.familyName,
-      email: profile.emails[0].value,
-      //password : profile.id,
+passport.use(
+  new FacebookStrategy(
+    {
+      clientID: "1063540104067137",
+      clientSecret: "85ee31aaa7d5c2b2776bcb50599d7a10",
+      callbackURL: "http://localhost:4000/api/auth/facebook/callback",
+      profileFields: ["email", "name"],
     },
-    default:{
-      nickname: profile.name.givenName + " " +  profile.name.familyName,
-      password : profile.id
-    }})
-    .then((user)=> {
-      console.log("User Callback = ", user)
-      cb(null,user)
-    })
-    .catch(cb)
-  }
-  ));
+    function (accessToken, refreshToken, profile, cb) {
+      console.log("profile = ", profile);
 
-  passport.serializeUser(function (user, done) {
-    console.log("User[0] del serialize = ", user[0]);
-    if(user.length>0){
-    done(null, user[0].id);
-    }else{
-      done(null, user.id)
+      User.findOrCreate({
+        where: {
+          //nickname: profile.name.givenName + " " +  profile.name.familyName,
+          email: profile.emails[0].value,
+          //password : profile.id,
+        },
+        default: {
+          nickname: profile.name.givenName + " " + profile.name.familyName,
+          password: profile.id,
+        },
+      })
+        .then((user) => {
+          console.log("User Callback = ", user);
+          cb(null, user);
+        })
+        .catch(cb);
     }
-  });
-  
-  passport.deserializeUser(function (id, done) {
-    User.findByPk(id).then((user) => done(null, user));
-  });
+  )
+);
 
+passport.serializeUser(function (user, done) {
+  console.log("User[0] del serialize = ", user[0]);
+  if (user.length > 0) {
+    done(null, user[0].id);
+  } else {
+    done(null, user.id);
+  }
+});
 
+passport.deserializeUser(function (id, done) {
+  User.findByPk(id).then((user) => done(null, user));
+});
 
 app.use("/api", routes);
 app.use("/*", function (req, res, next) {

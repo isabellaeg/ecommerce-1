@@ -1,15 +1,13 @@
 const router = require("express").Router();
 const passport = require("passport");
-const nodemailer = require("nodemailer")
+const nodemailer = require("nodemailer");
 const { User, Product, Cart, CartProductQuant } = require("../Models/index");
 const S = require("sequelize");
 const cartRouter = require("./cartRoutes");
-const userRouter = require("./userRoutes")
+const userRouter = require("./userRoutes");
 
-router.use("/cart", cartRouter)
-router.use("/users", userRouter)
-
-
+router.use("/cart", cartRouter);
+router.use("/users", userRouter);
 
 router.get("/allproducts", (req, res) => {
   Product.findAll().then((product) => {
@@ -54,36 +52,38 @@ router.post("/logout", (req, res) => {
   res.sendStatus(200);
 });
 
+router.get(
+  "/auth/facebook",
+  passport.authenticate("facebook", { scope: ["email"] })
+);
 
-router.get('/auth/facebook',
-  passport.authenticate('facebook', { scope: ['email']}));
-
-router.get('/auth/facebook/callback',
-  passport.authenticate('facebook', { failureRedirect: '/login' }),
-  function(req, res) {
-    //console.log("Llegó a la linea 69, antes del redirect")
-    res.redirect('http://localhost:4000');
-  });
-
+router.get(
+  "/auth/facebook/callback",
+  passport.authenticate("facebook", { failureRedirect: "/login" }),
+  function (req, res) {
+    res.redirect("http://localhost:4000");
+  }
+);
 
 // NODEMAILER:
 var transporter = nodemailer.createTransport({
-  service: 'gmail',
+  service: "gmail",
   auth: {
-    user: 'canalculturalp5@gmail.com',
-    password: 'canalmusical',
-    type: 'OAuth2',
-    clientId: '628004311754-fatbie2idm7f9ppjrrkg2lb00kp70guc.apps.googleusercontent.com',
-    clientSecret: '45b3mvplSwalOPIiauQxcEqb',
-  }
+    user: "canalculturalp5@gmail.com",
+    password: "canalmusical",
+    type: "OAuth2",
+    clientId:
+      "628004311754-fatbie2idm7f9ppjrrkg2lb00kp70guc.apps.googleusercontent.com",
+    clientSecret: "45b3mvplSwalOPIiauQxcEqb",
+  },
 });
 
 router.put("/checkout", (req, res) => {
   var mailOptions = {
-    from: 'canalculturalp5@gmail.com',
+    from: "canalculturalp5@gmail.com",
     to: req.body.user.email,
-    subject: 'Confirmacion de compra',
-    text: 'Felicidades, compraste algo'
+    subject: "Confirmacion de compra",
+    text: "Felicidades, compraste algo",
   };
   console.log("CHECKOUT", req.body);
   Cart.update(
@@ -96,14 +96,14 @@ router.put("/checkout", (req, res) => {
     },
     { where: { UserId: req.body.user.id, isPaid: false } }
   ).then((cart) => {
-    transporter.sendMail(mailOptions, function(error, info){
+    transporter.sendMail(mailOptions, function (error, info) {
       if (error) {
         console.log(error);
       } else {
-        console.log('Email sent: ' + info.response);
+        console.log("Email sent: " + info.response);
       }
       res.sendStatus(201);
-    })
+    });
   });
 });
 

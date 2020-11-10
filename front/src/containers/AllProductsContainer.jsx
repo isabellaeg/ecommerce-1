@@ -15,12 +15,10 @@ class AllProductsContainer extends Component {
   }
 
   handleCart(product) {
-    console.log("en el handle");
     if (!this.props.user.id) {
-      console.log("entra al if");
-      let virtualCartVariable = [];
+      //Si no estoy logueado
       if (localStorage.length === 0) {
-        //crea un nuevo elemento en el localstorage
+        //Si no hay producto crea un nuevo elemento en el localstorage
         let newArrayVirtualCart = [];
         let newProduct = product;
         newProduct.CartProductQuant = { quantity: 1 };
@@ -49,9 +47,8 @@ class AllProductsContainer extends Component {
           localStorage.setItem("cart", JSON.stringify(addArrayVirtualCart));
         }
       }
-      virtualCartVariable = JSON.parse(localStorage.getItem("cart"));
-      this.props.addVirtualCart(virtualCartVariable);
     } else {
+      //Si estoy logueado
       console.log("else", product);
       this.props.userCart(product, this.props.user).then(() => {
         console.log("this props all cart");
