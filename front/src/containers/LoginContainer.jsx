@@ -14,6 +14,7 @@ class LoginContainer extends React.Component {
     this.state = {
       email: "",
       password: "",
+      isValidatingText: "",
     };
 
     this.handleEmail = this.handleEmail.bind(this);
@@ -31,17 +32,22 @@ class LoginContainer extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-
-    this.props.userLogin(this.state.email, this.state.password).then((user) => {
-      if (this.props.virtualCart.length > 0) {
-        this.props.virtualCart.map((elem) => {
-          this.props.userCart(elem, user.user);
-        });
-        this.props.clearVirtualCartInStore();
-        localStorage.removeItem("cart");
-      }
-    });
-    this.props.history.push("/");
+    this.setState({ isValidatingText: "validando los datos ingresados..." });
+    this.props
+      .userLogin(this.state.email, this.state.password)
+      .then((user) => {
+        //Fusionar carros
+        if (this.props.virtualCart.length > 0) {
+          this.props.virtualCart.map((elem) => {
+            this.props.userCart(elem, user.user);
+          });
+          this.props.clearVirtualCartInStore();
+          localStorage.removeItem("cart");
+        }
+      })
+      .then(() => {
+        this.props.history.push("/");
+      });
   }
 
   componentDidMount() {
@@ -55,6 +61,7 @@ class LoginContainer extends React.Component {
         handleEmail={this.handleEmail}
         handlePassword={this.handlePassword}
         handleSubmit={this.handleSubmit}
+        isValidatingText={this.state.isValidatingText}
       />
     );
   }

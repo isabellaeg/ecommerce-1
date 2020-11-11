@@ -17,9 +17,11 @@ class CartContainer extends Component {
 
   componentDidMount() {
     if (!this.props.user.id) {
+      console.log("cartCont no user");
       let virtualCartVariable = JSON.parse(localStorage.getItem("cart"));
       return this.props.addVirtualCart(virtualCartVariable);
     } else {
+      console.log("cartCont user");
       return this.props.allCart(this.props.user.id);
     }
   }
