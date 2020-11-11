@@ -4,11 +4,13 @@ import products from "./products";
 import user from "./userReducer";
 import cart from './cartReducer'
 import search from './searchReducer'
+import admin from './adminReducer'
 
 export default combineReducers({
   allProducts,
   products,
   user,
   cart,
-  search
+  search,
+  admin
 });

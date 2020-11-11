@@ -11,9 +11,11 @@ const {
 const S = require("sequelize");
 const cartRouter = require("./cartRoutes");
 const userRouter = require("./userRoutes");
+const adminRouter = require("./adminRoutes");
 
 router.use("/cart", cartRouter);
 router.use("/users", userRouter);
+router.use("/admin", adminRouter);
 
 router.get("/allproducts", (req, res) => {
   Product.findAll().then((product) => {
@@ -30,11 +32,12 @@ router.get("/products/:stringBusqueda/:category", (req, res) => {
     },
     include: [{ model: Category }] 
   }).then((arrayProduct) => {
-
     arrayProduct.map((p) => {
-      
-      res.send(arrayProduct)
+      p.Categories.filter((elem) => {
+        elem.name == req.params.category
+      })
     })
+    res.send(arrayProduct)
   })
   })
 
