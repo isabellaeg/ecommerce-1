@@ -10,7 +10,7 @@ class OrdersContainer extends Component {
   }
 
   componentDidMount() {
-    this.props.allOrders(this.props.user.id)
+    return this.props.allOrders(this.props.user.id)
   }
 
 

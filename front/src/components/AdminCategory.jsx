@@ -2,7 +2,7 @@ import React from "react";
 import { Table, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-function AdminProduct({user, allProducts, handleDelete}) {
+function AdminCategory({user, allCategory, handleDelete}) {
     return (<div>
 
 {user.id && user.isAdmin !== "Customer" ? 
@@ -13,25 +13,18 @@ function AdminProduct({user, allProducts, handleDelete}) {
       <Table striped bordered hover>
         <thead>
           <tr>
-            <th>Id Producto</th>
+            <th>Id Categoria</th>
             <th>Nombre</th>
-            <th>Precio</th>
-            <th>Stock</th>
-            <th>Imagen</th>
           </tr>
         </thead>
-        {allProducts && allProducts.length > 0
-          ? allProducts.map((e) => {
+        {allCategory && allCategory.length > 0
+          ? allCategory.map((e) => {
               return (
                 <tbody key={e.id}>
                   <tr>
                     <td># {e.id}</td>
                     <td>{e.name}</td>
-                    <td> {e.price}</td>
-                    <td> {e.stock} </td>
-                    <td> {e.imgUrl} </td>
-                    <td><Button onClick = {()=>{}}><Link to={`/admin/product/${e.id}`}>Editar</Link></Button></td>
-                    <td><Button onClick = {()=>{handleDelete(e)}}>Eliminar Producto</Button></td>
+                    <td><Button onClick = {()=>{handleDelete(e)}}>Eliminar Category</Button></td>
                   </tr>
                 </tbody>
               );
@@ -39,7 +32,7 @@ function AdminProduct({user, allProducts, handleDelete}) {
           : null}
       </Table>
       <Button className="btn btn-dark">
-        <Link to="/admin/newproduct">Agregar producto</Link>
+        <Link to="/admin/newcategory">Agregar categoria</Link>
       </Button>
     </div>
   )
@@ -53,4 +46,4 @@ function AdminProduct({user, allProducts, handleDelete}) {
    
 }
 
-export default AdminProduct;
+export default AdminCategory;

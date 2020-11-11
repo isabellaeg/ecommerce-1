@@ -15,6 +15,9 @@ import SidebarContainer from "./containers/SidebarContainer";
 import AdminUserContainer from './containers/AdminUserContainer'
 import AdminProductContainer from "./containers/AdminProductContainer"
 import NewProductContainer from "./containers/NewProductContainer"
+import AdminCategoryContainer from "./containers/AdminCategoryContainer"
+import AdminNewCategoryContainer from "./containers/AdminNewCategoryContainer"
+import EditProductContainer from "./containers/EditProductContainer"
 
 
 class Main extends React.Component {
@@ -53,6 +56,9 @@ class Main extends React.Component {
           <Route exact path='/admin/users' component={AdminUserContainer} />
           <Route exact path='/admin/product' component={AdminProductContainer} />
           <Route exact path='/admin/newproduct' component={NewProductContainer} />
+          <Route exact path='/admin/newcategory' component={AdminNewCategoryContainer} />
+          <Route exact path='/admin/category' component={AdminCategoryContainer} />
+          <Route exact path='/admin/product/:id' component={EditProductContainer} />
           <Redirect to="/products" />
         </Switch>
       </div>

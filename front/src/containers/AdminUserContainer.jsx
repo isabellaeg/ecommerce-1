@@ -14,7 +14,7 @@ class AdminUserContainer extends Component {
   }
 
   componentDidMount() {
-    this.props.fetchAllUsers()
+    return this.props.fetchAllUsers()
   }
 
   handleDelete(user){
@@ -23,8 +23,8 @@ class AdminUserContainer extends Component {
     })
   }
 
-  handleRoles(user){
-    this.props.userRol(user).then(()=>{
+  handleRoles(user, rol){
+    this.props.userRol(user, rol).then(()=>{
         this.props.fetchAllUsers()
     })
   }

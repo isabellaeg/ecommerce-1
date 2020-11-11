@@ -16,9 +16,9 @@ class ProductsContainer extends Component {
     let busq = new URLSearchParams(this.props.location.search).get('search')
     
     if (!busq) {
-      this.props.fetchAllProducts();
+      return this.props.fetchAllProducts();
     } else {
-      this.props.fetchProducts(busq)
+      return this.props.fetchProducts(busq)
     }
 
   }

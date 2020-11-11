@@ -18,9 +18,9 @@ class CartContainer extends Component {
   componentDidMount() {
     if (!this.props.user.id) {
       let virtualCartVariable = JSON.parse(localStorage.getItem("cart"));
-      this.props.addVirtualCart(virtualCartVariable);
+      return this.props.addVirtualCart(virtualCartVariable);
     } else {
-      this.props.allCart(this.props.user.id);
+      return this.props.allCart(this.props.user.id);
     }
   }
 
