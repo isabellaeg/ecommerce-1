@@ -32,15 +32,13 @@ class Main extends React.Component {
       <div id="Main">
         {/* Vamos a tener que borrar. Solo para prueba. */}
 
-      
         <Route path="/" component={NavbarContainer} />
-
 
         <Jumbotron className="jumbo">
           <h1 style={{ color: "grey" }}>Canal Musical</h1>
           <p style={{ color: "grey" }}>by Canal Cultural</p>
         </Jumbotron>
-        <Route path="/" component={SidebarContainer}/>
+        <Route path="/" component={SidebarContainer} />
         <Switch>
           <Route exact path="/products" component={ProductsContainer} />
           <Route

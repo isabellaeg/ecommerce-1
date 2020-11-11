@@ -1,5 +1,7 @@
-const { Product, Category, User } = require("./api/Models/index");
-const Sequelize = require("sequelize");
+const { Product, Category, User, Review } = require("./api/Models/index");
+const Sequelize = require('sequelize')
+
+//const categ = [{name: 'Cuerdas'}, {name: 'Percusion'}, {name: 'Teclados'}, {name: 'Vientos'}]
 
 const instrumento1 = Product.create({
   name: "Guitarra",
@@ -84,10 +86,51 @@ Promise.all([instrumento5, categ1, categ3]).then(([i5, c1, c3]) => {
   i5.addCategory([c1, c3]);
 });
 
-
 User.create({
   nickname: "SuperAdmin",
   email: "superadmin@canalcultural.com" ,
   password: "1",
   isAdmin: "SuperAdmin",
-});
+})
+
+// User.create({
+//   nickname: "Facu",
+//   email: "facu@plataforma5.la" ,
+//   password: "superFACU",
+//   isAdmin: "customer",
+// })
+
+Review.create ({
+  comment: "Excelente Lo recomiendo!!",
+  rate : 5,
+  UserId : 1,
+  ProductId : 1
+})
+
+Review.create ({
+  comment: "Mas o menos todo",
+  rate : 3,
+  UserId : 1,
+  ProductId : 1
+})
+
+Review.create ({
+  comment: "Devuelvan mi dinero !!",
+  rate : 1,
+  UserId : 1,
+  ProductId : 1
+})
+
+Review.create ({
+  comment: "Excelente CanalMusical es lo mejor!!",
+  rate : 5,
+  UserId : 1,
+  ProductId : 1
+})
+
+Review.create ({
+  comment: "Muy bueno Lo recomiendo!!",
+  rate : 4,
+  UserId : 1,
+  ProductId : 1
+})

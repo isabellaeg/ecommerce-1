@@ -7,6 +7,7 @@ const {
   Cart,
   CartProductQuant,
   Category,
+  Review,
 } = require("../Models/index");
 const S = require("sequelize");
 const cartRouter = require("./cartRoutes");
@@ -97,6 +98,13 @@ router.get("/singleproduct/:id", (req, res) => {
     res.send(singleProduct);
   });
 });
+
+router.get("/reviews", (req, res) => {
+  Review.findAll()
+  .then((reviews)=> {
+    res.send(reviews)
+  })
+})
 
 router.post("/register", (req, res) => {
   User.create(req.body).then((users) => {
