@@ -26,14 +26,16 @@ const cartIcon = {
 };
 
 export default (props) => {
-  // console.log("PROPS NAVBAR", props);
   return (
     <div>
       <Navbar bg="dark" variant="dark" fixed="top">
         <Navbar.Brand style={title}>Canal Musical</Navbar.Brand>
         <Nav className="mr-auto">
           <Nav>
-            <button className="btn btn-dark">
+            <button
+              onClick={props.clearProductInStore}
+              className="btn btn-dark"
+            >
               <Link to="/" style={navStyle}>
                 <i className="fas fa-home"></i> Home
               </Link>
@@ -42,7 +44,10 @@ export default (props) => {
         </Nav>
         <Nav className="mr-auto">
           <Nav>
-            <button onClick = {props.clearProductInStore} className="btn btn-dark">
+            <button
+              onClick={props.clearProductInStore}
+              className="btn btn-dark"
+            >
               <Link to="/" style={navStyle}>
                 <i className="fas fa-align-justify"></i> Products
               </Link>
@@ -60,7 +65,7 @@ export default (props) => {
                       <i className="fas fa-sign-out-alt"></i>Logout
                     </Link>
                   </Button>
-                  <h5 style={navHeader}>Welcome {props.user.nickname} ^_^</h5>
+                  <h5 style={navHeader}>Welcome {props.user.nickname}</h5>
                 </Nav>
               </React.Fragment>
             </Nav>
@@ -97,6 +102,7 @@ export default (props) => {
             placeholder="Busca tu producto"
             className="mr-sm-2"
             onChange={props.handleChange}
+            value={props.busqueda}
           />
           <button className="btn btn-dark" type="submit">
             <i className="fas fa-search"></i> Search

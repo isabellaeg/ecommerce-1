@@ -3,7 +3,7 @@ import { ADD_CART } from "../constant";
 const initialState = {
   cart: [],
   virtualCart: [],
-  orders: []
+  orders: [],
 };
 
 export default (state = initialState, action) => {
@@ -13,7 +13,7 @@ export default (state = initialState, action) => {
     case "ADD_VIRTUAL_CART":
       return Object.assign({}, state, { virtualCart: action.virtualCart });
     case "ADD_ORDERS":
-      return Object.assign({}, state, { orders: action.orders });  
+      return Object.assign({}, state, { orders: action.orders });
     default:
       return state;
   }
