@@ -1,5 +1,5 @@
 import React from "react";
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom";
 import { Form, Button, Container } from "react-bootstrap";
 
 const formbox = {
@@ -13,15 +13,26 @@ const formbox = {
   borderRadius: "10px",
 };
 
-export default ({ handleEmail, handlePassword, handleSubmit }) => {
+export default ({
+  handleEmail,
+  handlePassword,
+  handleSubmit,
+  isValidatingText,
+}) => {
   return (
     <Container style={formbox}>
       <Button variant="warning" type="submit" style={{ marginBottom: "20px" }}>
         <i className="fab fa-google"></i> Login with Google
       </Button>
-      <a href="/api/auth/facebook"><Button variant="primary" type="submit" style={{ marginBottom: "20px" }}>
-        <i className="fab fa-facebook-f"></i> Login with Facebook
-      </Button></a>
+      <a href="/api/auth/facebook">
+        <Button
+          variant="primary"
+          type="submit"
+          style={{ marginBottom: "20px" }}
+        >
+          <i className="fab fa-facebook-f"></i> Login with Facebook
+        </Button>
+      </a>
       <Form onSubmit={handleSubmit}>
         <Form.Group controlId="formBasicEmail">
           <Form.Label>Email address:</Form.Label>
@@ -48,6 +59,10 @@ export default ({ handleEmail, handlePassword, handleSubmit }) => {
         <Button variant="dark" type="submit">
           Login
         </Button>
+        <Form.Text className="text-muted">
+          <br />
+          <p>{isValidatingText}</p>
+        </Form.Text>
       </Form>
     </Container>
   );

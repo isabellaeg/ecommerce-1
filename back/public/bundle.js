@@ -53081,7 +53081,6 @@ var receiveCategories = function receiveCategories(categories) {
 var fetchCategories = function fetchCategories() {
   return function (dispatch) {
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("api/categories").then(function (res) {
-      console.log('RES DATA', res.data);
       return res.data;
     }).then(function (res) {
       return dispatch(receiveCategories(res));
@@ -53167,9 +53166,11 @@ var receiveSingleProduct = function receiveSingleProduct(singleProduct) {
 
 var fetchProducts = function fetchProducts(stringBusqueda) {
   return function (dispatch) {
-    return axios.get("/api/products/".concat(stringBusqueda)).then(function (res) {
+    return axios.get("/api/products?search=".concat(stringBusqueda)).then(function (res) {
       return res.data;
     }).then(function (products) {
+      console.log("eston en fech products action");
+
       if (products.length == 0) {
         dispatch(receiveProducts(["No hay resultados para la busqueda"]));
       } else {
@@ -53447,8 +53448,6 @@ __webpack_require__.r(__webpack_exports__);
 
 function Cart(props) {
   var total = 0;
-  console.log("props.cart", props.cart);
-  console.log("props.virtualCart", props.virtualCart);
   var cartRender = [];
 
   if (props.cart.length > 0) {
@@ -53617,7 +53616,8 @@ var formbox = {
 /* harmony default export */ __webpack_exports__["default"] = (function (_ref) {
   var handleEmail = _ref.handleEmail,
       handlePassword = _ref.handlePassword,
-      handleSubmit = _ref.handleSubmit;
+      handleSubmit = _ref.handleSubmit,
+      isValidatingText = _ref.isValidatingText;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Container"], {
     style: formbox
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Button"], {
@@ -53660,7 +53660,9 @@ var formbox = {
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Button"], {
     variant: "dark",
     type: "submit"
-  }, "Login")));
+  }, "Login"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"].Text, {
+    className: "text-muted"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, isValidatingText))));
 });
 
 /***/ }),
@@ -53700,7 +53702,6 @@ var cartIcon = {
   top: "26px"
 };
 /* harmony default export */ __webpack_exports__["default"] = (function (props) {
-  // console.log("PROPS NAVBAR", props);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Navbar"], {
     bg: "dark",
     variant: "dark",
@@ -53710,6 +53711,7 @@ var cartIcon = {
   }, "Canal Musical"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Nav"], {
     className: "mr-auto"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Nav"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    onClick: props.clearProductInStore,
     className: "btn btn-dark"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "/",
@@ -53738,7 +53740,7 @@ var cartIcon = {
     className: "fas fa-sign-out-alt"
   }), "Logout")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
     style: navHeader
-  }, "Welcome ", props.user.nickname, " ^_^"))))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Nav"], {
+  }, "Welcome ", props.user.nickname))))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Nav"], {
     className: "mr-auto"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Nav"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     className: "btn btn-dark"
@@ -53763,7 +53765,8 @@ var cartIcon = {
     type: "text",
     placeholder: "Busca tu producto",
     className: "mr-sm-2",
-    onChange: props.handleChange
+    onChange: props.handleChange,
+    value: props.busqueda
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     className: "btn btn-dark",
     type: "submit"
@@ -54020,22 +54023,35 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/index.js");
 
 
+var styeNavLink = {
+  color: "white",
+  fontSize: "1.1rem",
+  border: "none",
+  outline: "none",
+  padding: "2px 16px"
+};
+var styleHeader = {
+  fontSize: "1.1rem",
+  color: "white"
+};
 
 function Sidebar(props) {
-  console.log("PROPS", props.categories);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-xs-2"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
     className: "sidebar"
-  }, props.categories && props.categories.length > 0 ? props.categories.map(function (c) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    style: styleHeader
+  }, "CATEGOR\xCDAS"), props.categories && props.categories.length > 0 ? props.categories.map(function (c) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      key: c.id,
       className: "menu-item active"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Button"], {
-      variant: "link",
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Nav"].Item, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Nav"].Link, {
       onClick: function onClick() {
         props.handleSubmit(c.name);
-      }
-    }, c.name));
+      },
+      style: styeNavLink
+    }, c.name)));
   }) : null));
 }
 
@@ -54459,9 +54475,11 @@ var CartContainer = /*#__PURE__*/function (_Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       if (!this.props.user.id) {
+        console.log("cartCont no user");
         var virtualCartVariable = JSON.parse(localStorage.getItem("cart"));
         this.props.addVirtualCart(virtualCartVariable);
       } else {
+        console.log("cartCont user");
         this.props.allCart(this.props.user.id);
       }
     }
@@ -54738,7 +54756,8 @@ var LoginContainer = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this, props);
     _this.state = {
       email: "",
-      password: ""
+      password: "",
+      isValidatingText: ""
     };
     _this.handleEmail = _this.handleEmail.bind(_assertThisInitialized(_this));
     _this.handlePassword = _this.handlePassword.bind(_assertThisInitialized(_this));
@@ -54766,7 +54785,11 @@ var LoginContainer = /*#__PURE__*/function (_React$Component) {
       var _this2 = this;
 
       e.preventDefault();
+      this.setState({
+        isValidatingText: "validando los datos ingresados..."
+      });
       this.props.userLogin(this.state.email, this.state.password).then(function (user) {
+        //Fusionar carros
         if (_this2.props.virtualCart.length > 0) {
           _this2.props.virtualCart.map(function (elem) {
             _this2.props.userCart(elem, user.user);
@@ -54776,8 +54799,9 @@ var LoginContainer = /*#__PURE__*/function (_React$Component) {
 
           localStorage.removeItem("cart");
         }
+      }).then(function () {
+        _this2.props.history.push("/");
       });
-      this.props.history.push("/");
     }
   }, {
     key: "componentDidMount",
@@ -54791,7 +54815,8 @@ var LoginContainer = /*#__PURE__*/function (_React$Component) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Login__WEBPACK_IMPORTED_MODULE_3__["default"], {
         handleEmail: this.handleEmail,
         handlePassword: this.handlePassword,
-        handleSubmit: this.handleSubmit
+        handleSubmit: this.handleSubmit,
+        isValidatingText: this.state.isValidatingText
       });
     }
   }]);
@@ -54888,7 +54913,6 @@ var NavbarContainer = /*#__PURE__*/function (_React$Component) {
     key: "handleChange",
     value: function handleChange(evt) {
       var evento = evt.target.value;
-      console.log(evento);
       this.setState({
         busqueda: evento
       });
@@ -54900,6 +54924,9 @@ var NavbarContainer = /*#__PURE__*/function (_React$Component) {
       this.props.fetchProducts(this.state.busqueda);
       this.props.setSearchInStore(this.state.busqueda);
       this.props.history.push("/products?search=".concat(this.state.busqueda));
+      this.setState({
+        busqueda: ""
+      });
     }
   }, {
     key: "handleLogout",
@@ -54914,6 +54941,7 @@ var NavbarContainer = /*#__PURE__*/function (_React$Component) {
         handleChange: this.handleChange,
         handleSubmit: this.handleSubmit,
         handleLogout: this.handleLogout,
+        busqueda: this.state.busqueda,
         user: this.props.user,
         clearProductInStore: this.props.clearProductInStore
       });
@@ -55239,12 +55267,18 @@ var ProductsContainer = /*#__PURE__*/function (_Component) {
   _createClass(ProductsContainer, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      var busq = new URLSearchParams(this.props.location.search).get('search');
+      var searchParams = new URLSearchParams(this.props.location.search.slice(1));
+      var sear = searchParams.get("search");
+      var categ = searchParams.get("category");
 
-      if (!busq) {
+      if (!sear && !categ) {
         this.props.fetchAllProducts();
-      } else {
-        this.props.fetchProducts(busq);
+      } else if (sear && !categ) {
+        this.props.fetchProducts(sear);
+      } else if (!sear && categ) {
+        this.props.fetchProductsWithCategory(sear, categ);
+      } else if (sear && categ) {
+        this.props.fetchProductsWithCategory(sear, categ);
       }
     }
   }, {
@@ -55312,7 +55346,6 @@ var ProductsContainer = /*#__PURE__*/function (_Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 
 var mapStateToProps = function mapStateToProps(state) {
-  console.log("state", state);
   return {
     allProducts: state.allProducts.allProducts,
     products: state.products.products,
@@ -55325,7 +55358,8 @@ var mapStateToProps = function mapStateToProps(state) {
   userCart: _actions_cart__WEBPACK_IMPORTED_MODULE_4__["userCart"],
   allCart: _actions_cart__WEBPACK_IMPORTED_MODULE_4__["allCart"],
   addVirtualCart: _actions_cart__WEBPACK_IMPORTED_MODULE_4__["addVirtualCart"],
-  fetchProducts: _actions_products__WEBPACK_IMPORTED_MODULE_5__["fetchProducts"]
+  fetchProducts: _actions_products__WEBPACK_IMPORTED_MODULE_5__["fetchProducts"],
+  fetchProductsWithCategory: _actions_products__WEBPACK_IMPORTED_MODULE_5__["fetchProductsWithCategory"]
 })(ProductsContainer));
 
 /***/ }),
@@ -55525,13 +55559,12 @@ var SidebarContainer = /*#__PURE__*/function (_Component) {
   _createClass(SidebarContainer, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      console.log('SOY EL COMPONENT DID MOUNT');
       this.props.fetchCategories();
     }
   }, {
     key: "handleSubmit",
     value: function handleSubmit(category) {
-      var busq = new URLSearchParams(this.props.location.search).get('search');
+      var busq = new URLSearchParams(this.props.location.search).get("search");
 
       if (!busq) {
         this.props.history.push("/products?category=".concat(category));
@@ -55544,7 +55577,6 @@ var SidebarContainer = /*#__PURE__*/function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      console.log('soy render this props', this.props.categories);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Sidebar__WEBPACK_IMPORTED_MODULE_1__["default"], {
         categories: this.props.categories,
         handleSubmit: this.handleSubmit
@@ -55904,13 +55936,11 @@ var initialState = {
 
   switch (action.type) {
     case RECEIVE_PRODUCTS:
-      console.log("ACTION", action);
       return Object.assign({}, state, {
         products: action.products
       });
 
     case RECEIVE_SINGLE_PRODUCT:
-      console.log("ACTION single product", action);
       return Object.assign({}, state, {
         singleProduct: action.singleProduct
       });
@@ -55934,7 +55964,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _constant__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../constant */ "./src/constant.js");
 
 var initialState = {
-  searchString: ''
+  searchString: ""
 };
 /* harmony default export */ __webpack_exports__["default"] = (function () {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;

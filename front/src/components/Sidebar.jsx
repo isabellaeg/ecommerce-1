@@ -1,31 +1,43 @@
 import React from "react";
-import {Button} from "react-bootstrap"
+import { Button, Nav } from "react-bootstrap";
 
+const styeNavLink = {
+  color: "white",
+  fontSize: "1.1rem",
+  border: "none",
+  outline: "none",
+  padding: "2px 16px",
+};
+const styleHeader = {
+  fontSize: "1.1rem",
+  color: "white",
+};
 
 function Sidebar(props) {
-  console.log("PROPS", props.categories);
   return (
     <div className="col-xs-2">
       <section className="sidebar">
-      {props.categories && props.categories.length > 0
-        ? props.categories.map((c) => {
-          return (
-            
-              
-                <h4 className="menu-item active">
-                  <Button variant = "link"
-                    onClick={() => {
-                      props.handleSubmit(c.name);
-                    }}
-                  >
-                    {c.name}
-                  </Button>
-                </h4>
-              
-            );
-          })
+        <br />
+        <p style={styleHeader}>CATEGORÍAS</p>
+        {props.categories && props.categories.length > 0
+          ? props.categories.map((c) => {
+              return (
+                <div key={c.id} className="menu-item active">
+                  <Nav.Item>
+                    <Nav.Link
+                      onClick={() => {
+                        props.handleSubmit(c.name);
+                      }}
+                      style={styeNavLink}
+                    >
+                      {c.name}
+                    </Nav.Link>
+                  </Nav.Item>
+                </div>
+              );
+            })
           : null}
-        </section>
+      </section>
     </div>
   );
 }

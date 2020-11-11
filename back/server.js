@@ -73,35 +73,28 @@ passport.use(
     function (accessToken, refreshToken, profile, cb) {
       console.log("profile = ", profile);
 
-
       User.findOne({
         where: {
           //nickname: profile.name.givenName + " " +  profile.name.familyName,
           email: profile.emails[0].value,
           //password : profile.id,
-        }})
-        .then((user)=>{
-          if(!user){
-            User.create({
-              email: profile.emails[0].value,
-              nickname: profile.name.givenName + " " + profile.name.familyName,
-              password: profile.id,
-            })
-            .then((user)=>{
-              cb(null, user);
-            })
-          }else{
+        },
+      }).then((user) => {
+        if (!user) {
+          User.create({
+            email: profile.emails[0].value,
+            nickname: profile.name.givenName + " " + profile.name.familyName,
+            password: profile.id,
+          }).then((user) => {
             cb(null, user);
-          }
-        })
-
-      }))
-
-
-
-
-
-
+          });
+        } else {
+          cb(null, user);
+        }
+      });
+    }
+  )
+);
 
 //       User.findOrCreate({
 //         where: {
@@ -122,9 +115,6 @@ passport.use(
 //     }
 //   )
 // );
-
-
-
 
 passport.serializeUser(function (user, done) {
   console.log("User[0] del serialize = ", user[0]);

@@ -11,9 +11,8 @@ const receiveCategories = function (categories) {
 export const fetchCategories = () => (dispatch) => {
   axios
     .get("api/categories")
-      .then((res) => {
-        console.log('RES DATA', res.data)
-     return res.data
+    .then((res) => {
+      return res.data;
     })
     .then((res) => {
       return dispatch(receiveCategories(res));

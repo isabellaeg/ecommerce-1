@@ -24,7 +24,6 @@ router.get("/allproducts", (req, res) => {
 });
 
 router.get("/products", (req, res) => {
-  console.log("REQ QUERYYYY", req.query);
   if (req.query.search && req.query.category) {
     console.log("ENTRE AL IF");
     Product.findAll({
@@ -72,25 +71,22 @@ router.get("/products", (req, res) => {
 
       res.send(arrayResultado);
     });
+  } else if (!req.query.category && req.query.search) {
+    Product.findAll({
+      where: {
+        name: {
+          [S.Op.iLike]: "%" + req.query.search + "%",
+        },
+      },
+    }).then((ArrayProduct) => {
+      res.send(ArrayProduct);
+    });
   }
 });
 
-router.get('/categories', (req, res) => {
-  Category.findAll()
-    .then((c) => {
-    res.send(c)
-  })
-})
-
-router.get("/products/:stringBusqueda", (req, res) => {
-  Product.findAll({
-    where: {
-      name: {
-        [S.Op.iLike]: "%" + req.params.stringBusqueda + "%",
-      },
-    },
-  }).then((ArrayProduct) => {
-    res.send(ArrayProduct);
+router.get("/categories", (req, res) => {
+  Category.findAll().then((c) => {
+    res.send(c);
   });
 });
 
@@ -201,8 +197,6 @@ router.get("/orders/:userid", (req, res) => {
     res.send(r);
   });
 });
-
-
 
 router.get("/me", (req, res) => {
   if (!req.user) {
