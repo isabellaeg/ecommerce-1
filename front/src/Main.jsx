@@ -12,9 +12,9 @@ import CheckoutContainer from "./containers/CheckoutContainer";
 import Jumbotron from "react-bootstrap/Jumbotron";
 import OrdersContainer from "./containers/OrdersContainer";
 import SidebarContainer from "./containers/SidebarContainer";
-import AdminUserContainer from './containers/AdminUserContainer'
-import AdminProductContainer from "./containers/AdminProductContainer"
-import NewProductContainer from "./containers/NewProductContainer"
+import AdminUserContainer from "./containers/AdminUserContainer";
+import AdminProductContainer from "./containers/AdminProductContainer";
+import NewProductContainer from "./containers/NewProductContainer";
 
 
 class Main extends React.Component {
@@ -29,15 +29,13 @@ class Main extends React.Component {
       <div id="Main">
         {/* Vamos a tener que borrar. Solo para prueba. */}
 
-      
         <Route path="/" component={NavbarContainer} />
-
 
         <Jumbotron className="jumbo">
           <h1 style={{ color: "grey" }}>Canal Musical</h1>
           <p style={{ color: "grey" }}>by Canal Cultural</p>
         </Jumbotron>
-        <Route path="/" component={SidebarContainer}/>
+        <Route path="/" component={SidebarContainer} />
         <Switch>
           <Route exact path="/products" component={ProductsContainer} />
           <Route
@@ -50,9 +48,17 @@ class Main extends React.Component {
           <Route path="/cart" component={CartContainer} />
           <Route path="/checkout" component={CheckoutContainer} />
           <Route path="/orders" component={OrdersContainer} />
-          <Route exact path='/admin/users' component={AdminUserContainer} />
-          <Route exact path='/admin/product' component={AdminProductContainer} />
-          <Route exact path='/admin/newproduct' component={NewProductContainer} />
+          <Route exact path="/admin/users" component={AdminUserContainer} />
+          <Route
+            exact
+            path="/admin/product"
+            component={AdminProductContainer}
+          />
+          <Route
+            exact
+            path="/admin/newproduct"
+            component={NewProductContainer}
+          />
           <Redirect to="/products" />
         </Switch>
       </div>
