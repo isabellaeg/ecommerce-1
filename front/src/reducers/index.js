@@ -5,6 +5,7 @@ import user from "./userReducer";
 import cart from './cartReducer'
 import search from './searchReducer'
 import admin from './adminReducer'
+import categories from './categoriesReducer'
 
 export default combineReducers({
   allProducts,
@@ -12,5 +13,6 @@ export default combineReducers({
   user,
   cart,
   search,
-  admin
+  admin,
+  categories
 });

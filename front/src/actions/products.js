@@ -21,13 +21,11 @@ export const fetchProducts = (stringBusqueda) => (dispatch) =>
     .then((res) => res.data)
     .then((products) => {
       if (products.length == 0) {
-        dispatch(receiveProducts(['No hay resultados para la busqueda']))
+        dispatch(receiveProducts(["No hay resultados para la busqueda"]));
       } else {
-        dispatch(receiveProducts(products)) 
+        dispatch(receiveProducts(products));
       }
-    }
-      
-    );
+    });
 
 export const fetchSingleProduct = (id) => (dispatch) =>
   axios
@@ -39,24 +37,38 @@ export const fetchSingleProduct = (id) => (dispatch) =>
       dispatch(receiveSingleProduct(singleProduct));
     });
 
-    export const clearProductInStore = () => (dispatch) => {
-      return dispatch(receiveProducts([]));
-    };
+export const clearProductInStore = () => (dispatch) => {
+  return dispatch(receiveProducts([]));
+};
 
-    export const fetchProductsWithCategory = (stringBusqueda, category) => (dispatch) =>
+export const fetchProductsWithCategory = (stringBusqueda, category) => (
+  dispatch
+) => {
+  if (stringBusqueda && category) {
     axios
-      .get(`/api/products/${stringBusqueda}/${category}`)
-        .then((res) => console.log('RES DATA', res.data))
-       
-      
-
-/*       .then((products) => {
+      .get(`/api/products?search=${stringBusqueda}&category=${category}`)
+      .then((res) => {
+        return res.data;
+      })
+      .then((products) => {
         if (products.length == 0) {
-          dispatch(receiveProducts(['No hay resultados para la busqueda']))
+          dispatch(receiveProducts(["No hay resultados para la busqueda"]));
         } else {
-          dispatch(receiveProducts(products)) 
+          dispatch(receiveProducts(products));
         }
-      }   
-      ); */
-
-  
+      });
+  } else if (!stringBusqueda && category) {
+    axios
+      .get(`/api/products?category=${category}`)
+      .then((res) => {
+        return res.data;
+      })
+      .then((products) => {
+        if (products.length == 0) {
+          dispatch(receiveProducts(["No hay resultados para la busqueda"]));
+        } else {
+          dispatch(receiveProducts(products));
+        }
+      });
+  }
+};
