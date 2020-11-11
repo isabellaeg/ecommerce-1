@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 function AdminUser({user, allUsers, handleDelete, handleRoles}) {
     return (<div>
 
-{user.id && user.isAdmin !== "Customer" ? 
+{user.id && user.isAdmin == "SuperAdmin" ? 
 
 
 (
@@ -29,7 +29,11 @@ function AdminUser({user, allUsers, handleDelete, handleRoles}) {
                     <td>{e.nickname}</td>
                     <td> {e.email}</td>
                     <td> {e.isAdmin} </td>
-                    <td><Button onClick = {()=>{handleRoles(e)}} >Promover a Admin</Button></td>
+                    { e.isAdmin == "Customer" ? 
+                    <td><Button onClick = {()=>{handleRoles(e, e.isAdmin)}} >Promover a Admin</Button></td> :
+                    <td><Button onClick = {()=>{handleRoles(e, e.isAdmin)}} >Promover a SuperAdmin</Button></td>
+                    }
+                    
                     <td><Button onClick = {()=>{handleDelete(e)}}>Eliminar Usuario</Button></td>
                   </tr>
                 </tbody>

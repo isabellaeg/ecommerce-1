@@ -12,7 +12,7 @@ class SingleProductContainer extends Component {
   }
 
   componentDidMount() {
-    this.props.fetchSingleProduct(this.props.match.params.id);
+    return this.props.fetchSingleProduct(this.props.match.params.id);
   }
 
   handleCart(product) {

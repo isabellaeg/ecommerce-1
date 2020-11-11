@@ -12,6 +12,7 @@
   "dependencies": {
     "axios": "^0.21.0",
     "cors": "^2.8.5",
+    "mdbootstrap": "^4.19.1",
     "react": "^16.8.3",
     "react-bootstrap": "^1.4.0",
     "react-dom": "^16.8.3",

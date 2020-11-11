@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import AdminProduct from "../components/AdminProduct";
+import AdminCategory from "../components/AdminCategory";
 import { connect } from "react-redux";
-import {fetchAdminProducts, deleteProduct} from "../actions/admin"
+import {fetchAdminCategory, deleteCategory } from "../actions/admin"
 
 
-class AdminUserContainer extends Component {
+class AdminCategoryContainer extends Component {
   constructor(props) {
     super(props);
 
@@ -14,12 +14,12 @@ class AdminUserContainer extends Component {
   }
 
   componentDidMount() {
-    return this.props.fetchAdminProducts()
+    return this.props.fetchAdminCategory()
   }
 
-  handleDelete(product){
-    this.props.deleteProduct(product).then(()=>{
-        this.props.fetchAdminProducts()
+  handleDelete(category){
+    this.props.deleteCategory(category).then(()=>{
+        this.props.fetchAdminCategory()
     })
   }
 
@@ -31,9 +31,9 @@ class AdminUserContainer extends Component {
 
   render() {
     return (
-    <AdminProduct 
+    <AdminCategory 
     user={this.props.user} 
-    allProducts={this.props.allProducts}
+    allCategory={this.props.allCategory}
     handleDelete ={this.handleDelete}
     // handleRoles ={this.handleRoles}
     />
@@ -45,9 +45,9 @@ class AdminUserContainer extends Component {
 const mapStateToProps = (state) => {
     return {
         user: state.user.user,
-        allProducts: state.admin.allproducts
+        allCategory: state.admin.allCategory
 
     }
 };
 
-export default connect(mapStateToProps, {fetchAdminProducts, deleteProduct})(AdminUserContainer);
+export default connect(mapStateToProps, {fetchAdminCategory, deleteCategory})(AdminCategoryContainer);

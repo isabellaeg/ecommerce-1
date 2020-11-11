@@ -84,13 +84,10 @@ Promise.all([instrumento5, categ1, categ3]).then(([i5, c1, c3]) => {
   i5.addCategory([c1, c3]);
 });
 
-Promise.all([instrumento6, categ4]).then(([i6, c4]) => {
-  i6.addCategory([c4]);
-});
 
 User.create({
   nickname: "SuperAdmin",
-  email: "superadmin@canalcultural.com",
-  password: "SuperAdmin",
+  email: "superadmin@canalcultural.com" ,
+  password: "1",
   isAdmin: "SuperAdmin",
 });

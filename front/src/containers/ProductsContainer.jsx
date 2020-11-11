@@ -18,13 +18,13 @@ class ProductsContainer extends Component {
     let categ = searchParams.get("category");
 
     if (!sear && !categ) {
-      this.props.fetchAllProducts();
+      return this.props.fetchAllProducts();
     } else if (sear && !categ) {
-      this.props.fetchProducts(sear);
+      return this.props.fetchProducts(sear);
     } else if (!sear && categ) {
-      this.props.fetchProductsWithCategory(sear, categ);
+      return this.props.fetchProductsWithCategory(sear, categ);
     } else if (sear && categ) {
-      this.props.fetchProductsWithCategory(sear, categ);
+      return this.props.fetchProductsWithCategory(sear, categ);
     }
   }
 

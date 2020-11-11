@@ -1,11 +1,10 @@
-
 import React from "react";
 import { connect } from "react-redux";
+import { fetchSingleProduct } from "../actions/products";
+import EditProduct from "../components/EditProduct";
+import {editProduct, fetchAdminProducts} from '../actions/admin'
 
-import NewProduct from "../components/NewProduct";
-import {addAdminProduct, fetchAdminCategory} from '../actions/admin'
-
-class NewProductContainer extends React.Component {
+class EditProductContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -14,7 +13,8 @@ class NewProductContainer extends React.Component {
       price: "",
       imgUrl: "",
       description: "",
-      category: []
+      category: [],
+      id: ""
     };
 
     this.handleStock = this.handleStock.bind(this);
@@ -27,7 +27,12 @@ class NewProductContainer extends React.Component {
   }
 
   componentDidMount() {
-    return this.props.fetchAdminCategory()
+    this.props.fetchSingleProduct(this.props.match.params.id).then(()=> this.setState({name: this.props.singleProduct.name, 
+        stock: this.props.singleProduct.stock,
+        price: this.props.singleProduct.price,
+        imgUrl: this.props.singleProduct.imgUrl,
+        description: this.props.singleProduct.description }))
+    
   }
 
   handleStock(e) {
@@ -59,14 +64,16 @@ class NewProductContainer extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
 
-    this.props.addAdminProduct(
+    this.props.editProduct(
       {name: this.state.name,
       stock: this.state.stock,
       price: this.state.price,
       imgUrl: this.state.imgUrl,
-      description: this.state.description},
-      {category: this.state.category}
-    );
+      description: this.state.description,
+    id: this.props.singleProduct.id },
+      // {category: this.state.category}
+    ).then(()=> this.props.fetchAdminProducts())
+    .then(()=> console.log("hola"))
 
     this.setState({
         name: "",
@@ -81,7 +88,7 @@ class NewProductContainer extends React.Component {
 
   render() {
     return (
-      <NewProduct
+      <EditProduct
         user={this.props.user}
         allCategory={this.props.allCategory}
         handleSubmit = {this.handleSubmit}
@@ -92,6 +99,8 @@ class NewProductContainer extends React.Component {
         handleDescription = {this.handleDescription}
         handleCategory = {this.handleCategory}
         category = {this.state.category}
+        singleProduct={this.props.singleProduct}
+        state={this.state}
       />
 
     );
@@ -101,10 +110,8 @@ class NewProductContainer extends React.Component {
 const mapStateToProps = (state) => {
     return {
         user: state.user.user,
-        allCategory: state.admin.allCategory
-        
-
+        singleProduct: state.products.singleProduct,
     }
 };
 
-export default connect(mapStateToProps, {addAdminProduct, fetchAdminCategory})(NewProductContainer);
+export default connect(mapStateToProps, {fetchSingleProduct, editProduct, fetchAdminProducts})(EditProductContainer);
