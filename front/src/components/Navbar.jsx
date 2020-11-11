@@ -43,7 +43,7 @@ export default (props) => {
         <Nav className="mr-auto">
           <Nav>
             <button onClick = {props.clearProductInStore} className="btn btn-dark">
-              <Link to="/products" style={navStyle}>
+              <Link to="/" style={navStyle}>
                 <i className="fas fa-align-justify"></i> Products
               </Link>
             </button>

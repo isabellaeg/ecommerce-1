@@ -3,6 +3,7 @@ import Products from '../components/Products'
 import { connect } from "react-redux";
 import { fetchAllProducts } from "../actions/allProducts";
 import { userCart, allCart, addVirtualCart } from "../actions/cart";
+import {fetchProducts} from '../actions/products'
 
 class ProductsContainer extends Component {
   constructor(props) {
@@ -12,7 +13,14 @@ class ProductsContainer extends Component {
   }
 
   componentDidMount() {
-    this.props.fetchAllProducts();
+    let busq = new URLSearchParams(this.props.location.search).get('search')
+    
+    if (!busq) {
+      this.props.fetchAllProducts();
+    } else {
+      this.props.fetchProducts(busq)
+    }
+
   }
 
   handleCart(product) {
@@ -88,4 +96,5 @@ export default connect(mapStateToProps, {
   userCart,
   allCart,
   addVirtualCart,
+  fetchProducts
 })(ProductsContainer);

@@ -1,7 +1,13 @@
 const router = require("express").Router();
 const passport = require("passport");
 const nodemailer = require("nodemailer");
-const { User, Product, Cart, CartProductQuant } = require("../Models/index");
+const {
+  User,
+  Product,
+  Cart,
+  CartProductQuant,
+  Category,
+} = require("../Models/index");
 const S = require("sequelize");
 const cartRouter = require("./cartRoutes");
 const userRouter = require("./userRoutes");
@@ -14,6 +20,45 @@ router.get("/allproducts", (req, res) => {
     res.send(product);
   });
 });
+
+router.get("/products/:stringBusqueda/:category", (req, res) => {
+  Product.findAll({
+    where: {
+      name: {
+        [S.Op.iLike]: "%" + req.params.stringBusqueda + "%",
+      } ,
+    },
+    include: [{ model: Category }] 
+  }).then((arrayProduct) => {
+
+    arrayProduct.map((p) => {
+      
+      res.send(arrayProduct)
+    })
+  })
+  })
+
+/*   Category.findAll({
+    where: {
+      name: req.params.category,
+    },
+    include: [{ model: Product }],
+  }).then((rtado) => {
+    return rtado[0].dataValues.Products;
+  }) 
+    .then((arrayProducts) => {
+     arrayProducts.filter
+  }) */
+/*   Product.findAll({
+    where: {
+      name: {
+        [S.Op.iLike]: "%" + req.params.stringBusqueda + "%",
+      },
+    },
+  }).then((ArrayProduct) => {
+    res.send(ArrayProduct);
+  }); */
+//});
 
 router.get("/products/:stringBusqueda", (req, res) => {
   Product.findAll({
@@ -67,11 +112,11 @@ router.get(
 
 // NODEMAILER:
 var transporter = nodemailer.createTransport({
-  service: 'gmail',
+  service: "gmail",
   secure: false,
   auth: {
-    user: 'canalculturalp5@gmail.com',
-    pass: 'canalmusical',
+    user: "canalculturalp5@gmail.com",
+    pass: "canalmusical",
     // type: 'OAuth2',
     // clientId: '628004311754-fatbie2idm7f9ppjrrkg2lb00kp70guc.apps.googleusercontent.com',
     // clientSecret: '45b3mvplSwalOPIiauQxcEqb',
@@ -80,7 +125,6 @@ var transporter = nodemailer.createTransport({
 });
 
 router.put("/checkout", (req, res) => {
-  
   var mailOptions = {
     from: "canalculturalp5@gmail.com",
     to: req.body.user.email,
@@ -94,43 +138,47 @@ router.put("/checkout", (req, res) => {
       cardCvv: req.body.cvv,
       date: Date.now(),
       isPaid: true,
+    },
+    {
+      where: { UserId: req.body.user.id, isPaid: false },
+      returning: true,
+      plain: true,
     }
-    ,
-    { where: { UserId: req.body.user.id, isPaid: false },
-    returning: true,
-    plain: true})
-    .then((cart)=>{
-    return Cart.findByPk(cart[1].id, {include: [{ model: Product }]})
-  })
-  .then((cart) => {
-    var mailOptions = {
-      from: 'canalculturalp5@gmail.com',
-      to: `${req.body.user.email}`,
-      subject: 'Confirmacion de compra',
-      text: `Felicidades, compraste algo tus productos son: ${2+2}`
-    }})
+  )
     .then((cart) => {
-    transporter.sendMail(mailOptions, function (error, info) {
-      if (error) {
-        console.log(error);
-      } else {
-        console.log("Email sent: " + info.response);
-      }
-      res.sendStatus(201);
+      return Cart.findByPk(cart[1].id, { include: [{ model: Product }] });
+    })
+    .then((cart) => {
+      var mailOptions = {
+        from: "canalculturalp5@gmail.com",
+        to: `${req.body.user.email}`,
+        subject: "Confirmacion de compra",
+        text: `Felicidades, compraste algo tus productos son: ${2 + 2}`,
+      };
+    })
+    .then((cart) => {
+      transporter.sendMail(mailOptions, function (error, info) {
+        if (error) {
+          console.log(error);
+        } else {
+          console.log("Email sent: " + info.response);
+        }
+        res.sendStatus(201);
+      });
     });
-  });
 });
 
-router.get('/orders/:userid', (req,res)=>{
-  Cart.findAll({where: {
-    UserId: req.params.userid,
-    isPaid: true
-  }})
-  .then((r)=>{
+router.get("/orders/:userid", (req, res) => {
+  Cart.findAll({
+    where: {
+      UserId: req.params.userid,
+      isPaid: true,
+    },
+  }).then((r) => {
     //console.log(r)
-    res.send(r)
-  })
-})
+    res.send(r);
+  });
+});
 
 router.get("/me", (req, res) => {
   if (!req.user) {
