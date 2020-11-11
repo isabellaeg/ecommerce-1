@@ -1,7 +1,7 @@
-import {SET_SEARCH} from '../constant'
+import { SET_SEARCH } from "../constant";
 
 const initialState = {
-    searchString: ''
+  searchString: "",
 };
 
 export default (state = initialState, action) => {
@@ -11,4 +11,4 @@ export default (state = initialState, action) => {
     default:
       return state;
   }
-}
+};

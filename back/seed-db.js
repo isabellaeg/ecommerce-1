@@ -7,7 +7,8 @@ const instrumento1 = Product.create({
   name: "Guitarra",
   stock: 2000,
   price: 5500,
-  imgUrl: 'https://bairesrocks.vteximg.com.br/arquivos/ids/221130-1500-1500/D_NQ_NP_2X_975172-MLA43908744581_102020-F.jpg?v=637396862058470000',
+  imgUrl:
+    "https://bairesrocks.vteximg.com.br/arquivos/ids/221130-1500-1500/D_NQ_NP_2X_975172-MLA43908744581_102020-F.jpg?v=637396862058470000",
   description: "*****GUITARRA ROMULO GARCIA ESTUDIO SUPERIOR********",
 });
 
@@ -64,7 +65,7 @@ const instrumento6 = Product.create({
 const categ1 = Category.create({ name: "Cuerdas" });
 const categ2 = Category.create({ name: "Percusion" });
 const categ3 = Category.create({ name: "Teclados" });
-const categ4 = Category.create({ name: "vientos" });
+const categ4 = Category.create({ name: "Viento" });
 
 Promise.all([instrumento1, categ1]).then(([i1, c1]) => {
   i1.addCategory([c1]);
@@ -74,27 +75,21 @@ Promise.all([instrumento2, categ1]).then(([i2, c1]) => {
   i2.addCategory([c1]);
 });
 Promise.all([instrumento3, categ1]).then(([i3, c1]) => {
-    i3.addCategory([c1]);
-  });
+  i3.addCategory([c1]);
+});
 
 Promise.all([instrumento4, categ3]).then(([i4, c3]) => {
   i4.addCategory([c3]);
 });
 
-Promise.all([instrumento5, categ1, categ3]).then(
-  ([i5, c1, c3]) => {
-    i5.addCategory([c1, c3]);
-  }
-);
-
-Promise.all([instrumento6, categ4]).then(([i6, c4]) => {
-  i6.addCategory([c4]);
+Promise.all([instrumento5, categ1, categ3]).then(([i5, c1, c3]) => {
+  i5.addCategory([c1, c3]);
 });
 
 User.create({
   nickname: "SuperAdmin",
   email: "superadmin@canalcultural.com" ,
-  password: "SuperAdmin",
+  password: "1",
   isAdmin: "SuperAdmin",
 })
 

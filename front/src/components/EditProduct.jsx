@@ -19,15 +19,26 @@ const style = {
     position: "relative",
   };
 
-export default ({user, allCategory, handleSubmit,handleStock, handleName, handlePrice, handleImg, handleDescription, handleCategory, category}) => {
+export default ({user, allCategory, handleSubmit,handleStock, handleName, handlePrice, handleImg, handleDescription, handleCategory, category, singleProduct, state}) => {
 
     return(
         <div>
-            {user.id && user.isAdmin !== "Customer" ? 
+            {user ? 
         
         <Container style={formbox}> 
 
             <Form  onSubmit={handleSubmit}>
+            <Form.Group>
+                    <Form.Label >Id:</Form.Label>
+                    <Form.Control 
+                    type="text" 
+                    placeholder="Enter name" 
+                    autoFocus
+                    value={singleProduct.id}
+                    />
+                    <Form.Text className="text-muted">
+                    </Form.Text>
+                </Form.Group>
                 <Form.Group>
                     <Form.Label >Nombre:</Form.Label>
                     <Form.Control 
@@ -35,6 +46,7 @@ export default ({user, allCategory, handleSubmit,handleStock, handleName, handle
                     placeholder="Enter name"
                     onChange={handleName} 
                     autoFocus
+                    value={state.name}
                     />
                     <Form.Text className="text-muted">
                     </Form.Text>
@@ -46,6 +58,7 @@ export default ({user, allCategory, handleSubmit,handleStock, handleName, handle
                     type="number" 
                     placeholder="Enter stock" 
                     onChange={handleStock}
+                    value={state.stock}
                     />
                     <Form.Text className="text-muted">
                     </Form.Text>
@@ -57,6 +70,7 @@ export default ({user, allCategory, handleSubmit,handleStock, handleName, handle
                     type="number" 
                     placeholder="Enter price" 
                     onChange={handlePrice}
+                    value={state.price}
                     />
                 </Form.Group>
 
@@ -66,15 +80,17 @@ export default ({user, allCategory, handleSubmit,handleStock, handleName, handle
                     type="text" 
                     placeholder="Enter a URL img" 
                     onChange={handleImg}
+                    value={state.imgUrl}
                     />
                 </Form.Group>
-
-                <Form.Group >
+                <Form.Group controlId="exampleForm.ControlTextarea1">
                     <Form.Label>Descripcion:</Form.Label>
                     <Form.Control 
-                    type="text" 
+                    as="textarea"
+                    rows={8} 
                     placeholder="Enter a description" 
                     onChange={handleDescription}
+                    value={state.description}
                     />
                 </Form.Group>
                 { allCategory && allCategory.length > 0 ?
@@ -93,7 +109,7 @@ export default ({user, allCategory, handleSubmit,handleStock, handleName, handle
     <hr/>
 
                 <Button style={{marginTop: "30px", marginBottom: "30px"}}variant="dark" type="submit">
-                    Create Product
+                    Edit Product
                 </Button>
 
 

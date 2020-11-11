@@ -4,8 +4,6 @@ import { Link } from "react-router-dom";
 
 function Cart(props) {
   let total = 0;
-  console.log("props.cart", props.cart);
-  console.log("props.virtualCart", props.virtualCart);
 
   let cartRender = [];
 

@@ -5,8 +5,7 @@ import { fetchProducts, clearProductInStore } from "../actions/products";
 import { Redirect } from "react-router-dom";
 import { userLogout } from "../actions/users";
 import { clearCartInStore } from "../actions/cart";
-import {setSearchInStore} from '../actions/search'
-
+import { setSearchInStore } from "../actions/search";
 
 class NavbarContainer extends React.Component {
   constructor(props) {
@@ -21,17 +20,16 @@ class NavbarContainer extends React.Component {
 
   handleChange(evt) {
     const evento = evt.target.value;
-    console.log(evento);
     this.setState({ busqueda: evento });
   }
 
   handleSubmit(evt) {
     evt.preventDefault();
-    this.props.fetchProducts(this.state.busqueda)
-    this.props.setSearchInStore(this.state.busqueda)
+    this.props.fetchProducts(this.state.busqueda);
+    this.props.setSearchInStore(this.state.busqueda);
     this.props.history.push(`/products?search=${this.state.busqueda}`);
+    this.setState({ busqueda: "" });
   }
-
 
   handleLogout(evt) {
     this.props.clearCartInStore();
@@ -44,8 +42,9 @@ class NavbarContainer extends React.Component {
         handleChange={this.handleChange}
         handleSubmit={this.handleSubmit}
         handleLogout={this.handleLogout}
+        busqueda={this.state.busqueda}
         user={this.props.user}
-        clearProductInStore = {this.props.clearProductInStore}
+        clearProductInStore={this.props.clearProductInStore}
       />
     );
   }
@@ -63,5 +62,5 @@ export default connect(mapStateToProps, {
   userLogout,
   clearCartInStore,
   clearProductInStore,
-  setSearchInStore
+  setSearchInStore,
 })(NavbarContainer);

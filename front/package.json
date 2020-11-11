@@ -13,6 +13,7 @@
     "axios": "^0.21.0",
     "cors": "^2.8.5",
     "mdbreact": "^4.27.0",
+    "mdbootstrap": "^4.19.1",
     "react": "^16.8.3",
     "react-bootstrap": "^1.4.0",
     "react-dom": "^16.8.3",

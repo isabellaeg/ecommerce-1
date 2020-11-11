@@ -24,55 +24,70 @@ router.get("/allproducts", (req, res) => {
   });
 });
 
-router.get("/products/:stringBusqueda/:category", (req, res) => {
-  Product.findAll({
-    where: {
-      name: {
-        [S.Op.iLike]: "%" + req.params.stringBusqueda + "%",
-      } ,
-    },
-    include: [{ model: Category }] 
-  }).then((arrayProduct) => {
-    arrayProduct.map((p) => {
-      p.Categories.filter((elem) => {
-        elem.name == req.params.category
-      })
-    })
-    res.send(arrayProduct)
-  })
-  })
-
-/*   Category.findAll({
-    where: {
-      name: req.params.category,
-    },
-    include: [{ model: Product }],
-  }).then((rtado) => {
-    return rtado[0].dataValues.Products;
-  }) 
-    .then((arrayProducts) => {
-     arrayProducts.filter
-  }) */
-/*   Product.findAll({
-    where: {
-      name: {
-        [S.Op.iLike]: "%" + req.params.stringBusqueda + "%",
+router.get("/products", (req, res) => {
+  if (req.query.search && req.query.category) {
+    console.log("ENTRE AL IF");
+    Product.findAll({
+      where: {
+        name: {
+          [S.Op.iLike]: "%" + req.query.search + "%",
+        },
       },
-    },
-  }).then((ArrayProduct) => {
-    res.send(ArrayProduct);
-  }); */
-//});
+      include: [{ model: Category }],
+    }).then((arrayProduct) => {
+      let arrayResultado = [];
+      let flag = false;
+      arrayProduct.map((p) => {
+        p.Categories.map((c) => {
+          if (c.dataValues.name == req.query.category) {
+            flag = true;
+          }
+        });
+        if (flag == true) {
+          arrayResultado.push(p);
+          flag = false;
+        }
+      });
 
-router.get("/products/:stringBusqueda", (req, res) => {
-  Product.findAll({
-    where: {
-      name: {
-        [S.Op.iLike]: "%" + req.params.stringBusqueda + "%",
+      res.send(arrayResultado);
+    });
+  } else if (!req.query.search) {
+    console.log("ENTRE AL ELSE");
+    Product.findAll({
+      include: [{ model: Category }],
+    }).then((arrayProduct) => {
+      let arrayResultado = [];
+      let flag = false;
+      arrayProduct.map((p) => {
+        p.Categories.map((c) => {
+          if (c.dataValues.name == req.query.category) {
+            flag = true;
+          }
+        });
+        if (flag == true) {
+          arrayResultado.push(p);
+          flag = false;
+        }
+      });
+
+      res.send(arrayResultado);
+    });
+  } else if (!req.query.category && req.query.search) {
+    Product.findAll({
+      where: {
+        name: {
+          [S.Op.iLike]: "%" + req.query.search + "%",
+        },
       },
-    },
-  }).then((ArrayProduct) => {
-    res.send(ArrayProduct);
+    }).then((ArrayProduct) => {
+      res.send(ArrayProduct);
+    });
+  }
+});
+
+router.get("/categories", (req, res) => {
+  Category.findAll().then((c) => {
+    res.send(c);
   });
 });
 

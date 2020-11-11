@@ -1,9 +1,9 @@
 import React, { Component, useEffect } from "react";
-import Products from '../components/Products'
+import Products from "../components/Products";
 import { connect } from "react-redux";
 import { fetchAllProducts } from "../actions/allProducts";
 import { userCart, allCart, addVirtualCart } from "../actions/cart";
-import {fetchProducts} from '../actions/products'
+import { fetchProducts, fetchProductsWithCategory } from "../actions/products";
 
 class ProductsContainer extends Component {
   constructor(props) {
@@ -13,14 +13,19 @@ class ProductsContainer extends Component {
   }
 
   componentDidMount() {
-    let busq = new URLSearchParams(this.props.location.search).get('search')
-    
-    if (!busq) {
-      this.props.fetchAllProducts();
-    } else {
-      this.props.fetchProducts(busq)
-    }
+    let searchParams = new URLSearchParams(this.props.location.search.slice(1));
+    let sear = searchParams.get("search");
+    let categ = searchParams.get("category");
 
+    if (!sear && !categ) {
+      return this.props.fetchAllProducts();
+    } else if (sear && !categ) {
+      return this.props.fetchProducts(sear);
+    } else if (!sear && categ) {
+      return this.props.fetchProductsWithCategory(sear, categ);
+    } else if (sear && categ) {
+      return this.props.fetchProductsWithCategory(sear, categ);
+    }
   }
 
   handleCart(product) {
@@ -83,7 +88,6 @@ class ProductsContainer extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log("state", state);
   return {
     allProducts: state.allProducts.allProducts,
     products: state.products.products,
@@ -96,5 +100,6 @@ export default connect(mapStateToProps, {
   userCart,
   allCart,
   addVirtualCart,
-  fetchProducts
+  fetchProducts,
+  fetchProductsWithCategory,
 })(ProductsContainer);
