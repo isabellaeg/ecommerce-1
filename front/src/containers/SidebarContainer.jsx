@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Sidebar from '../components/Sidebar'
 import { connect } from 'react-redux';
 import {fetchProductsWithCategory} from '../actions/products'
+import {fetchCategories} from '../actions/categories'
 
 
 class SidebarContainer extends Component {
@@ -11,11 +12,20 @@ class SidebarContainer extends Component {
         this.handleSubmit = this.handleSubmit.bind(this)
     }
 
-    handleSubmit(category) {        
+    componentDidMount() {
+        console.log('SOY EL COMPONENT DID MOUNT')
+     
+            this.props.fetchCategories()
+       
+    }
+
+    handleSubmit(category) {    
+    
         let busq = new URLSearchParams(this.props.location.search).get('search')
     
         if (!busq) {
-          this.props.history.push(`/products?category=${category}`);
+            this.props.history.push(`/products?category=${category}`)
+            this.props.fetchProductsWithCategory(busq, category)
         } else {
 
             this.props.history.push(`/products?search=${busq}&category=${category}`)
@@ -25,9 +35,10 @@ class SidebarContainer extends Component {
       }
 
     render() {
+        console.log('soy render this props', this.props.categories)
         return (
             <div>
-                <Sidebar handleSubmit={this.handleSubmit}/>
+                <Sidebar categories={this.props.categories}  handleSubmit={this.handleSubmit}/>
             </div>
         )
     }
@@ -35,9 +46,10 @@ class SidebarContainer extends Component {
 
 const mapStateToProps = function (state) {
     return {
-        searchString: state.search.searchString
+        searchString: state.search.searchString,
+        categories: state.categories.categories
     };
   };
 
 
-export default connect(mapStateToProps, {fetchProductsWithCategory})(SidebarContainer) 
+export default connect(mapStateToProps, {fetchProductsWithCategory, fetchCategories})(SidebarContainer) 
