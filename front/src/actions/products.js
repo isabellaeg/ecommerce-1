@@ -42,3 +42,21 @@ export const fetchSingleProduct = (id) => (dispatch) =>
     export const clearProductInStore = () => (dispatch) => {
       return dispatch(receiveProducts([]));
     };
+
+    export const fetchProductsWithCategory = (stringBusqueda, category) => (dispatch) =>
+    axios
+      .get(`/api/products/${stringBusqueda}/${category}`)
+        .then((res) => console.log('RES DATA', res.data))
+       
+      
+
+/*       .then((products) => {
+        if (products.length == 0) {
+          dispatch(receiveProducts(['No hay resultados para la busqueda']))
+        } else {
+          dispatch(receiveProducts(products)) 
+        }
+      }   
+      ); */
+
+  

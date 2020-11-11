@@ -1,4 +1,22 @@
-import React from 'react';
+import React from 'react'
+import { Link} from "react-router-dom";
+
+function Sidebar(props) {
+    console.log('PROPS', props)
+    return (
+        <div>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <button onClick={() => { props.handleSubmit("Cuerdas") }}>Cuerdas</button>
+        </div>
+    )
+}
+
+export default Sidebar
+/* import React from 'react';
 import { Link } from 'react-router-dom';
 
 export default () => (
@@ -23,7 +41,7 @@ export default () => (
         <hr />
         <section>
           <h4 className="text-muted">PLAYLISTS</h4>
-          <ul className="list-unstyled">
+          <ul className="list-unstyled"> */
             {/* {
               playlists.map(playlist => {
                 return (
@@ -33,7 +51,7 @@ export default () => (
                 );
               })
             } */}
-          </ul>
+{/*           </ul>
           <h4>
             <Link className="btn btn-primary btn-block" to="/playlists/new">
               <span className="glyphicon glyphicon-plus"></span> PLAYLIST
@@ -42,4 +60,4 @@ export default () => (
         </section>
       </section>
     </div>
-);
+); */}

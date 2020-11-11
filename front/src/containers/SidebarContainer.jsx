@@ -1,20 +1,43 @@
-import React from 'react';
-import Sidebar from '../components/Sidebar';
+import React, { Component } from 'react'
+import Sidebar from '../components/Sidebar'
+import { connect } from 'react-redux';
+import {fetchProductsWithCategory} from '../actions/products'
 
 
-export default class SidebarContainer extends React.Component {
-  constructor() {
-    super();
+class SidebarContainer extends Component {
+    constructor(props) {
+        super(props)
 
-  }
+        this.handleSubmit = this.handleSubmit.bind(this)
+    }
 
-  componentDidMount() {
+    handleSubmit(category) {        
+        let busq = new URLSearchParams(this.props.location.search).get('search')
+    
+        if (!busq) {
+          this.props.history.push(`/products?category=${category}`);
+        } else {
 
-  }
+            this.props.history.push(`/products?search=${busq}&category=${category}`)
 
-  render() {
-    return (
-      <Sidebar />
-    );
-  }
+            this.props.fetchProductsWithCategory(busq, category)
+        }
+      }
+
+    render() {
+        return (
+            <div>
+                <Sidebar handleSubmit={this.handleSubmit}/>
+            </div>
+        )
+    }
 }
+
+const mapStateToProps = function (state) {
+    return {
+        searchString: state.search.searchString
+    };
+  };
+
+
+export default connect(mapStateToProps, {fetchProductsWithCategory})(SidebarContainer) 

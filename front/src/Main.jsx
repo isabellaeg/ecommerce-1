@@ -27,8 +27,12 @@ class Main extends React.Component {
   render() {
     return (
       <div id="Main">
-        <h1>MENSAJE DE BIENVENIDA</h1>
+        {/* Vamos a tener que borrar. Solo para prueba. */}
+
+      
         <Route path="/" component={NavbarContainer} />
+
+
         <Jumbotron className="jumbo">
           <h1 style={{ color: "grey" }}>Canal Musical</h1>
           <p style={{ color: "grey" }}>by Canal Cultural</p>
