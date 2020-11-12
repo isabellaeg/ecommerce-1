@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Sidebar from "../components/Sidebar";
 import { connect } from "react-redux";
 import { fetchProductsWithCategory } from "../actions/products";
-import { fetchCategories } from "../actions/categories";
+import { fetchAdminCategory } from "../actions/admin";
 
 class SidebarContainer extends Component {
   constructor(props) {
@@ -12,7 +12,7 @@ class SidebarContainer extends Component {
   }
 
   componentDidMount() {
-    this.props.fetchCategories();
+    return this.props.fetchAdminCategory();
   }
 
   handleSubmit(category) {
@@ -42,11 +42,11 @@ class SidebarContainer extends Component {
 const mapStateToProps = function (state) {
   return {
     searchString: state.search.searchString,
-    categories: state.categories.categories,
+    categories: state.admin.allCategory,
   };
 };
 
 export default connect(mapStateToProps, {
   fetchProductsWithCategory,
-  fetchCategories,
+  fetchAdminCategory,
 })(SidebarContainer);
