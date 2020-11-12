@@ -1,21 +1,22 @@
 import React from "react";
 import { Card, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
-
+import { arrayStar, arrayNoStar } from "../utils/functions";
+import { MDBIcon } from "mdbreact";
 
 const style = {
   textDecoration: "none",
   marginTop: "10px",
-  position: "relative"
+  position: "relative",
 };
 
 const grid = {
-  marginTop: "60px"
-}
+  marginTop: "60px",
+};
 
-export default ({ productsArray, handleCart}) => (
-  <div className="bg-light" style={{marginLeft: '170px'}}>
-    <div style={grid}className="container" >
+export default ({ productsArray, handleCart }) => (
+  <div className="bg-light" style={{ marginLeft: "170px" }}>
+    <div style={grid} className="container">
       <div className="row">
         {productsArray && productsArray.length > 0
           ? productsArray.map((p) => {
@@ -29,10 +30,44 @@ export default ({ productsArray, handleCart}) => (
                   <Card.Body>
                     <Card.Title>{p.name}</Card.Title>
                     <Card.Text>Price: $ {p.price}</Card.Text>
+                    <Card.Text>
+                      <div className="rating">
+                        {arrayStar(p.avgRate).map((elem) => {
+                          return (
+                            <MDBIcon
+                              style={{ color: "#FF8C00" }}
+                              key={Math.random()}
+                              icon="star"
+                            />
+                          );
+                        })}
+                        {arrayNoStar(p.avgRate).map((elem) => {
+                          return (
+                            <MDBIcon
+                              style={{ color: "#FF8C00" }}
+                              key={Math.random()}
+                              far
+                              icon="star"
+                            />
+                          );
+                        })}
+                      </div>
+                    </Card.Text>
                     <Link to={`/products/${p.id}`}>
-                      <Button variant="dark" style={style}><i className="fas fa-info-circle"></i>  Ver Detalle</Button>
+                      <Button variant="dark" style={style}>
+                        <i className="fas fa-info-circle"></i> Ver Detalle
+                      </Button>
                     </Link>
-                    <Button onClick={() => { handleCart(p)}} variant="dark" style={style}> <i className="fas fa-cart-plus"></i>  Agregar al carrito</Button>
+                    <Button
+                      onClick={() => {
+                        handleCart(p);
+                      }}
+                      variant="dark"
+                      style={style}
+                    >
+                      {" "}
+                      <i className="fas fa-cart-plus"></i> Al carrito
+                    </Button>
                   </Card.Body>
                 </Card>
               );

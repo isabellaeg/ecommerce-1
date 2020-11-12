@@ -11,6 +11,7 @@ class RegisterContainer extends React.Component {
       nickname: "",
       email: "",
       password: "",
+      //isValidatingRegister: "",
     };
 
     this.handleNickname = this.handleNickname.bind(this);
@@ -39,19 +40,22 @@ class RegisterContainer extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
 
+    //this.setState({ isValidatingRegister: "Registrandose..." });
     this.props.userRegister(
       this.state.nickname,
       this.state.email,
       this.state.password
     );
-
+    //.then(() => {
+    this.props.history.push("/login");
+    //});
+    //.then(() => {
     this.setState({
       nickname: "",
       email: "",
       password: "",
     });
-
-    this.props.history.push("/login");
+    //})
   }
 
   render() {
@@ -62,6 +66,7 @@ class RegisterContainer extends React.Component {
         handlePassword={this.handlePassword}
         handleSubmit={this.handleSubmit}
         handleFacebookRegister={this.handleFacebookRegister}
+        //isValidatingRegister={this.state.isValidatingRegister}
       />
     );
   }
