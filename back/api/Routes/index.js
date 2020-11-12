@@ -206,6 +206,30 @@ router.get("/orders/:userid", (req, res) => {
   });
 });
 
+router.get("/compras/:cartId", (req, res) => {
+  Cart.findAll({
+    where: {
+      id: req.params.cartId,
+      isPaid: true
+    },
+    include: [{ model: Product }],
+  }).then((cart) => {
+    console.log("CART THEN", cart)
+    res.send(cart[0]);
+  });
+});
+
+router.put('/orders/review', (req, res)=>{
+  console.log('REQ BODY REVIEW', req.body)
+  Review.create({
+    comment: req.body.review.review,
+    rate: req.body.review.rating ,
+    UserId: req.body.orders[0].UserId,
+    ProductId: req.body.compras[0].id,
+
+  })
+})
+
 router.get("/me", (req, res) => {
   if (!req.user) {
     return res.sendStatus(401);

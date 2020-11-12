@@ -24,6 +24,7 @@ function Orders({orders}) {
                     <td>{cart.date}</td>
                     <td> {cart.address}</td>
                     <td>$ {cart.total} </td>
+                    <td><Button><Link to={`/orders/${cart.id}`}>PUNTUAR COMPRA</Link></Button></td>
                   </tr>
                 </tbody>
               );

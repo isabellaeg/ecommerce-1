@@ -18,6 +18,7 @@ import NewProductContainer from "./containers/NewProductContainer"
 import AdminCategoryContainer from "./containers/AdminCategoryContainer"
 import AdminNewCategoryContainer from "./containers/AdminNewCategoryContainer"
 import EditProductContainer from "./containers/EditProductContainer"
+import SingleOrderContainer from "./containers/SingleOrderContainer"
 
 
 class Main extends React.Component {
@@ -50,7 +51,8 @@ class Main extends React.Component {
           <Route path="/login" component={LoginContainer} />
           <Route path="/cart" component={CartContainer} />
           <Route path="/checkout" component={CheckoutContainer} />
-          <Route path="/orders" component={OrdersContainer} />
+          <Route exact path="/orders" component={OrdersContainer} />
+          <Route exact path="/orders/:id" component={SingleOrderContainer} />
           <Route exact path='/admin/users' component={AdminUserContainer} />
           <Route exact path='/admin/product' component={AdminProductContainer} />
           <Route exact path='/admin/newproduct' component={NewProductContainer} />
