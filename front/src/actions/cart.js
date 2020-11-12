@@ -21,6 +21,13 @@ const addOrder = function (orders){
   }
 }
 
+const misCompras = function (compras){
+  return {
+    type: "MIS_COMPRAS",
+    compras
+  }
+}
+
 export const userCart = function (product, user) {
   console.log("en user cart");
   console.log("user", user);
@@ -74,5 +81,20 @@ export const allOrders = (userId) => {
       console.log('RES.DATA', res.data)
       dispatch(addOrder(res.data));
     });
+  };
+};
+
+export const cartOrders = (cartid) => {
+
+  return (dispatch) => {
+    return axios.get(`/api/compras/${cartid}`).then((res) => {
+      dispatch(misCompras(res.data.Products));
+    });
+  };
+};
+
+export const addReview = function (review, compras, orders) {
+  return function () {
+    return axios.put("/api/orders/review", { review, compras, orders});
   };
 };
