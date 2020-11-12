@@ -9,16 +9,14 @@ import axios from "axios";
 class SingleProductContainer extends Component {
   constructor(props) {
     super(props);
-    this.state = { reviews:[] };
+    this.state = { reviews: [] };
     this.handleCart = this.handleCart.bind(this);
-    
   }
 
   componentDidMount() {
     this.props.fetchSingleProduct(this.props.match.params.id);
-    axios.get("/api/reviews").then((res) => {
-      this.setState({})
-      console.log(res.data);
+    axios.get(`/api/reviews/${this.props.match.params.id}`).then((res) => {
+      this.setState({ reviews: res.data });
     });
   }
 
@@ -36,7 +34,7 @@ class SingleProductContainer extends Component {
           handleCart={this.handleCart}
           singleProduct={this.props.singleProduct}
         />
-        <Reviews />
+        <Reviews reviews={this.state.reviews} />
       </div>
     );
   }

@@ -52,7 +52,6 @@ router.get("/products", (req, res) => {
       res.send(arrayResultado);
     });
   } else if (!req.query.search) {
-    console.log("ENTRE AL ELSE");
     Product.findAll({
       include: [{ model: Category }],
     }).then((arrayProduct) => {
@@ -69,7 +68,6 @@ router.get("/products", (req, res) => {
           flag = false;
         }
       });
-
       res.send(arrayResultado);
     });
   } else if (!req.query.category && req.query.search) {
@@ -85,6 +83,27 @@ router.get("/products", (req, res) => {
   }
 });
 
+router.put("/products/avgRate/:productId", (req, res) => {
+  Review.findAll({
+    where: { ProductId: req.params.productId },
+  })
+    .then((arrayReviews) => {
+      let sumRate = 0;
+      arrayReviews.map((rev) => {
+        sumRate = sumRate + rev.rate;
+      });
+      return sumRate / arrayReviews.length;
+    })
+    .then((avgRateRes) => {
+      Product.findByPk(Number(req.params.productId)).then((prod) => {
+        return prod.update({ avgRate: avgRateRes });
+      });
+    })
+    .then(() => {
+      res.sendStatus(200);
+    });
+});
+
 router.get("/categories", (req, res) => {
   Category.findAll().then((c) => {
     res.send(c);
@@ -92,19 +111,19 @@ router.get("/categories", (req, res) => {
 });
 
 router.get("/singleproduct/:id", (req, res) => {
-  console.log("en el product/id");
   Product.findByPk(req.params.id).then((singleProduct) => {
-    console.log(singleProduct);
     res.send(singleProduct);
   });
 });
 
-router.get("/reviews", (req, res) => {
-  Review.findAll()
-  .then((reviews)=> {
-    res.send(reviews)
-  })
-})
+router.get("/reviews/:productId", (req, res) => {
+  Review.findAll({
+    where: { ProductId: req.params.productId },
+    include: [{ model: User }, { model: Product }],
+  }).then((reviews) => {
+    res.send(reviews);
+  });
+});
 
 router.post("/register", (req, res) => {
   User.create(req.body).then((users) => {

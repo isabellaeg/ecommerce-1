@@ -95,39 +95,48 @@ User.create({
   email: "superadmin@canalcultural.com",
   password: "1",
   isAdmin: "SuperAdmin",
-});
+})
+  .then(() => {
+    User.create({
+      nickname: "user01",
+      email: "01@gmail.com",
+      password: "123",
+      isAdmin: "customer",
+    });
+  })
+  .then(() => {
+    Review.create({
+      comment: "Excelente Lo recomiendo!!",
+      rate: 5,
+      UserId: 1,
+      ProductId: 2,
+    });
 
-Review.create({
-  comment: "Excelente Lo recomiendo!!",
-  rate: 5,
-  UserId: 1,
-  ProductId: 1,
-});
+    Review.create({
+      comment: "Mas o menos todo",
+      rate: 3,
+      UserId: 1,
+      ProductId: 2,
+    });
 
-Review.create({
-  comment: "Mas o menos todo",
-  rate: 3,
-  UserId: 1,
-  ProductId: 1,
-});
+    Review.create({
+      comment: "Devuelvan mi dinero !!",
+      rate: 1,
+      UserId: 1,
+      ProductId: 1,
+    });
 
-Review.create({
-  comment: "Devuelvan mi dinero !!",
-  rate: 1,
-  UserId: 1,
-  ProductId: 1,
-});
+    Review.create({
+      comment: "Excelente CanalMusical es lo mejor!!",
+      rate: 5,
+      UserId: 1,
+      ProductId: 1,
+    });
 
-Review.create({
-  comment: "Excelente CanalMusical es lo mejor!!",
-  rate: 5,
-  UserId: 1,
-  ProductId: 1,
-});
-
-Review.create({
-  comment: "Muy bueno Lo recomiendo!!",
-  rate: 4,
-  UserId: 1,
-  ProductId: 1,
-});
+    Review.create({
+      comment: "Muy bueno Lo recomiendo!!",
+      rate: 4,
+      UserId: 1,
+      ProductId: 1,
+    });
+  });
