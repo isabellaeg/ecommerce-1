@@ -12,7 +12,7 @@ class SidebarContainer extends Component {
   }
 
   componentDidMount() {
-    return this.props.fetchAdminCategory();
+    return this.props.fetchAdminCategory()
   }
 
   handleSubmit(category) {

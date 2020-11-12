@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Link, Redirect } from "react-router-dom";
-import { Navbar, Nav, Form, FormControl, Button } from "react-bootstrap";
+import { Navbar, Nav, Form, FormControl, Button, NavDropdown } from "react-bootstrap";
 
 const navStyle = {
   textDecoration: "none",
@@ -17,6 +17,7 @@ const navHeader = {
   color: "white",
   marginTop: "10px",
   marginLeft: "80px",
+  backgroundColor: '#343a40'
 };
 
 const cartIcon = {
@@ -60,12 +61,32 @@ export default (props) => {
             <Nav className="mr-auto">
               <React.Fragment>
                 <Nav>
+                  
+                  </Nav>
+                  <Nav>
+                  <NavDropdown title={`Welcome ${props.user.nickname}`} style={navHeader} id="basic-nav-dropdown">
+                    {props.user.isAdmin === 'SuperAdmin' ? <NavDropdown.Item > <Link to="/admin/users">Manejar Usuarios</Link></NavDropdown.Item> : null}
+                    {props.user.isAdmin === 'Admin' ?
+                    <div> 
+                    <NavDropdown.Item >  <Link to="/admin/product">Manejar Productos</Link></NavDropdown.Item>
+                    <NavDropdown.Item ><Link to="/admin/category">Manejar Categorias</Link></NavDropdown.Item>
+                    </div>
+                  :
+                  null}
+                  
+                  <NavDropdown.Item ><Link to="/orders">Mis compras</Link></NavDropdown.Item>
+                  <NavDropdown.Divider />
+                  <NavDropdown.Item> 
+                    
                   <Button className="btn btn-dark" onClick={props.handleLogout}>
                     <Link to="/logout" style={navStyle}>
                       <i className="fas fa-sign-out-alt"></i>Logout
                     </Link>
                   </Button>
-                  <h5 style={navHeader}>Welcome {props.user.nickname}</h5>
+                    
+                    </NavDropdown.Item>
+                </NavDropdown>
+
                 </Nav>
               </React.Fragment>
             </Nav>

@@ -1,6 +1,9 @@
 import React from "react";
 import { Table, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import NotFound from './error'
+
+let style = {textDecoration: "none"}
 
 function AdminProduct({user, allProducts, handleDelete}) {
     return (<div>
@@ -29,9 +32,10 @@ function AdminProduct({user, allProducts, handleDelete}) {
                     <td>{e.name}</td>
                     <td> {e.price}</td>
                     <td> {e.stock} </td>
-                    <td> {e.imgUrl} </td>
-                    <td><Button onClick = {()=>{}}><Link to={`/admin/product/${e.id}`}>Editar</Link></Button></td>
-                    <td><Button onClick = {()=>{handleDelete(e)}}>Eliminar Producto</Button></td>
+                    <td> <img src={e.imgUrl} style={{width: "70px", height: '50px'}}></img></td>
+                    <td><Button style={{color: "white"}} variant='dark' onClick = {()=>{}}><Link to={`/admin/product/${e.id}`}><i class="fas fa-edit"></i></Link></Button></td>
+                    <td><Button variant="danger" onClick = {()=>{handleDelete(e)}}><i className="fas fa-trash"></i></Button></td>
+                    
                   </tr>
                 </tbody>
               );
@@ -44,7 +48,7 @@ function AdminProduct({user, allProducts, handleDelete}) {
     </div>
   )
   :
-  (<div className="container" style={{ marginTop: "50px", width: "60%" }}>ACA NO ENTRAS</div>)
+  (<NotFound style={{ marginTop: "50px", width: "60%", marginLeft: "70px"}}/>)
 
 }
 

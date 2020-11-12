@@ -23,9 +23,7 @@ export default ({
 }) => {
   return (
     <Container style={formbox}>
-      <Button variant="warning" type="submit" style={{ marginBottom: "20px" }}>
-        <i className="fab fa-google"></i> Register with Google
-      </Button>
+     
       <a href="/api/auth/facebook">
         <Button
           variant="primary"
@@ -44,6 +42,7 @@ export default ({
             placeholder="Enter Nickname"
             onChange={handleNickname}
             autoFocus
+            required
           />
           <Form.Text className="text-muted"></Form.Text>
         </Form.Group>

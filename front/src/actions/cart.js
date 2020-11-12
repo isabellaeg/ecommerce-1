@@ -28,6 +28,20 @@ const misCompras = function (compras){
   }
 }
 
+const misReviews = function (reviews){
+  return {
+    type: "MIS_REVIEWS",
+    reviews
+  }
+}
+
+const totalCart = function (total){
+  return {
+    type: "TOTAL_CART",
+    total
+}
+}
+
 export const userCart = function (product, user) {
   console.log("en user cart");
   console.log("user", user);
@@ -95,6 +109,14 @@ export const cartOrders = (cartid) => {
 
 export const addReview = function (review, compras, orders) {
   return function () {
-    return axios.put("/api/orders/review", { review, compras, orders});
+    return axios.post("/api/orders/review", { review, compras, orders}).then((review)=>{
+
+    })
+  };
+};
+
+export const fetchTotal = (tot) => {
+  return function (dispatch){
+    return dispatch(totalCart(tot));
   };
 };

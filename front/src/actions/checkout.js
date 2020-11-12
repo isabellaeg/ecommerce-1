@@ -14,8 +14,8 @@ const receiveCardInfo = function (allProducts) {
     return axios.put("/api/checkout", {address, card, cvv, cartId})
   }}
  */
-export const checkoutInfo = function (address, card, cvv, user) {
+export const checkoutInfo = function (address, card, cvv, user, total) {
   return function () {
-    return axios.put("/api/checkout", { address, card, cvv, user });
+    return axios.put("/api/checkout", { address, card, cvv, user, total });
   };
 };

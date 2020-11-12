@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom'
 import {Form, Button, Container} from 'react-bootstrap';
+import NotFound from './error'
 
 const formbox = {
     width: "380px",
@@ -19,6 +20,7 @@ const style = {
     position: "relative",
   };
 
+  let style2 = {hover: {backgroundColor: "yellow"}}
 export default ({user, allCategory, handleSubmit,handleStock, handleName, handlePrice, handleImg, handleDescription, handleCategory, category}) => {
 
     return(
@@ -35,6 +37,7 @@ export default ({user, allCategory, handleSubmit,handleStock, handleName, handle
                     placeholder="Enter name"
                     onChange={handleName} 
                     autoFocus
+                    required
                     />
                     <Form.Text className="text-muted">
                     </Form.Text>
@@ -46,6 +49,7 @@ export default ({user, allCategory, handleSubmit,handleStock, handleName, handle
                     type="number" 
                     placeholder="Enter stock" 
                     onChange={handleStock}
+                    required
                     />
                     <Form.Text className="text-muted">
                     </Form.Text>
@@ -57,6 +61,7 @@ export default ({user, allCategory, handleSubmit,handleStock, handleName, handle
                     type="number" 
                     placeholder="Enter price" 
                     onChange={handlePrice}
+                    required
                     />
                 </Form.Group>
 
@@ -66,6 +71,7 @@ export default ({user, allCategory, handleSubmit,handleStock, handleName, handle
                     type="text" 
                     placeholder="Enter a URL img" 
                     onChange={handleImg}
+                    required
                     />
                 </Form.Group>
 
@@ -75,6 +81,7 @@ export default ({user, allCategory, handleSubmit,handleStock, handleName, handle
                     type="text" 
                     placeholder="Enter a description" 
                     onChange={handleDescription}
+                    required
                     />
                 </Form.Group>
                 { allCategory && allCategory.length > 0 ?
@@ -82,7 +89,7 @@ export default ({user, allCategory, handleSubmit,handleStock, handleName, handle
                         return (
                 <Form.Group className="custom-control-inline" key={c.id}>
                     <span >
-                        <Button variant="danger" style={style} onClick={()=>{handleCategory(c)}}>{c.name}</Button>
+                        <Button variant="danger" style={style, style2} onClick={()=>{handleCategory(c)}}>{c.name}</Button>
                     </span>
                 </Form.Group>
                         )
@@ -98,7 +105,7 @@ export default ({user, allCategory, handleSubmit,handleStock, handleName, handle
 
 
             </Form>
-            </Container> : (<div className="container" style={{ marginTop: "50px", width: "60%" }}>ACA NO ENTRAS</div>)}
+            </Container> : (<NotFound style={{ marginTop: "50px", width: "60%", marginLeft: "70px"}}/>)}
         </div>
     )
 }

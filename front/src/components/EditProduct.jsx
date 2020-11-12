@@ -35,6 +35,7 @@ export default ({user, allCategory, handleSubmit,handleStock, handleName, handle
                     placeholder="Enter name" 
                     autoFocus
                     value={singleProduct.id}
+                    required
                     />
                     <Form.Text className="text-muted">
                     </Form.Text>
@@ -47,6 +48,7 @@ export default ({user, allCategory, handleSubmit,handleStock, handleName, handle
                     onChange={handleName} 
                     autoFocus
                     value={state.name}
+                    required
                     />
                     <Form.Text className="text-muted">
                     </Form.Text>
@@ -59,6 +61,7 @@ export default ({user, allCategory, handleSubmit,handleStock, handleName, handle
                     placeholder="Enter stock" 
                     onChange={handleStock}
                     value={state.stock}
+                    required
                     />
                     <Form.Text className="text-muted">
                     </Form.Text>
@@ -71,6 +74,7 @@ export default ({user, allCategory, handleSubmit,handleStock, handleName, handle
                     placeholder="Enter price" 
                     onChange={handlePrice}
                     value={state.price}
+                    required
                     />
                 </Form.Group>
 
@@ -81,6 +85,7 @@ export default ({user, allCategory, handleSubmit,handleStock, handleName, handle
                     placeholder="Enter a URL img" 
                     onChange={handleImg}
                     value={state.imgUrl}
+                    required
                     />
                 </Form.Group>
                 <Form.Group controlId="exampleForm.ControlTextarea1">
@@ -91,6 +96,7 @@ export default ({user, allCategory, handleSubmit,handleStock, handleName, handle
                     placeholder="Enter a description" 
                     onChange={handleDescription}
                     value={state.description}
+                    required
                     />
                 </Form.Group>
                 { allCategory && allCategory.length > 0 ?

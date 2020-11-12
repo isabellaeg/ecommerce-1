@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import SingleOrder from "../components/SingleOrder";
 import { connect } from "react-redux";
 import {cartOrders, addReview} from "../actions/cart";
+import Axios from "axios";
 
 
 class SingleOrderContainer extends Component {
@@ -29,6 +30,9 @@ class SingleOrderContainer extends Component {
     this.props.addReview(
         {rating: this.state.rating, review: this.state.review}, this.props.compras, this.props.orders
       )
+      .then(()=>{
+        Axios.put(`/api/products/avgRate/${this.props.compras[0].id}`)
+      })
   
     //   this.setState({
     //     review: "",

@@ -13,7 +13,7 @@ const formbox = {
     borderRadius: "10px",
 }
 
-export default ({handleSubmit, handleAddress, handleCard, handleCvv, user}) => {
+export default ({handleSubmit, handleAddress, handleCard, handleCvv, user, total}) => {
 
     return(
         <div>
@@ -22,6 +22,18 @@ export default ({handleSubmit, handleAddress, handleCard, handleCvv, user}) => {
                 <Container style={formbox}> 
                 <h3>Enter your payment information</h3>
             <Form  onSubmit={handleSubmit}>
+            <Form.Group>
+                    <Form.Label >Total:</Form.Label>
+                    <Form.Control 
+                    type="number" 
+                    placeholder="Enter Address" 
+                    onChange={handleAddress} 
+                    autoFocus
+                    value={total}
+                    />
+                    <Form.Text className="text-muted">
+                    </Form.Text>
+                </Form.Group>
                 <Form.Group>
                     <Form.Label >Address:</Form.Label>
                     <Form.Control 
@@ -58,9 +70,8 @@ export default ({handleSubmit, handleAddress, handleCard, handleCvv, user}) => {
                 </Form.Group>
     
                 <button className="btn btn-dark" type="submit" >
-                    Confirm
+                   <Link to="/confirmacion">Confirmar</Link> 
                 </button>
-                <Link to='/orders'>Ver mis compras</Link>
             </Form>
         </Container>
         )

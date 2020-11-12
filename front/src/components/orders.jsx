@@ -21,10 +21,10 @@ function Orders({orders}) {
                 <tbody key={cart.name}>
                   <tr>
                     <td># {cart.id}</td>
-                    <td>{cart.date}</td>
+                    <td>{cart.date.substring(0,10)}</td>
                     <td> {cart.address}</td>
                     <td>$ {cart.total} </td>
-                    <td><Button><Link to={`/orders/${cart.id}`}>PUNTUAR COMPRA</Link></Button></td>
+                    <td><Button variant='dark'><Link to={`/orders/${cart.id}`}>Rate</Link></Button></td>
                   </tr>
                 </tbody>
               );
