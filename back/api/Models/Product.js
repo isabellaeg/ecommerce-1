@@ -8,9 +8,6 @@ Product.init(
     name: {
       type: Sequelize.STRING,
       allowNull: false,
-      /* get() {
-        this.name.toLowerCase();
-      }, */
     },
     stock: {
       type: Sequelize.INTEGER,
@@ -26,6 +23,9 @@ Product.init(
     },
     description: {
       type: Sequelize.TEXT,
+    },
+    avgRate: {
+      type: Sequelize.DOUBLE,
     },
   },
   { sequelize: db, modelName: "Product" }

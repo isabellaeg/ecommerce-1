@@ -6,6 +6,8 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import { Link } from "react-router-dom";
+import { arrayStar, arrayNoStar } from "../utils/functions";
+import { MDBIcon } from "mdbreact";
 
 const style = {
   textDecoration: "none",
@@ -44,9 +46,34 @@ export default function ({ singleProduct, handleCart }) {
               <Card.Text>
                 <p>{singleProduct.description}</p>
               </Card.Text>
-              <Link to={`/allproducts`}>
+              <Card.Text>
+                <div className="rating">
+                  {arrayStar(singleProduct.avgRate).map((elem) => {
+                    return (
+                      <MDBIcon
+                        style={{ color: "#FF8C00" }}
+                        className="fa-lg"
+                        key={Math.random()}
+                        icon="star"
+                      />
+                    );
+                  })}
+                  {arrayNoStar(singleProduct.avgRate).map((elem) => {
+                    return (
+                      <MDBIcon
+                        style={{ color: "#FF8C00" }}
+                        className="fa-lg"
+                        key={Math.random()}
+                        far
+                        icon="star"
+                      />
+                    );
+                  })}
+                </div>
+              </Card.Text>
+              <Link to={`/products`}>
                 <Button variant="dark" style={style}>
-                <i className="fas fa-backward"></i>  Volver
+                  <i className="fas fa-backward"></i> Volver
                 </Button>
               </Link>
               <Button
@@ -55,7 +82,8 @@ export default function ({ singleProduct, handleCart }) {
                 }}
                 variant="dark"
                 style={style}
-              ><i className="fas fa-cart-plus"></i>  Agregar al carrito
+              >
+                <i className="fas fa-cart-plus"></i> Agregar al carrito
               </Button>
             </Card.Body>
           </Card>
