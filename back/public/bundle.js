@@ -82295,6 +82295,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
+
 
 
 var styeNavLink = {
@@ -82326,7 +82328,15 @@ function Sidebar(props) {
       },
       style: styeNavLink
     }, c.name)));
-  }) : null));
+  }) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
+    to: "/admin/product"
+  }, "admin product"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
+    to: "/admin/users"
+  }, "admin user"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
+    to: "/admin/category"
+  }, "admin category"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
+    to: "/orders"
+  }, "Mis compras")));
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (Sidebar);
@@ -82486,6 +82496,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_AdminCategory__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/AdminCategory */ "./src/components/AdminCategory.jsx");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _actions_admin__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../actions/admin */ "./src/actions/admin.js");
+/* harmony import */ var _actions_categories__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../actions/categories */ "./src/actions/categories.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -82513,6 +82524,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
 var AdminCategoryContainer = /*#__PURE__*/function (_Component) {
   _inherits(AdminCategoryContainer, _Component);
 
@@ -82533,6 +82545,9 @@ var AdminCategoryContainer = /*#__PURE__*/function (_Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       return this.props.fetchAdminCategory();
+      /* .then(() => {
+        this.props.fetchCategories();
+      }); */
     }
   }, {
     key: "handleDelete",
@@ -82572,7 +82587,8 @@ var mapStateToProps = function mapStateToProps(state) {
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["connect"])(mapStateToProps, {
   fetchAdminCategory: _actions_admin__WEBPACK_IMPORTED_MODULE_3__["fetchAdminCategory"],
-  deleteCategory: _actions_admin__WEBPACK_IMPORTED_MODULE_3__["deleteCategory"]
+  deleteCategory: _actions_admin__WEBPACK_IMPORTED_MODULE_3__["deleteCategory"],
+  fetchCategories: _actions_categories__WEBPACK_IMPORTED_MODULE_4__["fetchCategories"]
 })(AdminCategoryContainer));
 
 /***/ }),
@@ -84218,7 +84234,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Sidebar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/Sidebar */ "./src/components/Sidebar.jsx");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _actions_products__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../actions/products */ "./src/actions/products.js");
-/* harmony import */ var _actions_categories__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../actions/categories */ "./src/actions/categories.js");
+/* harmony import */ var _actions_admin__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../actions/admin */ "./src/actions/admin.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -84265,7 +84281,7 @@ var SidebarContainer = /*#__PURE__*/function (_Component) {
   _createClass(SidebarContainer, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.props.fetchCategories();
+      return this.props.fetchAdminCategory();
     }
   }, {
     key: "handleSubmit",
@@ -84296,13 +84312,13 @@ var SidebarContainer = /*#__PURE__*/function (_Component) {
 var mapStateToProps = function mapStateToProps(state) {
   return {
     searchString: state.search.searchString,
-    categories: state.categories.categories
+    categories: state.admin.allCategory
   };
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["connect"])(mapStateToProps, {
   fetchProductsWithCategory: _actions_products__WEBPACK_IMPORTED_MODULE_3__["fetchProductsWithCategory"],
-  fetchCategories: _actions_categories__WEBPACK_IMPORTED_MODULE_4__["fetchCategories"]
+  fetchAdminCategory: _actions_admin__WEBPACK_IMPORTED_MODULE_4__["fetchAdminCategory"]
 })(SidebarContainer));
 
 /***/ }),

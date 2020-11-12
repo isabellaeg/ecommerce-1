@@ -1,5 +1,6 @@
 import React from "react";
 import { Button, Nav } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const styeNavLink = {
   color: "white",
@@ -37,6 +38,13 @@ function Sidebar(props) {
               );
             })
           : null}
+        <Link to="/admin/product">admin product</Link>
+        <br />
+        <Link to="/admin/users">admin user</Link>
+        <br />
+        <Link to="/admin/category">admin category</Link>
+        <br />
+        <Link to="/orders">Mis compras</Link>
       </section>
     </div>
   );
