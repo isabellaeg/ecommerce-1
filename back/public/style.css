@@ -2,7 +2,8 @@
     background-image: url("https://cdn.wallpapersafari.com/44/58/zQU3xR.jpg");
     background-size: cover;
     /* position: fixed; */
-    margin-left: 160px;
+    margin-left: 120px;
+    margin-top: 80px;
 }
 
 .sidebar {

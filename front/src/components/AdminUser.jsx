@@ -1,6 +1,7 @@
 import React from "react";
 import { Table, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import NotFound from './error'
 
 function AdminUser({user, allUsers, handleDelete, handleRoles}) {
     return (<div>
@@ -47,7 +48,7 @@ function AdminUser({user, allUsers, handleDelete, handleRoles}) {
     </div>
   )
   :
-  (<div className="container" style={{ marginTop: "50px", width: "60%" }}>ACA NO ENTRAS</div>)
+  (<NotFound style={{ marginTop: "50px", width: "60%", marginLeft: "70px"}}/>)
 
 }
 

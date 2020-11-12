@@ -6,6 +6,7 @@ import {
   allCart,
   quantityProduct,
   addVirtualCart,
+  fetchTotal
 } from "../actions/cart";
 
 class CartContainer extends Component {
@@ -13,6 +14,7 @@ class CartContainer extends Component {
     super(props);
     this.handleDelete = this.handleDelete.bind(this);
     this.handleQuantityProduct = this.handleQuantityProduct.bind(this);
+    this.handleTotal = this.handleTotal.bind(this);
   }
 
   componentDidMount() {
@@ -73,6 +75,10 @@ class CartContainer extends Component {
     }
   }
 
+  handleTotal(total){
+    return this.props.fetchTotal(total)
+  }
+
   render() {
     return (
       <div>
@@ -82,6 +88,8 @@ class CartContainer extends Component {
           handleDelete={this.handleDelete}
           user={this.props.user}
           cart={this.props.cart}
+          handleTotal={this.handleTotal}
+
         />
       </div>
     );
@@ -111,4 +119,5 @@ export default connect(mapStateToProps, {
   allCart,
   quantityProduct,
   addVirtualCart,
+  fetchTotal
 })(CartContainer);

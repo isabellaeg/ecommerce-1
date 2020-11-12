@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const styeNavLink = {
   color: "white",
-  fontSize: "1.1rem",
+  fontSize: "1rem",
   border: "none",
   outline: "none",
   padding: "2px 16px",
@@ -16,8 +16,8 @@ const styleHeader = {
 
 function Sidebar(props) {
   return (
-    <div className="col-xs-2">
-      <section className="sidebar">
+    <div className="col-xs-2" >
+      <section className="sidebar" style={{backgroundColor: '#343a40', fontFamily: "inherit"}}>
         <br />
         <p style={styleHeader}>CATEGORÍAS</p>
         {props.categories && props.categories.length > 0
@@ -38,13 +38,13 @@ function Sidebar(props) {
               );
             })
           : null}
-        <Link to="/admin/product">admin product</Link>
+        
         <br />
-        <Link to="/admin/users">admin user</Link>
+       
         <br />
-        <Link to="/admin/category">admin category</Link>
+        
         <br />
-        <Link to="/orders">Mis compras</Link>
+        
       </section>
     </div>
   );

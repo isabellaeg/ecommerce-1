@@ -21,9 +21,7 @@ export default ({
 }) => {
   return (
     <Container style={formbox}>
-      <Button variant="warning" type="submit" style={{ marginBottom: "20px" }}>
-        <i className="fab fa-google"></i> Login with Google
-      </Button>
+      
       <a href="/api/auth/facebook">
         <Button
           variant="primary"

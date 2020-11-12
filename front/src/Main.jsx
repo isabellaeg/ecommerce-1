@@ -19,6 +19,7 @@ import AdminCategoryContainer from "./containers/AdminCategoryContainer"
 import AdminNewCategoryContainer from "./containers/AdminNewCategoryContainer"
 import EditProductContainer from "./containers/EditProductContainer"
 import SingleOrderContainer from "./containers/SingleOrderContainer"
+import Confirmacion from "./components/ConfirmacionCompra";
 
 
 class Main extends React.Component {
@@ -59,6 +60,7 @@ class Main extends React.Component {
           <Route exact path='/admin/newcategory' component={AdminNewCategoryContainer} />
           <Route exact path='/admin/category' component={AdminCategoryContainer} />
           <Route exact path='/admin/product/:id' component={EditProductContainer} />
+          <Route exact path='/confirmacion' component={Confirmacion} />
           <Redirect to="/products" />
         </Switch>
       </div>

@@ -3,6 +3,7 @@ import { Card, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { arrayStar, arrayNoStar } from "../utils/functions";
 import { MDBIcon } from "mdbreact";
+import NotFoundSearch from './errorBusqueda'
 
 const style = {
   textDecoration: "none",
@@ -18,7 +19,7 @@ export default ({ productsArray, handleCart }) => (
   <div className="bg-light" style={{ marginLeft: "170px" }}>
     <div style={grid} className="container">
       <div className="row">
-        {productsArray && productsArray.length > 0
+        {productsArray[0]!== 'NA' && productsArray.length > 0
           ? productsArray.map((p) => {
               return (
                 <Card
@@ -72,7 +73,7 @@ export default ({ productsArray, handleCart }) => (
                 </Card>
               );
             })
-          : null}
+          : <NotFoundSearch style={{ marginTop: "50px", width: "60%", marginLeft: "70px"}}/>}
       </div>
     </div>
   </div>

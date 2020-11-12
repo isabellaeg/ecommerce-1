@@ -66,7 +66,7 @@ class NewProductContainer extends React.Component {
       imgUrl: this.state.imgUrl,
       description: this.state.description},
       {category: this.state.category}
-    );
+    ).then(()=>this.props.history.push("/admin/product"))
 
     this.setState({
         name: "",
@@ -76,7 +76,7 @@ class NewProductContainer extends React.Component {
         description: "",
     });
 
-    this.props.history.push("/admin/product");
+
   }
 
   render() {

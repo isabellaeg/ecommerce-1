@@ -1,6 +1,7 @@
 import React from "react";
 import { Table, Button, Card, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import NotFound from './error'
 
 function SingleOrder({compras, user, handleSubmit, handleReview, handleRating}) {
 return(<div>
@@ -22,7 +23,7 @@ return(<div>
             <th>Imagen</th>
             <th>Nombre</th>
             <th>Precio</th>
-            <th>Estrellas</th>
+       
 
           </tr>
         </thead>
@@ -31,7 +32,7 @@ return(<div>
                 <td><img src={c.imgUrl} style={{width: "70px", height: '50px'}}></img> </td>
                 <td>{c.name}</td>
                 <td>$ {c.price}</td>
-                <td></td>
+             
             </tr>
             </tbody>
        
@@ -44,6 +45,7 @@ return(<div>
                     type='number'
                     placeholder="Enter rating" 
                     onChange={handleRating}
+                    required
                     />
         </Form.Group>
 
@@ -57,7 +59,8 @@ return(<div>
                     onChange={handleReview}
                     />
         </Form.Group>
-        <Button style={{marginTop: "30px", marginBottom: "30px"}}variant="dark" type="submit" disabled={true} onClick={()=>{bool = true}}>
+
+        <Button style={{marginTop: "30px", marginBottom: "30px"}}variant="dark" type="submit" disabled={bool} onClick={()=>bool=true}>
                     Enviar
                 </Button>
         </Form>
@@ -73,7 +76,7 @@ return(<div>
    </div>)
 
 :
-<div className="container">ACCESO DENEGADO</div>
+<NotFound style={{ marginTop: "50px", width: "60%", marginLeft: "70px"}}/>
 }
 </div>)
 }

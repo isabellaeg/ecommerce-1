@@ -22,7 +22,7 @@ export const fetchProducts = (stringBusqueda) => (dispatch) =>
     .then((products) => {
       console.log("eston en fech products action");
       if (products.length == 0) {
-        dispatch(receiveProducts(["No hay resultados para la busqueda"]));
+        dispatch(receiveProducts(["NA"]));
       } else {
         dispatch(receiveProducts(products));
       }
@@ -53,7 +53,7 @@ export const fetchProductsWithCategory = (stringBusqueda, category) => (
       })
       .then((products) => {
         if (products.length == 0) {
-          dispatch(receiveProducts(["No hay resultados para la busqueda"]));
+          dispatch(receiveProducts(["NA"]));
         } else {
           dispatch(receiveProducts(products));
         }
@@ -66,7 +66,7 @@ export const fetchProductsWithCategory = (stringBusqueda, category) => (
       })
       .then((products) => {
         if (products.length == 0) {
-          dispatch(receiveProducts(["No hay resultados para la busqueda"]));
+          dispatch(receiveProducts(["NA"]));
         } else {
           dispatch(receiveProducts(products));
         }

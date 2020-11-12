@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom'
 import {Form, Button, Container, InputGroup} from 'react-bootstrap';
+import NotFound from './error'
 
 const formbox = {
     width: "380px",
@@ -30,6 +31,7 @@ export default ({handleSubmit, handleName, user}) => {
                     placeholder="Enter Category name" 
                     onChange={handleName} 
                     autoFocus
+                    required
                     />
                     <Form.Text className="text-muted">
                     </Form.Text>
@@ -39,7 +41,7 @@ export default ({handleSubmit, handleName, user}) => {
                 </Button>
             </Form>
         </Container>) : 
-        (<div className="container" style={{ marginTop: "50px", width: "60%" }}>ACA NO ENTRAS</div>)}
+        (<NotFound style={{ marginTop: "50px", width: "60%", marginLeft: "70px"}}/>)}
     </div>
     )
 }

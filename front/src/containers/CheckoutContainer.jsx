@@ -10,6 +10,7 @@ class CheckoutContainer extends Component {
             address: "",
             card: "",
             cvv: "",
+            total: 0
 
         }
         this.handleSubmit = this.handleSubmit.bind(this)
@@ -23,7 +24,7 @@ class CheckoutContainer extends Component {
         console.log('state', this.state)
         console.log('HOLA', this.props)
         e.preventDefault();
-        this.props.checkoutInfo(this.state.address, this.state.card, this.state.cvv, this.props.user)
+        this.props.checkoutInfo(this.state.address, this.state.card, this.state.cvv, this.props.user, this.props.total)
         //this.props.history.push('/') EN LA SIDEBAR METER LINK A TODAS LAS ORDERS
       }
 
@@ -49,6 +50,7 @@ class CheckoutContainer extends Component {
                 handleCard = {this.handleCard} 
                 handleCvv = {this.handleCvv}
                 user={this.props.user}
+                total={this.props.total}
                 />
             </div>
         )
@@ -58,7 +60,8 @@ class CheckoutContainer extends Component {
 const mapStateToProps = (state) => {
     console.log("state", state);
     return {
-      user: state.user.user
+      user: state.user.user,
+      total: state.cart.totalCart.total
     };
   };
 

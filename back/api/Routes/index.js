@@ -170,11 +170,11 @@ var transporter = nodemailer.createTransport({
 });
 
 router.put("/checkout", (req, res) => {
-  var mailOptions = {
+   var mailOptions = {
     from: "canalculturalp5@gmail.com",
     to: req.body.user.email,
     subject: "Confirmacion de compra",
-    text: "Felicidades, compraste algo",
+    html: `Muchas gracias por tu compra, en breve un representante de atencion al cliente se comunicara contigo`
   };
   Cart.update(
     {
@@ -183,6 +183,7 @@ router.put("/checkout", (req, res) => {
       cardCvv: req.body.cvv,
       date: Date.now(),
       isPaid: true,
+      total: req.body.total
     },
     {
       where: { UserId: req.body.user.id, isPaid: false },
@@ -198,7 +199,7 @@ router.put("/checkout", (req, res) => {
         from: "canalculturalp5@gmail.com",
         to: `${req.body.user.email}`,
         subject: "Confirmacion de compra",
-        text: `Felicidades, compraste algo tus productos son: ${2 + 2}`,
+        html: `<h1>ESTO ES H1 ${cart}</h1>` 
       };
     })
     .then((cart) => {
@@ -238,15 +239,15 @@ router.get("/compras/:cartId", (req, res) => {
   });
 });
 
-router.put('/orders/review', (req, res)=>{
-  console.log('REQ BODY REVIEW', req.body)
+router.post('/orders/review', (req, res)=>{
   Review.create({
     comment: req.body.review.review,
     rate: req.body.review.rating ,
     UserId: req.body.orders[0].UserId,
     ProductId: req.body.compras[0].id,
-
-  })
+  }).then(()=>{
+    Review.findAll()
+  }).then((rta)=>res.send(rta))
 })
 
 router.get("/me", (req, res) => {
