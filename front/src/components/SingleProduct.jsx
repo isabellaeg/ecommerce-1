@@ -44,6 +44,9 @@ export default function ({ singleProduct, handleCart }) {
             <Card.Body>
               <Card.Title>{singleProduct.name}</Card.Title>
               <Card.Text>
+                <p>Precio: $ {singleProduct.price}</p>
+              </Card.Text>
+              <Card.Text>
                 <p>{singleProduct.description}</p>
               </Card.Text>
               <Card.Text>
