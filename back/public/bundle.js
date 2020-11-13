@@ -82034,8 +82034,8 @@ var cartIcon = {
     fixed: "top"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Navbar"].Brand, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
     style: {
-      width: "70px",
-      height: '70px'
+      width: "75px",
+      height: '75px'
     },
     src: "https://cdn.discordapp.com/attachments/771492337183883285/776602831754494002/pixlr-bg-result.png"
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Nav"], {

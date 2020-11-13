@@ -30,7 +30,7 @@ export default (props) => {
   return (
     <div>
       <Navbar bg="dark" variant="dark" fixed="top">
-        <Navbar.Brand ><img style={{width: "70px", height: '70px'}} src='https://cdn.discordapp.com/attachments/771492337183883285/776602831754494002/pixlr-bg-result.png'></img></Navbar.Brand>
+        <Navbar.Brand ><img style={{width: "75px", height: '75px'}} src='https://cdn.discordapp.com/attachments/771492337183883285/776602831754494002/pixlr-bg-result.png'></img></Navbar.Brand>
         <Nav className="mr-auto">
           <Nav>
             <button
