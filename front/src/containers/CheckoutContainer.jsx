@@ -3,6 +3,7 @@ import Checkout from '../components/Checkout'
 import { connect } from 'react-redux'
 import {checkoutInfo} from '../actions/checkout' 
 
+
 class CheckoutContainer extends Component {
     constructor(props) {
         super(props)
@@ -21,7 +22,7 @@ class CheckoutContainer extends Component {
     }
 
     handleSubmit(e) {
-        console.log('state', this.state)
+        // console.log('state', this.state)
         console.log('HOLA', this.props)
         e.preventDefault();
         this.props.checkoutInfo(this.state.address, this.state.card, this.state.cvv, this.props.user, this.props.total)

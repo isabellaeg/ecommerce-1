@@ -66,7 +66,7 @@ export default (props) => {
                   <Nav>
                   <NavDropdown title={`Welcome ${props.user.nickname}`} style={navHeader} id="basic-nav-dropdown">
                     {props.user.isAdmin === 'SuperAdmin' ? <NavDropdown.Item > <Link to="/admin/users">Manejar Usuarios</Link></NavDropdown.Item> : null}
-                    {props.user.isAdmin === 'Admin' ?
+                    {props.user.isAdmin !== 'Costumer' ?
                     <div> 
                     <NavDropdown.Item >  <Link to="/admin/product">Manejar Productos</Link></NavDropdown.Item>
                     <NavDropdown.Item ><Link to="/admin/category">Manejar Categorias</Link></NavDropdown.Item>
