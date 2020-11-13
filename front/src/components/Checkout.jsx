@@ -82,8 +82,14 @@ export default ({
         </Container>
       ) : (
         <Container>
-          <h3>Debes estar logueado antes de comprar </h3>
-          <button className="btn btn-dark">
+          <span style={{marginLeft: "160px"}} className='Container alert alert-danger' className="alert alert-danger" role="alert">
+      Para continuar con tu compra, te pedimos por favor que inicies sesion.
+    </span>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+          <button className="btn btn-dark" style={{marginLeft: "160px"}} >
             <Link to="/login">Ir al login</Link>
           </button>
         </Container>
