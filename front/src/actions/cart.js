@@ -14,33 +14,33 @@ const allVirtualCart = function (virtualCart) {
   };
 };
 
-const addOrder = function (orders){
+const addOrder = function (orders) {
   return {
     type: "ADD_ORDERS",
-    orders
-  }
-}
+    orders,
+  };
+};
 
-const misCompras = function (compras){
+const misCompras = function (compras) {
   return {
     type: "MIS_COMPRAS",
-    compras
-  }
-}
+    compras,
+  };
+};
 
-const misReviews = function (reviews){
+const misReviews = function (reviews) {
   return {
     type: "MIS_REVIEWS",
-    reviews
-  }
-}
+    reviews,
+  };
+};
 
-const totalCart = function (total){
+const totalCart = function (total) {
   return {
     type: "TOTAL_CART",
-    total
-}
-}
+    total,
+  };
+};
 
 export const userCart = function (product, user) {
   console.log("en user cart");
@@ -88,18 +88,16 @@ export const clearVirtualCartInStore = () => (dispatch) => {
   return dispatch(allVirtualCart([]));
 };
 
-
 export const allOrders = (userId) => {
   return (dispatch) => {
     return axios.get(`/api/orders/${userId}`).then((res) => {
-      console.log('RES.DATA', res.data)
+      console.log("RES.DATA", res.data);
       dispatch(addOrder(res.data));
     });
   };
 };
 
 export const cartOrders = (cartid) => {
-
   return (dispatch) => {
     return axios.get(`/api/compras/${cartid}`).then((res) => {
       dispatch(misCompras(res.data.Products));
@@ -109,14 +107,18 @@ export const cartOrders = (cartid) => {
 
 export const addReview = function (review, compras, orders) {
   return function () {
-    return axios.post("/api/orders/review", { review, compras, orders}).then((review)=>{
-
-    })
+    return axios.post("/api/orders/review", { review, compras, orders });
   };
 };
 
 export const fetchTotal = (tot) => {
-  return function (dispatch){
+  return function (dispatch) {
     return dispatch(totalCart(tot));
+  };
+};
+
+export const clearProductReviewed = (products) => {
+  return function (dispatch) {
+    dispatch(misCompras(products));
   };
 };

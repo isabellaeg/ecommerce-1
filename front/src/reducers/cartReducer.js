@@ -5,7 +5,8 @@ const initialState = {
   virtualCart: [],
   orders: [],
   compras: [],
-  totalCart: []
+  totalCart: [],
+  reviews: [],
 };
 
 export default (state = initialState, action) => {
@@ -18,8 +19,10 @@ export default (state = initialState, action) => {
       return Object.assign({}, state, { orders: action.orders });
     case "MIS_COMPRAS":
       return Object.assign({}, state, { compras: action.compras });
-      case "TOTAL_CART":
-        return Object.assign({}, state, { totalCart: action.total });
+    case "TOTAL_CART":
+      return Object.assign({}, state, { totalCart: action.total });
+    case "MIS_REVIEWS":
+      return Object.assign({}, state, { reviews: action.reviews });
     default:
       return state;
   }
