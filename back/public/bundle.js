@@ -81781,19 +81781,16 @@ var formbox = {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 
 
 function Confirmacion() {
-  var _React$createElement;
-
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", (_React$createElement = {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     style: {
-      marginLeft: "160px"
+      margin: "26%"
     },
-    className: "Container alert alert-danger"
-  }, _defineProperty(_React$createElement, "className", "alert alert-danger"), _defineProperty(_React$createElement, "role", "alert"), _React$createElement), "Gracias por tu compra.");
+    className: "container alert alert-success",
+    role: "alert"
+  }, "Gracias por tu compra, en instantes recibiras un correo con la confirmacion .");
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (Confirmacion);
@@ -82016,7 +82013,7 @@ var navStyle = {
   color: "white"
 };
 var title = {
-  color: "red",
+  color: "white",
   fontSize: "30px"
 };
 var navHeader = {
@@ -82035,9 +82032,13 @@ var cartIcon = {
     bg: "dark",
     variant: "dark",
     fixed: "top"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Navbar"].Brand, {
-    style: title
-  }, "Canal Musical"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Nav"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Navbar"].Brand, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    style: {
+      width: "70px",
+      height: '70px'
+    },
+    src: "https://cdn.discordapp.com/attachments/771492337183883285/776602831754494002/pixlr-bg-result.png"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Nav"], {
     className: "mr-auto"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Nav"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     onClick: props.clearProductInStore,
