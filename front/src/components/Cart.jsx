@@ -33,7 +33,12 @@ function Cart(props) {
               return (
                 <tbody key={cart.name}>
                   <tr>
-                  <td><img src={cart.imgUrl} style={{width: "70px", height: '50px'}}></img> </td>
+                    <td>
+                      <img
+                        src={cart.imgUrl}
+                        style={{ width: "70px", height: "50px" }}
+                      ></img>{" "}
+                    </td>
                     <td>{cart.name}</td>
                     <td>{cart.CartProductQuant.quantity}</td>
                     <td>$ {cart.price}</td>
@@ -87,9 +92,13 @@ function Cart(props) {
           : null}
       </Table>
       <p>TOTAL: $ {total}</p>
-      <Button className="btn btn-dark" onClick={()=>{
-         console.log({total: total}) 
-        props.handleTotal({total: total})}}>
+      <Button
+        className="btn btn-dark"
+        onClick={() => {
+          console.log({ total: total });
+          props.handleTotal({ total: total });
+        }}
+      >
         <Link to="/checkout">Comprar</Link>
       </Button>
     </div>

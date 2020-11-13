@@ -95,8 +95,8 @@ User.create({
   email: "superadmin@canalcultural.com",
   password: "1",
   isAdmin: "SuperAdmin",
-})
-  .then(() => {
+});
+/* .then(() => {
     User.create({
       nickname: "user01",
       email: "01@gmail.com",
@@ -139,4 +139,4 @@ User.create({
       UserId: 1,
       ProductId: 1,
     });
-  });
+  }); */
