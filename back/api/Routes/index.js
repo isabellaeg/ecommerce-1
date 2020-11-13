@@ -176,6 +176,7 @@ router.put("/checkout", (req, res) => {
     subject: "Confirmacion de compra",
     html: `Muchas gracias por tu compra, en breve un representante de atencion al cliente se comunicara contigo`
   };
+  console.log(req.body)
   Cart.update(
     {
       address: req.body.address,

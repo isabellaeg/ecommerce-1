@@ -70,7 +70,7 @@ export default ({handleSubmit, handleAddress, handleCard, handleCvv, user, total
                 </Form.Group>
     
                 <button className="btn btn-dark" type="submit" >
-                   <Link to="/confirmacion">Confirmar</Link> 
+                   Confirmar
                 </button>
             </Form>
         </Container>
